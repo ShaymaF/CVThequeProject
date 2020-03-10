@@ -1,38 +1,39 @@
 
 var express = require('express')
-, router = express.Router()
-//var firebase=require('../Firebase/config').getConnection();
+var firebase = require('firebase');
+var router = express();
+
 var faker = require('faker/locale/fr');
-var firebase=require('../Firebase/config').getConnection();
 
+//Create new Experience
 
-//Create new divers
-router.put('/add', function (req, res) {
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
-	var referencePath = '/divers/';
-	var userReference = firebase.database().ref(referencePath);
+	var referencePath = '/experience/';
+    var userReference = firebase.database().ref(referencePath);
+    
 
-	divers=faker.lorem.lines(1);
-	var newPostRef = userReference.push();
-	diversDesc={
-	"desc":divers
-}
 
-	newPostRef.set(diversDesc , 
+
+
+	//var newPostRef = userReference.push();
+
+
+	userReference.set(experience , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
 					} 
-					else {
+					else { 
+                    //    res.status(200).send(experience)
 						res.send("Data saved successfully.");
 					}
 			});
 });
 
-
-//list divers
+//list experience
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
@@ -59,7 +60,7 @@ router.post('/update', function (req, res) {
 	//var description = req.body.description;
 
 
-	var referencePath = '/divers/';
+	var referencePath = '/experience/';
 	var userReference = firebase.database().ref(referencePath);
 	userReference.update({description: description}, 
 				 function(error) {
@@ -80,4 +81,4 @@ router.delete('/delete', function (req, res) {
 });
 
 
-module.exports = router
+module.exports = router;

@@ -1,4 +1,7 @@
+
 var firebase = require('firebase');
+//var firebase = require("nativescript-plugin-firebase");
+
 var firebaseConfig = {
     apiKey: "AIzaSyBQZR7TM60pzo8WrEkQ8-29SQDdk-SQGsw",
     authDomain: "cvthequepfe.firebaseapp.com",
@@ -13,5 +16,10 @@ var firebaseConfig = {
   
   module.exports.getConnection = function(){
 // Initialize Firebase
-    return firebase.initializeApp(firebaseConfig);
-};
+    if (!firebase.apps.length) {
+      return firebase.initializeApp(firebaseConfig);}
+      else        
+       console.log('firebase already init');
+    }
+
+

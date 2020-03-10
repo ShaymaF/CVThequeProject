@@ -1,10 +1,12 @@
 
-var express = require('express')
-, router = express.Router()
+var express = require('express');
+var firebase = require('firebase');
+
 //var firebase=require('../Firebase/config').getConnection();
+var router = express();
+
 var faker = require('faker/locale/fr');
 var dateFormat = require('dateformat');
-var firebase=require('../Firebase/config').getConnection();
 
 company=faker.company.companyName();
 ProjetName=faker.lorem.word();
@@ -81,7 +83,8 @@ router.post('/add', function (req, res) {
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
-	var userReference = firebase.database().ref("/experience/");
+	var referencePath = '/experience';
+	var userReference = firebase.database().ref(referencePath);
 
 	//Attach an asynchronous callback to read the data
 	userReference.on("value", 
@@ -125,4 +128,4 @@ router.delete('/delete', function (req, res) {
 });
 
 
-module.exports = router
+module.exports = router;

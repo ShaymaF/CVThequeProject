@@ -20,6 +20,7 @@ import { DiversService } from './services/divers/divers.service';
 import { ExperienceService } from './services/experience/experience.service';
 import { LoisirService } from './services/loisirs/loisir.service';
 import { PersonService } from './services/person/person.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PersonService } from './services/person/person.service';
     MatDatepickerModule,
      MatNativeDateModule,
      MatFormFieldModule,  
-       HttpClientModule
+       HttpClientModule,
+       CommonModule
     
   ],
   providers: [

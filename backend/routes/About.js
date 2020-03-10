@@ -1,9 +1,11 @@
 
-var express = require('express')
-, router = express.Router()
-var faker = require('faker/locale/fr');
-var firebase=require('../Firebase/config').getConnection();
+var express = require('express');
+var firebase = require('firebase');
 
+//var firebase=require('../Firebase/config').getConnection();
+var router = express();
+
+var faker = require('faker/locale/fr');
 
 //Create new about
 router.put('/add', function (req, res) {
@@ -31,11 +33,13 @@ userReference.set(aboutDesc ,
 });
 
 
-//list divers
+//list about
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
-	var userReference = firebase.database().ref('about').child("/desc");
+	var referencePath = '/about/desc';
+	var userReference = firebase.database().ref(referencePath);
+
 	//Attach an asynchronous callback to read the data
 	userReference.on("value", 
 			  function(snapshot) {
@@ -78,4 +82,4 @@ router.delete('/delete', function (req, res) {
 });
 
 
-module.exports = router
+module.exports = router;
