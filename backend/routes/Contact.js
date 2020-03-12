@@ -37,7 +37,6 @@ userReference.set(contactDesc ,
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
-var referencePath = '/contact/';
 
 /*	var ref = firebase.database().ref("contact");
 ref.child(userUID).once("value", function(snapshot) {

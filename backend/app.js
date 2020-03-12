@@ -6,6 +6,10 @@ var about=require('./routes/About');
 var divers=require('./routes/Divers');
 var contact=require('./routes/Contact');
 var person=require('./routes/Person');
+var image=require('./routes/Image');
+var loisirs=require('./routes/Loisir');
+var langues=require('./routes/Langues');
+var formation=require('./routes/Formation');
 
 
 const cors = require('cors');
@@ -16,10 +20,14 @@ app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 app.use(bodyParser.json());
 app.use("/about", about);
 app.use("/experience", experience);
-app.use("/divers", divers );
-app.use("/contact", contact );
-app.use("/person", person );
+app.use("/divers", divers);
+app.use("/contact", contact);
+app.use("/person", person);
+app.use("/loisirs", loisirs);
+app.use("/langues", langues);
+app.use("/formation", formation);
 
+app.use("/api", image);
 app.get("/", function(req,res){
 	res.send("home")
 	

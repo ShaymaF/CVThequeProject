@@ -3,18 +3,24 @@ var express = require('express')
 , router = express.Router()
 //var firebase=require('../Firebase/config').getConnection();
 var faker = require('faker/locale/fr');
-var firebase=require('../Firebase/config').getConnection();
+var firebase = require('firebase');
 
 
-//Create new divers
-app.put('/add', function (req, res) {
+//Create new langues
+router.put('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/langues/';
 	var userReference = firebase.database().ref(referencePath);
 
-	langues=faker.lorem.word();
+	langues={
+
+		 langue:'Anglais',
+		 
+		 note:'7/10'
+
+	}
 	var newPostRef = userReference.push();
 	
 
@@ -30,7 +36,7 @@ app.put('/add', function (req, res) {
 });
 
 
-//list divers
+//list langues
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");

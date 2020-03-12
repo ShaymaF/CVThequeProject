@@ -44,7 +44,7 @@
     #document.skn-srz1 .section:empty{display:none}
   
     /*Left Box */
-    #document.skn-srz1 .left-box{background:#003D73;display:table-cell;padding:15px;box-sizing:initial}
+    #document.skn-srz1 .left-box{background:#003D73;display:table-cell;padding:15px;box-sizing:initial;}
     #document.skn-srz1 .left-box .section{position:relative;color:#fff}
     #document.skn-srz1 .left-box .heading{line-height:1.5;margin-left:-15px;margin-right:-15px;padding:0 15px;position:relative}
     #document.skn-srz1 .left-box .heading:before{content:'';position:absolute;left:0;top:0;background:#003D73;height:100%;width:100%;filter:brightness(0.8)}
@@ -142,29 +142,44 @@
 <div id="document" class="document fontsize fontface vmargins hmargins pagesize skn-srz1 SRZ1 ZTY" style="width: 75%;margin-top: 30px;"><div id="CONTAINER_PARENT_0" class="parentContainer" ><div id="CONTAINER_0" class="left-box" style="background-color: darkcyan;">
       
     <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-NAME">
-          <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
           <div id="SECTION_NAME671b9a7b-6571-4313-8bd1-2acd7b773738" class="section notdraggable SECTION_NAME firstsection  " data-section-cd="NAME">
               <div class=" doc-item"><div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
                   
                  
-    
+    <input type="file"  style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)" ><br>
+
     <div class="sectiontitle" id="imgeID" >
         <div class="example">
-        <img src="assets/media/users/user2.jpg" title="" style="width: inherit;">
-        <div class="fadedbox">
-        <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  onClick="$('#imgeID').hide();$('#button').show();"> Hide Picture </button>
 
+            <div *ngIf="localUrl; else elseBlock">
+              <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 150px;">
+            </div>
+              
+                  <ng-template #elseBlock>
+                    <img  src="assets/media/users/user4.jpg" title="" style="width: inherit;">
+                </ng-template>
+
+               <div class="fadedbox">
+        <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  onClick="$('#imgeID').hide();$('#buttonImg').show();"> Hide Picture </button><br>
+        <div class="wrapper">
+                      
+            <div class="file-upload">
+             <!-- <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  id="inputImage"type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"/><br>-->
+
+           
+            </div>
+          
+          </div>
         </div>
     </div>
     </div>
+              
     
-                 
-    
-                    <div class="" id="showImage">
+                    <div class="" id="showImage" >
                         <div class="example fadedbox">
               
-                         <button id ="button" style="background-color:black;width: 100%; color:white; font-size: 8pt; border-style: none;display: none; " class="title text"  onClick="$('#imgeID').show();$('#button').hide();"> show Picture </button>
-                        
+                         <button id ="buttonImg" style="background-color:black;width: 100%; color:white; font-size: 8pt; border-style: none;display: none; " class="title text"  onClick="$('#imgeID').show();$('#buttonImg').hide();"> show Picture </button><br>
+     
                         </div>
                     </div>
 
@@ -208,25 +223,55 @@
                             
                         </div>
                     </div>
-                </div></div></div></div></div></div></div><div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Skills<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
+                </div></div></div></div></div></div></div>
+                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Langues<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
                     <div class="singlecolumn maincolumn">
-                        <span class="paddedline" id="FIELD_SKC1"><ul><li>Time management</li><li>Time Letter preparation</li><li>Correspondence handling</li></ul></span>
+                        <span class="paddedline" id="FIELD_SKC1">
+                            <ul *ngFor="let listLangue of arrayListLang">
+                                <li>{{listLangue.langue}} - {{ listLangue.note }}</li>
+                            </ul></span>
                         
-                        <span class="paddedline txtRight" id="FIELD_RATT">undefined</span>
                     </div>
-                </div></div></div></div></div></div></div></div><div id="CONTAINER_1" class="right-box"><div data-react-beautiful-dnd-draggable="2Hig" class="sortable-item section-container SortableItem-sibling  data-SUMM"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_SUMMfa2859a6-4cc7-43e6-985b-04a3c95ffae2" class="section summary notdraggable SECTION_SUMM  noparagraph " data-section-cd="SUMM"><div class=" doc-item"><div class=""><div class=""><div id="PARAGRAPH_SUMM_0" class="paragraph PARAGRAPH_SUMM firstparagraph placeholder-text "><div class="clearfix doc-item">
+                </div></div></div></div></div></div></div>
+           
+                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Loisirs<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
+                    <div class="singlecolumn maincolumn">
+                        <span class="paddedline" id="FIELD_SKC1">
+                            <ul *ngFor="let listLoisirs of arrayListLoisirs">
+                                <li>{{listLoisirs.desc}} </li>
+                            </ul></span>
+                        
+                    </div>
+                </div></div></div></div></div></div></div>
+                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Divers<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
+                    <div class="singlecolumn maincolumn">
+                        <span class="paddedline" id="FIELD_SKC1">
+                            <ul *ngFor="let listDivers of arrayListDivers">
+                                <li>{{listDivers.desc}}</li>
+                            </ul></span>
+                        
+                    </div>
+                </div></div></div></div></div></div></div>
+            </div>
+
+                <div id="CONTAINER_1" class="right-box"><div data-react-beautiful-dnd-draggable="2Hig" class="sortable-item section-container SortableItem-sibling  data-SUMM">
+                    <div class="document-tool sec-tool" id="editIcons" style="right: -2px;">
+                    </div>
+                    <div id="SECTION_SUMMfa2859a6-4cc7-43e6-985b-04a3c95ffae2" class="section summary notdraggable SECTION_SUMM  noparagraph " data-section-cd="SUMM">
+                        <div class=" doc-item"><div class=""><div class=""><div id="PARAGRAPH_SUMM_0" class="paragraph PARAGRAPH_SUMM firstparagraph placeholder-text "><div class="clearfix doc-item">
 
             
                     <div class="field singlecolumn" id="FIELD_FRFM">
-                        <div id="aboutText" onClick="$('#aboutText').hide();$('#editorID').show();"><a id="textAbout">{{abouts}}</a></div>
+                        <div id="aboutText" onClick="$('#aboutText').hide();$('#AboutEditor').show();"><a id="textAbout">{{abouts}}</a></div>
 
-                       <ckeditor id="editorID" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;" Onfocusout="$('#aboutText').show();$('#editorID').hide();">
+                       <ckeditor id="AboutEditor" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;" Onfocusout="$('#aboutText').show();$('#AboutEditor').hide();">
                        
                        </ckeditor>
                        
 
                     </div>
-                </div></div></div></div></div></div></div><div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EXPR">Work History<span class="rename-section text-rename"> </span></div></div><div class=""><div class="sortableInner"><div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text "><div class="clearfix doc-item">
+                </div></div></div></div></div></div></div>
+                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EXPR">Work History<span class="rename-section text-rename"> </span></div></div><div class=""><div class="sortableInner"><div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text "><div class="clearfix doc-item">
                   
                   
                 <div *ngFor="let listExperience of arrayListExp">
@@ -248,28 +293,31 @@
   
                         <span class="jobline" id="FIELD_JDES"><ul><li>Screened all visitors and directed them to the correct employee or office.</li><li>Facilitated organized record retrieval and access.</li><li>Organized all new hire, security and temporary paperwork.</li></ul></span>
                     </div>
-                    </div></div><div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
+                    </div>
+                </div>
+                    <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
                 </div>       
             
                 </div></div></div></div></div></div></div><div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Education<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    
+                    <div *ngFor="let listFormation of arrayListFormation">
+
                     <div class="singlecolumn">
-                        <div class="paddedline date-content">
-                            <span class="jobdates" id="FIELD_GRST" format="%Y-%m"></span>
-                            <span class="jobdates" id="FIELD_GRED" format="%Y-%m"></span>
+                        <div class="paddedline date-content" dependency="JSTD|EDDT">
+                            <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listFormation.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
+                            <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listFormation.end_date}}</span><br dependency="JTIT|COMP|JSTA|JCIT">
                         </div>
-                        <span class="paddedline degreeGap txtBold" dependency="DGRE|STUY">
-                            <span class="degree" id="FIELD_DGRE">Bachelor of Arts</span>
-                            <span class="programline" id="FIELD_STUY"></span>
+                        <span class="paddedline" dependency="JTIT">
+                            <span class="jobtitle txtBold" id="FIELD_JTIT">{{listFormation.certification}}</span>
                         </span>
-                        <div class="paddedline txtItl" dependency="SCIT|SSTA|SCHO">
-                            <span class="companyname" id="FIELD_SCHO">San Jose State University</span><span dependency="SCHO+SSTA|SCIT"> - </span>
-                            <span class="joblocation jobcity" id="FIELD_SCIT">San Jose State University</span><span dependency="SCIT+SSTA">, </span>
-                            <span class="joblocation jobstate" id="FIELD_SSTA">CA</span>
-                        </div>
+                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                            <span class="companyname" id="FIELD_COMP">{{listFormation.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
+                            <span class="jobcity" id="FIELD_JCIT">{{listFormation.diplome_date}}</span>
+                        </span>
   
-                        <span class="field" id="FIELD_FRFM"></span>
+                        <span class="jobline" id="FIELD_JDES"><ul><li>Screened all visitors and directed them to the correct employee or office.</li><li>Facilitated organized record retrieval and access.</li><li>Organized all new hire, security and temporary paperwork.</li></ul></span>
                     </div>
+                    </div>
+
                 </div></div></div></div></div></div></div></div></div></div></div></div><div class="track-horizontal" style="display: none; visibility: hidden;"><div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;"></div></div><div class="track-vertical" style="visibility: visible;"><div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 407px; transform: translateY(0px);"></div></div></div>
                 <script type="text/javascript">
                      function onClickEditor()

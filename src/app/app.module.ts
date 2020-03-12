@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { FormsModule } from '@angular/forms';
 import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutService } from './services/about/about.service';
@@ -21,7 +20,10 @@ import { ExperienceService } from './services/experience/experience.service';
 import { LoisirService } from './services/loisirs/loisir.service';
 import { PersonService } from './services/person/person.service';
 import { CommonModule } from '@angular/common';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FileSelectDirective } from 'ng2-file-upload';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     ContentComponent,
     HomeComponent,
-    EditionCVComponent
+    EditionCVComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,9 @@ import { CommonModule } from '@angular/common';
      MatNativeDateModule,
      MatFormFieldModule,  
        HttpClientModule,
-       CommonModule
+       CommonModule,
+       BrowserAnimationsModule,
+       ToastrModule.forRoot() 
     
   ],
   providers: [
@@ -51,7 +56,7 @@ import { CommonModule } from '@angular/common';
     DiversService,
     ExperienceService,
     LoisirService,
-    PersonService
+    PersonService,
 
   ],
   bootstrap: [AppComponent]

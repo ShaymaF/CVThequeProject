@@ -8,7 +8,7 @@ var router = express();
 var faker = require('faker/locale/fr');
 
 //Create new person
-app.put('/person', function (req, res) {
+router.put('/person', function (req, res) {
 
 	console.log("HTTP Put Request");
 

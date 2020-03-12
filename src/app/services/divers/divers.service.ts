@@ -12,5 +12,6 @@ export class DiversService {
 
 getDivers() {
   return this.http.get(environment.apiBaseUrl + '/divers/list');
+  
 }
 }

@@ -13,21 +13,44 @@ import { Experience } from '../models/experience';
 
 import { ContactService } from '../services/contact/contact.service';
 import { ExperienceService } from '../services/experience/experience.service';
+
+import { ToastrService } from 'ngx-toastr';
+import { FileUploader } from 'ng2-file-upload';
+import { LanguesService } from '../services/langues/langues.service';
+import { Langue } from '../models/langues';
+import { Loisirs } from '../models/loisirs';
+import { Divers } from '../models/divers';
+import { LoisirService } from '../services/loisirs/loisir.service';
+import { DiversService } from '../services/divers/divers.service';
+const URL = 'http://localhost:8080/upload';
+
 @Component({
   selector: 'app-edition-cv',
   templateUrl: './edition-cv.component.html',
   styleUrls: ['./edition-cv.component.css']
 })
-export class EditionCVComponent implements OnInit {
 
+export class EditionCVComponent implements OnInit {
+  localUrl: any[];
   objectKeys :any;
   abouts:any;
   formations:any;
   contacts:any;
   listExperiences: Experience[];
+  listLangues: Langue[];
+  listLoisirs: Loisirs[];
+  listDivers: Divers[];
+  listFormation: Formation[];
+
   emps: Experience[] = [];
   arrayListExp = [];
+  arrayListLang=[];
+  arrayListDivers=[];
+  arrayListLoisirs=[];
+  arrayListFormation=[];
 
+  url:any;
+  urlExist: boolean=false;
   public Editor = DecoupledEditor;
 
   public onReady( editor ) {
@@ -39,21 +62,41 @@ export class EditionCVComponent implements OnInit {
 public destroyEditor(editor){
   editor.destroy();
 }
+public uploader: FileUploader = new FileUploader({
+  url: URL,
+  itemAlias: 'image',
 
-constructor(private aboutService :AboutService, private formationService :FormationService ,
-  private contactService :ContactService, private experienceService :ExperienceService){
-this.getAllAbouts();
-this.getAllContacts();
-this.getAllFormations();
-//this.getAllExperiences();
-}
-/*getAllExperiences() {
-  this.experienceService.getExperience().subscribe(data => {
-   this.experiences= data;
-   console.log('exp ',this.experiences);
-   
+
 });
-}*/
+constructor(private aboutService :AboutService, private formationService :FormationService ,
+  private contactService :ContactService, private experienceService :ExperienceService,
+  private toastr: ToastrService, private langueService :LanguesService
+  , private diversService : DiversService, private loisirsService :LoisirService
+  ){
+    this.getAllAbouts();
+    this.getAllContacts();
+    this.getAllFormations();
+    this.getAllExperiences();
+    this.getAllLangues();
+    this.getAllDivers();
+    this.getAllLoisirs();
+   this.getAllFormation();
+
+}
+ngOnInit() {
+  this.uploader.onAfterAddingFile = (file) => {
+    file.withCredentials = false;
+    this.urlExist=true;
+    this.url=file.url+'/'+file._file.name;
+
+    console.log('filename',file.url);
+  };
+  this.uploader.onCompleteItem = (item: any, status: any) => {
+    console.log('Uploaded File Details:', item._file.filename);
+
+    this.toastr.success('File successfully uploaded!');
+  };
+}
 getAllAbouts() {
   this.aboutService.getAbout().subscribe(data => {
    this.abouts= data;
@@ -64,6 +107,39 @@ getAllContacts() {
    this.contacts= data;
 });
 }
+getAllLangues() {
+  this.langueService.getLangues().subscribe((data: Langue[]) => {
+    this.listLangues = data;
+for(let key in this.listLangues){
+ if(this.listLangues.hasOwnProperty(key)){
+  this.arrayListLang.push(this.listLangues[key]);
+
+}
+}
+  });  
+}
+getAllLoisirs() {
+  this.loisirsService.getLoisirs().subscribe((data: Loisirs[]) => {
+    this.listLoisirs = data;
+for(let key in this.listLoisirs){
+ if(this.listLoisirs.hasOwnProperty(key)){
+  this.arrayListLoisirs.push(this.listLoisirs[key]);
+
+}
+}
+  });  
+}
+getAllDivers() {
+  this.diversService.getDivers().subscribe((data: Loisirs[]) => {
+    this.listDivers = data;
+for(let key in this.listDivers){
+ if(this.listDivers.hasOwnProperty(key)){
+  this.arrayListDivers.push(this.listDivers[key]);
+
+}
+}
+  });  
+}
 getAllFormations() {
   this.formationService.getFormation().subscribe((data: Formation[]) => {
     this.formations = data;
@@ -72,7 +148,7 @@ getAllFormations() {
 
 
 }
-  ngOnInit() {
+getAllExperiences() {
   this.experienceService.getExperience().subscribe((data: Experience[]) => {
     this.listExperiences = data;
  //    this.objectKeys = this.listExperiences.keys;
@@ -89,5 +165,24 @@ console.log('array',this.arrayListExp);
       console.log('exp ',this.listExperiences);
   });  
 }
+getAllFormation() {
+  this.formationService.getFormation().subscribe((data: Formation[]) => {
+    this.listFormation = data;
+for(let key in this.listFormation){
+ if(this.listFormation.hasOwnProperty(key)){
+  this.arrayListFormation.push(this.listFormation[key]);
 
+}
+}
+  });  
+}
+showPreviewImage(event: any) {
+  if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+          this.localUrl = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+  }
+}
 }

@@ -5,13 +5,13 @@ var router = express();
 
 var faker = require('faker/locale/fr');
 
-//Create new Experience
+//Create new divers
 
 router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
-	var referencePath = '/experience/';
+	var referencePath = '/divers/';
     var userReference = firebase.database().ref(referencePath);
     
 
@@ -21,19 +21,19 @@ router.post('/add', function (req, res) {
 	//var newPostRef = userReference.push();
 
 
-	userReference.set(experience , 
+	userReference.set(divers , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
 					} 
 					else { 
-                    //    res.status(200).send(experience)
+                    //    res.status(200).send(divers)
 						res.send("Data saved successfully.");
 					}
 			});
 });
 
-//list experience
+//list divers
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
@@ -60,7 +60,7 @@ router.post('/update', function (req, res) {
 	//var description = req.body.description;
 
 
-	var referencePath = '/experience/';
+	var referencePath = '/divers/';
 	var userReference = firebase.database().ref(referencePath);
 	userReference.update({description: description}, 
 				 function(error) {

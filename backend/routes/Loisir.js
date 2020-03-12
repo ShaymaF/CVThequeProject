@@ -2,7 +2,7 @@
 var express = require('express')
 , router = express.Router()
 var faker = require('faker/locale/fr');
-var firebase=require('../Firebase/config').getConnection();
+var firebase = require('firebase');
 
 
 //Create new loisirs

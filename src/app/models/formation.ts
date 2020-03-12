@@ -1,20 +1,10 @@
-export class Formation {
-    private typeFormation: any;
-   
-  
-    constructor(typeFormation: any) {
-      this.typeFormation = typeFormation;
-   
-    }
-  
-  
-    set setTypeFormation(value: any) {
-      this.typeFormation = value;
-    }
-  
-   
-    get getTypeFormation(): any {
-      return this.typeFormation;
-    }
+export interface Formation {
+  id: string;
+  University: string;
+  certification: string;
+  start_date: string;
+  end_date: string;
+  diplome_date: string;
+
+ 
 }
-  
