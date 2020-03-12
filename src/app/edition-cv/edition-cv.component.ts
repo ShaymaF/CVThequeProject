@@ -22,6 +22,8 @@ import { Loisirs } from '../models/loisirs';
 import { Divers } from '../models/divers';
 import { LoisirService } from '../services/loisirs/loisir.service';
 import { DiversService } from '../services/divers/divers.service';
+import { CertificatService } from '../services/Certificat/certificat.service';
+import { Certificat } from '../models/certificat';
 const URL = 'http://localhost:8080/upload';
 
 @Component({
@@ -41,6 +43,7 @@ export class EditionCVComponent implements OnInit {
   listLoisirs: Loisirs[];
   listDivers: Divers[];
   listFormation: Formation[];
+  listCertif: Certificat[];
 
   emps: Experience[] = [];
   arrayListExp = [];
@@ -48,6 +51,7 @@ export class EditionCVComponent implements OnInit {
   arrayListDivers=[];
   arrayListLoisirs=[];
   arrayListFormation=[];
+  arrayListCertif=[];
 
   url:any;
   urlExist: boolean=false;
@@ -71,16 +75,17 @@ public uploader: FileUploader = new FileUploader({
 constructor(private aboutService :AboutService, private formationService :FormationService ,
   private contactService :ContactService, private experienceService :ExperienceService,
   private toastr: ToastrService, private langueService :LanguesService
-  , private diversService : DiversService, private loisirsService :LoisirService
+  , private diversService : DiversService, private loisirsService :LoisirService,
+  private certificatService : CertificatService
   ){
     this.getAllAbouts();
     this.getAllContacts();
-    this.getAllFormations();
     this.getAllExperiences();
     this.getAllLangues();
     this.getAllDivers();
     this.getAllLoisirs();
    this.getAllFormation();
+   this.getAllCertificats();
 
 }
 ngOnInit() {
@@ -140,13 +145,17 @@ for(let key in this.listDivers){
 }
   });  
 }
-getAllFormations() {
-  this.formationService.getFormation().subscribe((data: Formation[]) => {
-    this.formations = data;
-    console.log('formationss',this.formations);
-    });
 
+getAllCertificats() {
+  this.certificatService.getFormation().subscribe((data: Certificat[]) => {
+    this.listCertif = data;
+for(let key in this.listCertif){
+ if(this.listCertif.hasOwnProperty(key)){
+  this.arrayListCertif.push(this.listCertif[key]);
 
+}
+}
+  });  
 }
 getAllExperiences() {
   this.experienceService.getExperience().subscribe((data: Experience[]) => {

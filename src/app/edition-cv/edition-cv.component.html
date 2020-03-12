@@ -298,7 +298,8 @@
                     <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
                 </div>       
             
-                </div></div></div></div></div></div></div><div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Education<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
+                </div></div></div></div></div></div></div>
+                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Education<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
                     <div *ngFor="let listFormation of arrayListFormation">
 
                     <div class="singlecolumn">
@@ -314,11 +315,37 @@
                             <span class="jobcity" id="FIELD_JCIT">{{listFormation.diplome_date}}</span>
                         </span>
   
-                        <span class="jobline" id="FIELD_JDES"><ul><li>Screened all visitors and directed them to the correct employee or office.</li><li>Facilitated organized record retrieval and access.</li><li>Organized all new hire, security and temporary paperwork.</li></ul></span>
                     </div>
                     </div>
 
-                </div></div></div></div></div></div></div></div></div></div></div></div><div class="track-horizontal" style="display: none; visibility: hidden;"><div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;"></div></div><div class="track-vertical" style="visibility: visible;"><div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 407px; transform: translateY(0px);"></div></div></div>
+                </div>
+                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Certificats<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
+                    <div *ngFor="let listCertif of arrayListCertif">
+
+                    <div class="singlecolumn">
+                        <div class="paddedline date-content" dependency="JSTD|EDDT">
+                            <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listCertif.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
+                            <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listCertif.end_date}}</span><br dependency="JTIT|COMP|JSTA|JCIT">
+                        </div>
+                        <span class="paddedline" dependency="JTIT">
+                            <span class="jobtitle txtBold" id="FIELD_JTIT">{{listCertif.certification}}</span>
+                        </span>
+                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                            <span class="companyname" id="FIELD_COMP">{{listCertif.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
+                            <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}</span>
+                        </span>
+  
+                    </div>
+                    </div>
+
+                </div>
+                        <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
+                    </div>       
+                
+                    </div></div></div></div></div></div></div>
+
+
+            </div></div></div></div></div></div></div></div></div></div></div><div class="track-horizontal" style="display: none; visibility: hidden;"><div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;"></div></div><div class="track-vertical" style="visibility: visible;"><div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 407px; transform: translateY(0px);"></div></div></div>
                 <script type="text/javascript">
                      function onClickEditor()
                     {

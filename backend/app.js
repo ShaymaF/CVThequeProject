@@ -10,6 +10,7 @@ var image=require('./routes/Image');
 var loisirs=require('./routes/Loisir');
 var langues=require('./routes/Langues');
 var formation=require('./routes/Formation');
+var certificat=require('./routes/Formation');
 
 
 const cors = require('cors');
@@ -26,6 +27,7 @@ app.use("/person", person);
 app.use("/loisirs", loisirs);
 app.use("/langues", langues);
 app.use("/formation", formation);
+app.use("/certificat", certificat);
 
 app.use("/api", image);
 app.get("/", function(req,res){
