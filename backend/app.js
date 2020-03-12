@@ -11,6 +11,7 @@ var loisirs=require('./routes/Loisir');
 var langues=require('./routes/Langues');
 var formation=require('./routes/Formation');
 var certificat=require('./routes/Formation');
+var competence=require('./routes/Competences');
 
 
 const cors = require('cors');
@@ -28,6 +29,7 @@ app.use("/loisirs", loisirs);
 app.use("/langues", langues);
 app.use("/formation", formation);
 app.use("/certificat", certificat);
+app.use("/competence", competence);
 
 app.use("/api", image);
 app.get("/", function(req,res){

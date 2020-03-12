@@ -24,6 +24,8 @@ import { LoisirService } from '../services/loisirs/loisir.service';
 import { DiversService } from '../services/divers/divers.service';
 import { CertificatService } from '../services/Certificat/certificat.service';
 import { Certificat } from '../models/certificat';
+import { Competence } from '../models/competence';
+import { CompetenceService } from '../services/competence/competence.service';
 const URL = 'http://localhost:8080/upload';
 
 @Component({
@@ -44,6 +46,7 @@ export class EditionCVComponent implements OnInit {
   listDivers: Divers[];
   listFormation: Formation[];
   listCertif: Certificat[];
+  listComp: Competence[];
 
   emps: Experience[] = [];
   arrayListExp = [];
@@ -52,6 +55,7 @@ export class EditionCVComponent implements OnInit {
   arrayListLoisirs=[];
   arrayListFormation=[];
   arrayListCertif=[];
+  arrayListComp=[];
 
   url:any;
   urlExist: boolean=false;
@@ -76,7 +80,7 @@ constructor(private aboutService :AboutService, private formationService :Format
   private contactService :ContactService, private experienceService :ExperienceService,
   private toastr: ToastrService, private langueService :LanguesService
   , private diversService : DiversService, private loisirsService :LoisirService,
-  private certificatService : CertificatService
+  private certificatService : CertificatService, private competenceService : CompetenceService
   ){
     this.getAllAbouts();
     this.getAllContacts();
@@ -86,6 +90,7 @@ constructor(private aboutService :AboutService, private formationService :Format
     this.getAllLoisirs();
    this.getAllFormation();
    this.getAllCertificats();
+   this.getAllCompetence();
 
 }
 ngOnInit() {
@@ -180,6 +185,17 @@ getAllFormation() {
 for(let key in this.listFormation){
  if(this.listFormation.hasOwnProperty(key)){
   this.arrayListFormation.push(this.listFormation[key]);
+
+}
+}
+  });  
+}
+getAllCompetence() {
+  this.competenceService.getCompetence().subscribe((data: Competence[]) => {
+    this.listComp = data;
+for(let key in this.listComp){
+ if(this.listComp.hasOwnProperty(key)){
+  this.arrayListComp.push(this.listComp[key]);
 
 }
 }
