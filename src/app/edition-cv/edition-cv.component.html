@@ -263,12 +263,26 @@
             
                     <div class="field singlecolumn" id="FIELD_FRFM">
                         <div id="aboutText" onClick="$('#aboutText').hide();$('#AboutEditor').show();"><a id="textAbout">{{abouts}}</a></div>
+                        <div id="ck">
 
                        <ckeditor id="AboutEditor" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;" Onfocusout="$('#aboutText').show();$('#AboutEditor').hide();">
-                       
                        </ckeditor>
-                       
+                    </div>
+                       <script>
+                        document.getElementById("AboutEditor").onclick = function() {
+                            var data = CKEDITOR.instances.Editor.getData();
+                            document.getElementById("body") = htmlspecialchars_decode(  document.getElementById("body"));
 
+
+
+       if (data!=null)
+       {
+            document.getElementById("textAbout").innerHTML =  "<a>"+data+"</a>";
+            current++;
+       }
+}
+                        // Your code to save "data", usually through Ajax.
+                    </script>
                     </div>
                 </div></div></div></div></div></div></div>
                 <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EXPR">Work History<span class="rename-section text-rename"> </span></div></div><div class=""><div class="sortableInner"><div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text "><div class="clearfix doc-item">
