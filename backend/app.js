@@ -13,6 +13,7 @@ var formation=require('./routes/Formation');
 var certificat=require('./routes/Formation');
 var competence=require('./routes/Competences');
 
+var version=require('./routes/version');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -30,6 +31,8 @@ app.use("/langues", langues);
 app.use("/formation", formation);
 app.use("/certificat", certificat);
 app.use("/competence", competence);
+
+app.use("/version", version);
 
 app.use("/api", image);
 app.get("/", function(req,res){

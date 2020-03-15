@@ -3,19 +3,21 @@ var express = require('express')
 , router = express.Router()
 //var firebase=require('../Firebase/config').getConnection();
 var firebase = require('firebase');
-
+//var version = require('../model/version');
+const bodyParser = require('body-parser');
+router.use(bodyParser.json());
 
 //Create new version
-router.put('/add', function (req, res) {
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/version/';
 	var userReference = firebase.database().ref(referencePath);
 
-	var version=require('../models/versionModel');
-	var newPostRef = userReference.push();
 	
+	var newPostRef = userReference.push();
+	version=req.body;
 
 	newPostRef.set(version , 
 				 function(error) {
@@ -23,7 +25,9 @@ router.put('/add', function (req, res) {
 						res.send("Data could not be saved." + error);
 					} 
 					else {
-						res.send("Data saved successfully.");
+                        
+                        res.send("Data saved successfully."+ version);
+                        
 					}
 			});
 });

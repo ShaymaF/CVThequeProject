@@ -1,4 +1,4 @@
-import { Component, OnInit ,EventEmitter, Input } from '@angular/core';
+import { Component, OnInit ,EventEmitter, Input,ElementRef } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -26,6 +26,8 @@ import { CertificatService } from '../services/Certificat/certificat.service';
 import { Certificat } from '../models/certificat';
 import { Competence } from '../models/competence';
 import { CompetenceService } from '../services/competence/competence.service';
+import { VersionService } from '../services/version/version.service';
+import { Version } from '../models/version';
 const URL = 'http://localhost:8080/upload';
 
 @Component({
@@ -47,7 +49,7 @@ export class EditionCVComponent implements OnInit {
   listFormation: Formation[];
   listCertif: Certificat[];
   listComp: Competence[];
-
+  HtmlContent: any;
   emps: Experience[] = [];
   arrayListExp = [];
   arrayListLang=[];
@@ -56,6 +58,8 @@ export class EditionCVComponent implements OnInit {
   arrayListFormation=[];
   arrayListCertif=[];
   arrayListComp=[];
+  version: Version;
+
 
   url:any;
   urlExist: boolean=false;
@@ -80,7 +84,10 @@ constructor(private aboutService :AboutService, private formationService :Format
   private contactService :ContactService, private experienceService :ExperienceService,
   private toastr: ToastrService, private langueService :LanguesService
   , private diversService : DiversService, private loisirsService :LoisirService,
-  private certificatService : CertificatService, private competenceService : CompetenceService
+  private certificatService : CertificatService, private competenceService : CompetenceService,
+  private serviceVersion: VersionService,
+  
+  private el: ElementRef
   ){
     this.getAllAbouts();
     this.getAllContacts();
@@ -210,4 +217,26 @@ showPreviewImage(event: any) {
       reader.readAsDataURL(event.target.files[0]);
   }
 }
+ 
+
+saveVersion(){
+  this.HtmlContent=document.querySelector('app-edition-cv').innerHTML;
+  //console.log(this.HtmlContent);
+  
+  //this.version.=this.HtmlContent;
+ // this.version.content=document.querySelector('app-edition-cv');
+  this.version={
+      author:'shayma',
+      content: '',
+      reason:'reason',
+
+  }
+
+
+  this.serviceVersion.addVersion(this.version).subscribe();
+  console.log('version',this.version);
+
+
+}
+
 }
