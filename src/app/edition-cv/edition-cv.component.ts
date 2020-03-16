@@ -28,8 +28,8 @@ import { Competence } from '../models/competence';
 import { CompetenceService } from '../services/competence/competence.service';
 import { VersionService } from '../services/version/version.service';
 import { Version } from '../models/version';
-const URL = 'http://localhost:8080/upload';
-
+//const URL = 'http://localhost:8080/upload';
+const uploadAPI = 'http://localhost:8080/api/upload';
 @Component({
   selector: 'app-edition-cv',
   templateUrl: './edition-cv.component.html',
@@ -37,6 +37,9 @@ const URL = 'http://localhost:8080/upload';
 })
 
 export class EditionCVComponent implements OnInit {
+  public imagePath;
+  imgURL: any;
+  public message: string;
   localUrl: any[];
   objectKeys :any;
   abouts:any;
@@ -65,6 +68,10 @@ export class EditionCVComponent implements OnInit {
   urlExist: boolean=false;
   public Editor = DecoupledEditor;
 
+
+  public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
+
+
   public onReady( editor ) {
       editor.ui.getEditableElement().parentElement.insertBefore(
           editor.ui.view.toolbar.element,
@@ -74,12 +81,12 @@ export class EditionCVComponent implements OnInit {
 public destroyEditor(editor){
   editor.destroy();
 }
-public uploader: FileUploader = new FileUploader({
+/*public uploader: FileUploader = new FileUploader({
   url: URL,
   itemAlias: 'image',
 
 
-});
+});*/
 constructor(private aboutService :AboutService, private formationService :FormationService ,
   private contactService :ContactService, private experienceService :ExperienceService,
   private toastr: ToastrService, private langueService :LanguesService
@@ -100,7 +107,7 @@ constructor(private aboutService :AboutService, private formationService :Format
    this.getAllCompetence();
 
 }
-ngOnInit() {
+/*ngOnInit() {
   this.uploader.onAfterAddingFile = (file) => {
     file.withCredentials = false;
     this.urlExist=true;
@@ -113,10 +120,19 @@ ngOnInit() {
 
     this.toastr.success('File successfully uploaded!');
   };
+}*/
+ngOnInit() {
+  this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+  this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+       console.log('FileUpload:uploaded successfully:', item, status, response);
+       alert('Your file has been uploaded successfully');
+  };
 }
 getAllAbouts() {
   this.aboutService.getAbout().subscribe(data => {
-   this.abouts= data;
+   this.abouts=data;
+   
+  //  this.abouts= data;
 });
 }
 getAllContacts() {
@@ -227,7 +243,7 @@ saveVersion(){
  // this.version.content=document.querySelector('app-edition-cv');
   this.version={
       author:'shayma',
-      content: '',
+      content: this.HtmlContent,
       reason:'reason',
 
   }
@@ -237,6 +253,23 @@ saveVersion(){
   console.log('version',this.version);
 
 
+}
+preview(files) {
+  if (files.length === 0)
+    return;
+
+  var mimeType = files[0].type;
+  if (mimeType.match(/image\/*/) == null) {
+    this.message = "Only images are supported.";
+    return;
+  }
+
+  var reader = new FileReader();
+  this.imagePath = files;
+  reader.readAsDataURL(files[0]); 
+  reader.onload = (_event) => { 
+    this.imgURL = reader.result; 
+  }
 }
 
 }

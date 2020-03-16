@@ -1,0 +1,24 @@
+    <table class="table">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>author</th>
+          <th>Content</th>
+          <th>Reason</th>
+          <th>action</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let version of arrayList">
+          <th scope="row">1</th>
+          <td>{{version.author}}</td>
+        <td>html content</td>
+        <td>{{version.reason}}</td>
+        <td> <a (click)="showVersion(version)">show</a>
+
+        </td>
+
+        </tr>
+        </tbody>

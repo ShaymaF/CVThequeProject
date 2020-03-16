@@ -1,4 +1,13 @@
     
+<div class="container">
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+    <button type="button" class="btn btn-success btn-s" 
+      (click)="uploader.uploadAll()" 
+      [disabled]="!uploader.getNotUploadedItems().length" >
+          Upload
+    </button><br>
+  </div>   
+
 
     <button
     type="button"
@@ -150,8 +159,7 @@
               <div class=" doc-item"><div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
                   
                  
-    <input type="file"  style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)" ><br>
-
+    <input #file type="file"  accept='image/*' style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)" ><br>
     <div class="sectiontitle" id="imgeID" >
         <div class="example">
 
@@ -266,10 +274,9 @@
 
             
                     <div class="field singlecolumn" id="FIELD_FRFM">
-                        <div id="aboutText" onClick="$('#aboutText').hide();$('#AboutEditor').show();"><a id="textAbout">{{abouts}}</a></div>
+                        <div id="aboutText" onClick="$('#aboutText').hide();$('#AboutEditor').show();"><a id="textAbout" [innerHTML]="abouts | safeHtml"></a></div>
 
-                       <ckeditor id="AboutEditor" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;" Onfocusout="$('#aboutText').show();$('#AboutEditor').hide();">
-                       
+                       <ckeditor id="AboutEditor" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;height: 10px;" Onfocusout="$('#aboutText').show();style='display: none;'">
                        </ckeditor>
                        
 
@@ -280,8 +287,8 @@
                   
                 <div *ngFor="let listExperience of arrayListExp">
                       
-            
-                    <div class="singlecolumn">
+                  
+                    <div id="ExperienceText" class="singlecolumn">
                         <div class="paddedline date-content" dependency="JSTD|EDDT">
                             <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listExperience.StartDate}}</span><span dependency="JSTD+EDDT"><br></span>
                             <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listExperience.EndDate}}</span><br dependency="JTIT|COMP|JSTA|JCIT">

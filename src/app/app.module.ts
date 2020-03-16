@@ -24,6 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { FormsModule } from '@angular/forms';
+import { SafeHtmlPipe } from './safe-html.pipe';
+import { ShowVersionComponent } from './versions/show-version/show-version.component';
+import { ListVersionsComponent } from './versions/list-versions/list-versions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,10 @@ import { FormsModule } from '@angular/forms';
     ContentComponent,
     HomeComponent,
     EditionCVComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    SafeHtmlPipe,
+    ShowVersionComponent,
+    ListVersionsComponent
   ],
   imports: [
     BrowserModule,

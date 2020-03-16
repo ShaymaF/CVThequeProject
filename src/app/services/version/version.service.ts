@@ -13,5 +13,8 @@ export class VersionService {
 
     return this.http.post(environment.apiBaseUrl + '/version/add',version);
   }
+  getVersion() {
 
+    return this.http.get(environment.apiBaseUrl + '/version/list');
+  }
 }
