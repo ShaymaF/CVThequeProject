@@ -202,7 +202,11 @@ updateVariables(){
 
 
   ngOnInit() {
-  
+    if(document.getElementById("ExpDynamicContent") != null){
+      this.ExperienceData=document.getElementById("ExpDynamicContent").innerHTML;
+    
+      console.log('eee',this.ExperienceData);
+    }
     this.ckeConfig = {
       allowedContent: true,
       forcePasteAsPlainText: true,
@@ -402,6 +406,12 @@ const expr= new Experience( Poste,StartDate,EndDate,role)
 
       this.arrayListExp.push(expr);
 
+     
+//this.arrayListExp.push(experience);
+console.log('expr',expr);
+
+
+  console.log('save',this.arrayListExp);
 }
 changeColor(paint){
   this.ColorVersion=
@@ -414,6 +424,17 @@ if(this.dataCurrentArray!=null)
   this.SecondColorInit= this.dataCurrentArray.SecondColor;}
  
 
+}
+LongDesc(){
+  this.Short_Desc=false;
+  this.Long_Desc=true;}
+ShortDesc(){
+  this.Short_Desc=true;
+  this.Long_Desc=false;
+}
+ChangeAbout() {
+  console.log(this.abouts);
+  this.AboutVersion=this.abouts;
 }
 doSomething() {
   console.log('dosomething');
@@ -480,4 +501,5 @@ redo(): void {
   this.FirstColorInit = this.dataCurrentArray.FirstColor;
   this.SecondColorInit= this.dataCurrentArray.SecondColor;
 }
+
 }
