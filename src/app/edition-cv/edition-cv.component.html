@@ -1,6 +1,23 @@
 
 
 
+
+
+<ul     class="kt-sticky-toolbar" style="margin-top: 30px; background-color: white;width: 3%;">
+
+    <li *ngFor="let paint of chartColor"  class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="Check out more demos" data-placement="right">
+       
+
+        <div  class="circle"  [ngStyle]="{'background': paint.FirstColor}" (click)="changeColor(paint)" > </div>
+  
+   </li>
+
+</ul>
+
+
+<button (click)="undo()" [disabled]="!showUndo">Undo</button>
+    
+<button (click)="redo()" [disabled]="!showRedo">Redo</button>
    
 <div class="container">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" />

@@ -403,6 +403,81 @@ const expr= new Experience( Poste,StartDate,EndDate,role)
       this.arrayListExp.push(expr);
 
 }
+changeColor(paint){
+  this.ColorVersion=
+    {FirstColor: paint.FirstColor, SecondColor: paint.SecondColor}
+  
+  console.log('colorversion', this.ColorVersion)
+  this.doSomething();
+if(this.dataCurrentArray!=null)
+  {this.FirstColorInit = this.dataCurrentArray.FirstColor;
+  this.SecondColorInit= this.dataCurrentArray.SecondColor;}
+ 
+
+}
+doSomething() {
+  console.log('dosomething');
+  //this.TempVersion=document.getElementById("content").innerHTML;
+  if (this.ColorVersion != null ) {
+
+    this.dataRedoArray = [];
+    this.showRedo = false;
+    if (this.dataCurrentArray  == null) {
+      this.dataCurrentArray=this.ColorVersion;    
+
+    } else {
+      if (this.dataUndoArray.length == this.undoLimit) {
+        this.dataUndoArray.reverse().pop();
+        this.dataUndoArray.reverse();
+      }
+      this.dataUndoArray.push(this.dataCurrentArray);  
+      this.dataCurrentArray=this.ColorVersion;
+
+      this.showUndo = true;
+    }   
+  } else {
+    alert('Please type something.')
+  }
+  this.ColorVersion = null ;
+  //this.test = 0;
+}
 
 
+
+undo(): void {
+  this.showRedo = true;
+  if (this.dataUndoArray.length != 0) {    
+    this.dataRedoArray.push(this.dataCurrentArray);  
+    this.dataCurrentArray=this.dataUndoArray.pop();
+
+    if (this.dataUndoArray.length == 0) {
+      this.showUndo = false;
+    }
+  }    
+;
+console.log('undo',this.dataCurrentArray)
+
+  this.FirstColorInit = this.dataCurrentArray.FirstColor;
+  this.SecondColorInit= this.dataCurrentArray.SecondColor;
+}
+
+redo(): void {
+   if (this.dataRedoArray.length != 0) {    
+    this.dataUndoArray.push(this.dataCurrentArray);
+    this.dataCurrentArray=this.dataRedoArray.pop();
+
+    if (this.dataRedoArray.length == 0) {
+      this.showRedo = false;
+    }
+  }
+
+  if (this.dataUndoArray.length > 0) {
+    this.showUndo = true;
+  } else {
+    this.showUndo = false;
+  }  
+  console.log('redo',this.dataCurrentArray)
+  this.FirstColorInit = this.dataCurrentArray.FirstColor;
+  this.SecondColorInit= this.dataCurrentArray.SecondColor;
+}
 }
