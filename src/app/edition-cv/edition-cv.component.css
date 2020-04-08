@@ -1,4 +1,103 @@
-element.style {
+.color-picker {
+    border-radius: 5px;
+  }
+    .circle {
+      size: 25px;
+      height: 25px;
+      width: 25px;
+      border-radius: 100%;
+      cursor: pointer;
+      border: 1px solid #dadada;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+    }
+  
+   
+  
+      .colors {
+        display: flex;
+        flex-wrap: wrap;
+      }
+  
+      .hex-code {
+        height: 45px;
+        display: flex;
+        margin-top: 20px;
+  
+       
+   
+  }
+  
+::ng-deep .cdk-overlay-container {
+    position: fixed !important;
+    z-index: 100000 !important; /* set value you need */
+}
+.mat-form-field{ width: 100%;}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+.modal{
+   margin-left: 20%;
+   margin-top: 20px;
+}
+.modal-content {
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    margin-right: 0px;
+    border-right-width: 0px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+.modal-dialog .modal-lg{
+   left: 20%;
+
+}
+.modal-header{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-width: 1px;
+    border-bottom: 1px solid #ebedf2;
+    justify-content: space-between;
+    padding: 1.25rem;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    display: flex;
+    -webkit-box-align: start;
+}
+.modal-body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.modal-body .form{
+    padding-bottom: 10px; 
+}
+ .form-group {
+    margin-bottom: 0.5rem;
+}
+.modal-footer{
+    padding-top: 16;
+    padding-bottom: 16;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-top-width: 1px;
+    border-top: 1px solid #ebedf2;
+    padding: 1.25rem;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    display: flex;
+    -webkit-box-align: start;
+
 }
 #document.skn-srz1.fontsize {
     font-size: 11px;
@@ -116,37 +215,7 @@ body {
     height: 100%;
     line-height: inherit;
 }
-:root {
-    --blue: #007bff;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #e83e8c;
-    --red: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #28a745;
-    --teal: #20c997;
-    --cyan: #17a2b8;
-    --white: #fff;
-    --gray: #6c757d;
-    --gray-dark: #343a40;
-    --default: #f8f9fa;
-    --primary: #00b284;
-    --secondary: #6c757d;
-    --success: #28a745;
-    --info: #17a2b8;
-    --warning: #ffc107;
-    --danger: #dc3545;
-    --light: #f8f9fa;
-    --dark: #343a40;
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+
 html {
     background: #fff;
     color: #58585f;

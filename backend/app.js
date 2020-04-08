@@ -12,6 +12,7 @@ var langues=require('./routes/Langues');
 var formation=require('./routes/Formation');
 var certificat=require('./routes/Formation');
 var competence=require('./routes/Competences');
+var projet=require('./routes/projet');
 
 var version=require('./routes/version');
 
@@ -33,6 +34,7 @@ app.use("/certificat", certificat);
 app.use("/competence", competence);
 
 app.use("/version", version);
+app.use("/projet", projet);
 
 app.use("/api", image);
 app.get("/", function(req,res){

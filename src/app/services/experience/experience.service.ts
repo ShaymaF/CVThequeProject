@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Experience } from 'src/app/models/experience';
+import { Experience, Projet } from 'src/app/models/experience';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { toArray } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { toArray } from 'rxjs/operators';
 })
 export class ExperienceService {
 
-  experience: Experience;
+  experience: Experience; projet: Projet;
   constructor(private http: HttpClient) { }
 
 /*
@@ -36,6 +36,12 @@ getExperience(): Observable<Experience[]> {
 }
 
 
-
+getProjet(): Observable<Projet[]> {
+  return this.http.get<Projet[]>(environment.apiBaseUrl + '/projet/list').pipe(
+    // convert object to array
+   // toArray<Experience>()
+  
+  );
+}
 
 }

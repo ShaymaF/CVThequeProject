@@ -1,15 +1,16 @@
-import { Component, OnInit ,EventEmitter, Input,ElementRef } from '@angular/core';
+import { Component, OnInit ,EventEmitter, Input,ElementRef,ViewChild } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-
+import { NativeDateAdapter } from '@angular/material';
+import { MatDateFormats, MAT_DATE_LOCALE } from '@angular/material/core';
 import { CKEditor5 } from '@ckeditor/ckeditor5-angular/ckeditor';
 import { AboutService } from '../services/about/about.service';
 import { FormationService } from '../services/formation/formation.service';
 import { Formation } from '../models/formation';
-import { Experience } from '../models/experience';
+import { Experience, Projet } from '../models/experience';
 
 import { ContactService } from '../services/contact/contact.service';
 import { ExperienceService } from '../services/experience/experience.service';
@@ -28,24 +29,55 @@ import { Competence } from '../models/competence';
 import { CompetenceService } from '../services/competence/competence.service';
 import { VersionService } from '../services/version/version.service';
 import { Version } from '../models/version';
+import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormControl} from '@angular/forms';
+import InlineEditor from '@ckeditor/ckeditor5-build-inline';
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { ChartColors } from '../models/ChartColor';
+
 //const URL = 'http://localhost:8080/upload';
 const uploadAPI = 'http://localhost:8080/api/upload';
+
 @Component({
   selector: 'app-edition-cv',
   templateUrl: './edition-cv.component.html',
   styleUrls: ['./edition-cv.component.css']
+ 
 })
 
-export class EditionCVComponent implements OnInit {
+
+
+export class EditionCVComponent  implements OnInit {
+  start_date = new FormControl(new Date());
+  end_date = new FormControl(new Date());
+  dataCurrentArray:ChartColors;
+  dataUndoArray: Array<ChartColors> = [];
+  dataRedoArray: Array<ChartColors> = [];
+  undoLimit: number = 20;
+  showUndo:boolean = false;
+  showRedo:boolean = false;
+
+  @ViewChild('editor', {static: false})
+  editorComponent: CKEditorComponent;
+  ckeConfig: any;
   public imagePath;
   imgURL: any;
+   FirstColorInit: string;
+   SecondColorInit:string;
+Short_Desc:boolean=true;
+Long_Desc:boolean=false;
+
+  public chartColor : ChartColors[];
   public message: string;
   localUrl: any[];
   objectKeys :any;
   abouts:any;
   formations:any;
   contacts:any;
-  listExperiences: Experience[];
+  listExperiences: any[];
+  listProjet: Projet[];
   listLangues: Langue[];
   listLoisirs: Loisirs[];
   listDivers: Divers[];
@@ -53,8 +85,11 @@ export class EditionCVComponent implements OnInit {
   listCertif: Certificat[];
   listComp: Competence[];
   HtmlContent: any;
-  emps: Experience[] = [];
-  arrayListExp = [];
+  ColorVersion:ChartColors;
+  AboutVersion:any;
+  exp: Experience;
+  arrayListExp :Experience[] = [];
+  arrayListProjet=[];
   arrayListLang=[];
   arrayListDivers=[];
   arrayListLoisirs=[];
@@ -62,18 +97,29 @@ export class EditionCVComponent implements OnInit {
   arrayListCertif=[];
   arrayListComp=[];
   version: Version;
-
+  public backgroundColor: string;
+  public fontColor: string;
+  public linkColor: string;
 
   url:any;
   urlExist: boolean=false;
-  public Editor = DecoupledEditor;
-
+  toppings = new FormControl();
+  public Editor = InlineEditor;
+  ExperienceData: any;
 
   public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
-
+ myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
 
   public onReady( editor ) {
-      editor.ui.getEditableElement().parentElement.insertBefore(
+  
+    editor.ui.editor.config.extraAllowedContent = 'div(*)';
+    editor.ui.editor.config.AllowedContent = true;
+
+       editor.ui.getEditableElement().parentElement.insertBefore(
           editor.ui.view.toolbar.element,
           editor.ui.getEditableElement()
       );
@@ -96,7 +142,29 @@ constructor(private aboutService :AboutService, private formationService :Format
   
   private el: ElementRef
   ){
+
+    this.FirstColorInit='#008b8b';
+    this.SecondColorInit='#017777';
+   this.dataCurrentArray={FirstColor:'#008b8b', SecondColor: '#017777'};
+    console.log('cc',this.dataCurrentArray);
+    this.chartColor=[
+      
+      {FirstColor: '#008b8b', SecondColor: '#017777'},
+      {FirstColor: '#f0ca68', SecondColor: '#b88709'},
+      {FirstColor: '#62382f', SecondColor: '#4d261e'},
+      {FirstColor: '#c97545', SecondColor: '#8c451c'},
+      {FirstColor: '#c1800b', SecondColor: '#805406'},
+
+      
+  ];
+   // var editor1=this.Editor.replace('Editor');
+    //editor1.config.allowedContent = true;
+    //DecoupledEditor.replace('Editor', { extraAllowedContent: '*(*)' });
+
+    console.log('ltest',this.arrayListExp);
+
     this.getAllAbouts();
+   
     this.getAllContacts();
     this.getAllExperiences();
     this.getAllLangues();
@@ -105,6 +173,7 @@ constructor(private aboutService :AboutService, private formationService :Format
    this.getAllFormation();
    this.getAllCertificats();
    this.getAllCompetence();
+this.getAllProjects();
 
 }
 /*ngOnInit() {
@@ -121,17 +190,55 @@ constructor(private aboutService :AboutService, private formationService :Format
     this.toastr.success('File successfully uploaded!');
   };
 }*/
-ngOnInit() {
-  this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
-  this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-       console.log('FileUpload:uploaded successfully:', item, status, response);
-       alert('Your file has been uploaded successfully');
-  };
+updateVariables(){
+  console.log('eee',this.ExperienceData);
+
+  if(document.getElementById("ExpDynamicContent") != null){
+    this.ExperienceData=document.getElementById("ExpDynamicContent").innerHTML;
+  
+    console.log('eee',this.ExperienceData);
+  }
 }
+
+
+  ngOnInit() {
+  
+    this.ckeConfig = {
+      allowedContent: true,
+      forcePasteAsPlainText: true,
+      font_names: 'Arial;Times New Roman;Verdana',
+      toolbarGroups: [
+        { name: 'document', groups: ['mode', 'document', 'doctools'] },
+        { name: 'clipboard', groups: ['clipboard', 'undo'] },
+        { name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing'] },
+        { name: 'forms', groups: ['forms'] },
+        '/',
+        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph'] },
+        { name: 'links', groups: ['links'] },
+        { name: 'insert', groups: ['insert'] },
+        'aa',
+        { name: 'styles', groups: ['styles'] },
+        { name: 'colors', groups: ['colors'] },
+        { name: 'tools', groups: ['tools'] },
+        { name: 'others', groups: ['others'] },
+        { name: 'about', groups: ['about'] }
+      ],
+    };
+  
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+         console.log('FileUpload:uploaded successfully:', item, status, response);
+         alert('Your file has been uploaded successfully');
+    };
+  }
+
 getAllAbouts() {
   this.aboutService.getAbout().subscribe(data => {
    this.abouts=data;
-   
+   localStorage.setItem('abouts',JSON.stringify(data));
+
+   console.log('localstorage',localStorage.getItem('abouts'));
   //  this.abouts= data;
 });
 }
@@ -202,6 +309,23 @@ console.log('array',this.arrayListExp);
       console.log('exp ',this.listExperiences);
   });  
 }
+getAllProjects() {
+  this.experienceService.getProjet().subscribe((data: Projet[]) => {
+    this.listProjet = data;
+ //    this.objectKeys = this.listExperiences.keys;
+//console.log('keys',this.listExperiences.keys);
+
+for(let key in this.listProjet){
+ if(this.listProjet.hasOwnProperty(key)){
+  this.arrayListProjet.push(this.listProjet[key]);
+
+ }
+}
+console.log('arrayListProjet',this.arrayListProjet);
+
+
+  });  
+}
 getAllFormation() {
   this.formationService.getFormation().subscribe((data: Formation[]) => {
     this.listFormation = data;
@@ -237,20 +361,20 @@ showPreviewImage(event: any) {
 
 saveVersion(){
   this.HtmlContent=document.querySelector('app-edition-cv').innerHTML;
-  //console.log(this.HtmlContent);
+  console.log(this.HtmlContent);
   
-  //this.version.=this.HtmlContent;
- // this.version.content=document.querySelector('app-edition-cv');
+  this.version=this.HtmlContent;
   this.version={
       author:'shayma',
       content: this.HtmlContent,
       reason:'reason',
 
+
   }
 
 
   this.serviceVersion.addVersion(this.version).subscribe();
-  console.log('version',this.version);
+  console.log('version',this.version.content);
 
 
 }
@@ -271,5 +395,14 @@ preview(files) {
     this.imgURL = reader.result; 
   }
 }
+saveExperience(Poste,StartDate,EndDate,role){
+ 
+
+const expr= new Experience( Poste,StartDate,EndDate,role)
+
+      this.arrayListExp.push(expr);
+
+}
+
 
 }

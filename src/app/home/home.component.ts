@@ -11,24 +11,11 @@ import { FormationService } from '../services/formation/formation.service';
 export class HomeComponent implements OnInit {
   abouts:any;
   formations:any;
-  constructor(private aboutService :AboutService, private formationService :FormationService ){
-    this.getAllAbouts();
-    this.getAllFormations();
-    }
+ 
+  constructor( ){} 
+   
   ngOnInit() {
   }
 
-    getAllAbouts() {
-      this.aboutService.getAbout().subscribe(data => {
-       this.abouts= data;
-    });
-    }
-    getAllFormations() {
-      this.formationService.getFormation().subscribe((data: Formation[]) => {
-        this.formations = data;
-        console.log('formationss',this.formations);
-        });
-        
     
-    }
 }

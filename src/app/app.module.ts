@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule} from '@angular/material';
+import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule, MatSelectModule,MatInputModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutService } from './services/about/about.service';
 import { FormationService } from './services/formation/formation.service';
@@ -23,10 +23,11 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FileSelectDirective } from 'ng2-file-upload';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ShowVersionComponent } from './versions/show-version/show-version.component';
 import { ListVersionsComponent } from './versions/list-versions/list-versions.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,7 @@ import { ListVersionsComponent } from './versions/list-versions/list-versions.co
     FileSelectDirective,
     SafeHtmlPipe,
     ShowVersionComponent,
-    ListVersionsComponent
+    ListVersionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,11 @@ import { ListVersionsComponent } from './versions/list-versions/list-versions.co
        HttpClientModule,
        CommonModule,
        BrowserAnimationsModule,
-       ToastrModule.forRoot() 
+       ToastrModule.forRoot() ,
+MatSelectModule,
+MatInputModule,
+ReactiveFormsModule
+
     
   ],
   providers: [

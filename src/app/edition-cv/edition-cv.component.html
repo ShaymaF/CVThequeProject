@@ -1,435 +1,1382 @@
-    
+
+
+
+   
 <div class="container">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-    <button type="button" class="btn btn-success btn-s" 
-      (click)="uploader.uploadAll()" 
-      [disabled]="!uploader.getNotUploadedItems().length" >
-          Upload
-    </button><br>
-  </div>   
-
-
-    <button
-    type="button"
-    (click)="saveVersion()">save version</button>
-    <div class="scroll-wrapper" style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 550px; max-height: 575px;">
-        <div style="position: relative; overflow: scroll; margin-right: -17px; margin-bottom: -17px; min-height: 567px; max-height: 592px;">
-    <div class=""><div>
-        <style type="text/css" id="static">
-    /*Font support for MAC*/
-    @font-face{font-family:'Century Gothic';font-weight:normal;font-style:normal;src:local('Century Gothic'),url('/blobcontent/zty/fonts/CenturyGothic.ttf') format('truetype')}
-    @font-face{font-family:'Century Gothic';font-weight:bold;font-style:normal;src:local('Century Gothic Bold'),url('/blobcontent/zty/fonts/CenturyGothicBold.ttf') format('truetype')}
-    @font-face{font-family:'Century Gothic';font-weight:bold;font-style:italic;src:local('Century Gothic Bold Italic'),url('/blobcontent/zty/fonts/CenturyGothicBoldItalic.ttf') format('truetype')}
-    @font-face{font-family:'Century Gothic';font-weight:normal;font-style:italic;src:local('Century Gothic Italic'),url('/blobcontent/zty/fonts/CenturyGothicItalic.ttf') format('truetype')}
-  
-    html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;vertical-align:baseline;background:transparent}
-    body{text-align:left;font-feature-settings:"liga" 0;-moz-font-feature-settings:"liga" off}
-    #document.skn-srz1 ol,#document.skn-srz1 ul{list-style:none}
-    #document.skn-srz1 table{border-collapse:collapse;border-spacing:0;font-size:inherit;color:inherit;width:100%}
-  
-    /*START content disc style for LI*/
-    #document.skn-srz1 ul,#document.skn-srz1 li{margin:0;padding:0;list-style-type:disc}
-    #document.skn-srz1 ul li{margin:0 0 0 16px;padding:0}
-    @-moz-document url-prefix() {#document.skn-srz1 ul li{margin:0 0 0 12px;padding:0 0 0 3px}}
-    /*END content disc style for LI*/
-  
-    /*common css*/
-    #document.skn-srz1 .txtBold{font-weight:700}
-    #document.skn-srz1 .paddedline{display:block}
-    #document.skn-srz1 .mt5{margin-top:5px}
-    #document.skn-srz1 .txtRight{text-align:right}
-  
-    #document.skn-srz1 table.skills,#document.skn-srz1 .table_wrapper{margin-top:0;width:100%;word-break:break-all}
-    #document.skn-srz1 table.skills th,#document.skn-srz1 table.skills td{text-align:center;width:20%}
-    #document.skn-srz1 table.skills .skillname,#document.skn-srz1 table.skills .skillrating{text-align:left;width:35%}
-    #document.skn-srz1 table.skills .skillrating{width:20%}
-    #document.skn-srz1 table.skills .skillyears,#document.skn-srz1 table.skills .skilllast{width:19%}
-    #document.skn-srz1 table.skills .pad1{width:5%}
-    #document.skn-srz1 table.skills .pad2,#document.skn-srz1 table.skills .pad3{width:1%}
-    #document.skn-srz1{color:#343434;font-variant-ligatures:none;line-height:16px;min-height:792px;box-sizing:border-box}
-    #document.skn-srz1 .name{font-weight:700;padding:0;position:relative;text-align:left;word-wrap:break-word}
-    #document.skn-srz1 .address .singlecolumn{margin-left:0!important}
-    #document.skn-srz1 .heading{font-weight:700;line-height:15px;margin-bottom:10px}
-    #document.skn-srz1 .sectiontitle{word-break:break-word}
-    #document.skn-srz1 .degreeGap{margin-bottom:4px}
-    #document.skn-srz1 .locationGap{margin-top:4px}
-    #document.skn-srz1 .firstsection{padding-top:0!important}
-    #document.skn-srz1 .section:empty{display:none}
-  
-    /*Left Box */
-    #document.skn-srz1 .left-box{background:#003D73;display:table-cell;padding:15px;box-sizing:initial;}
-    #document.skn-srz1 .left-box .section{position:relative;color:#fff}
-    #document.skn-srz1 .left-box .heading{line-height:1.5;margin-left:-15px;margin-right:-15px;padding:0 15px;position:relative}
-    #document.skn-srz1 .left-box .heading:before{content:'';position:absolute;left:0;top:0;background:#003D73;height:100%;width:100%;filter:brightness(0.8)}
-    #document.skn-srz1 .left-box .sectiontitle{padding:3px 0;text-align:left;position:relative}
-    #document.skn-srz1 .left-box .SECTION_CNTC{padding-top:20px!important}
-    #document.skn-srz1 .parentContainer{border-collapse:collapse;display:table;min-height:inherit;table-layout:fixed;width:100%}
-  
-  
-    /*Right Box */
-    #document.skn-srz1 .right-box{display:table-cell;letter-spacing:.2px;padding:15px;vertical-align:top}
-    #document.skn-srz1 .right-box .section:first-child{padding-top:0}
-    #document.skn-srz1 .right-box .heading{border-bottom:1px solid #d5d6d6;border-top:1px solid #d5d6d6;letter-spacing:0;padding:5px 0}
-    #document.skn-srz1 .right-box .sectiontitle{color:#017777}
-    #document.skn-srz1 .right-box .paddedline.date-content{position:absolute;margin-left:0;width:65px}
-    #document.skn-srz1 .paragraph .singlecolumn{position:relative}
-    #document.skn-srz1 .right-box .summary .paragraph .singlecolumn{margin-left:0}
-    #document.skn-srz1 .education .joblocation,.txtItl{font-style:italic}
-  
-    /* Issues fix for builder page */
-    #document.skn-srz1 > div{min-height:inherit}
-    #displayResume #document.skn-srz1.document{min-height:792px}
-  #document.skn-srz1 .left-box .active *{color:#343434}
-    /* Only for firefox */
-    @-moz-document url-prefix() {#document.skn-srz1 .parentContainer{height:1px}}
-    #document.skn-srz1 .word-break{word-wrap:break-word}
-  
-    #document.skn-srz1 .left-box .outer-square,#document.skn-srz1 right-box .outer-square,#document.skn-srz1 .left-box .inner-square,#document.skn-srz1 .right-box .inner-square{height:7px;position:relative}
-    #document.skn-srz1 .left-box .inner-square{background:#fff}
-  
-    #document.skn-srz1 .right-box .outer-square{background:#d6d6d6}
-    #document.skn-srz1 .right-box .inner-square{background:#003D73;filter:brightness(.8)}
-  
-    /* For dates fix */
-    #document.skn-srz1 .right-box .hidedates{visibility:hidden;position:static!important;display:block;float:left}
-    #document.skn-srz1 .left-box .hidedates{display:none}
-    #document.skn-srz1 .paragraph.datespara:after{content:'';display:table;clear:both}
-  </style><style type="text/css" id="dynamic" data-time="Wed Mar 04 2020 22:05:29 GMT+0100 (heure normale d’Afrique de l’Ouest)">
-    #document.skn-srz1,#document.skn-srz1 table{line-height:18px}
-    #document.skn-srz1.pagesize{width:612px}
-    #document.skn-srz1.fontface{font-family:Century Gothic}
-    #document.skn-srz1.fontsize{font-size:11px}
-    #document.skn-srz1 .section{padding-top:20px}
-    #document.skn-srz1 .firstparagraph{margin-top:0!important}
-    #document.skn-srz1 .paragraph{margin-top:10px}
-    #document.skn-srz1 .singlecolumn,#document.skn-srz1 .maincolumn{word-wrap:break-word}
-    #document.skn-srz1 .right-box .singlecolumn,#document.skn-srz1 .right-box .maincolumn{margin-left:0px}
-    #document.skn-srz1 table.skills td{padding-top:5px}
-    #document.skn-srz1 .jobtitle,#document.skn-srz1 .degree,#document.skn-srz1 .programline{font-size:14px}
-    #document.skn-srz1 .name{font-size:28px;line-height:35px}
-    #document.skn-srz1 .heading{line-height:22px}
-    #document.skn-srz1 .sectiontitle{font-size:16px}
-    #document.skn-srz1 .resumeTitle{font-size:14px;padding-top:3px}
-  
-    /*Left Box*/
-    #document.skn-srz1 .left-box{background:#003D73;width:154px}
-    #document.skn-srz1 .left-box .section{padding-top:20px}
-    #document.skn-srz1 .left-box .heading{line-height:22px}
-    #document.skn-srz1 .left-box .heading:before{background:#017777}
-    #document.skn-srz1 .left-box .outer-square:before{background:#017777;content:'';position:absolute;height:7px;width:100%;filter:brightness(.8)}
-  
-  
-    /*Right Box*/
-    #document.skn-srz1 .right-box .paragraph .singlecolumn{margin-left:91px}
-    #document.skn-srz1 .right-box .paddedline.date-content{left:-91px}
-    #document.skn-srz1 .right-box .sectiontitle{color:#017777}
-    #document.skn-srz1 .right-box .inner-square{background:#003D73}
-  
-    /* Issues fix for builder page */
-    #document.skn-srz1 .right-box .sortable-item{padding-top:20px}
-    #document.skn-srz1 .left-box > .sortable-item.active > .wrapper .heading:before{background:none}
-    #document.skn-srz1 .left-box .sortable-item.active .outer-square:before{background:#d6d6d6}
-    #document.skn-srz1 .left-box .sortable-item.active .inner-square{background:#003D73}
-  
-    /* Issues fix for builder page: Phase 2 */
-    #document.skn-srz1._single-parent-drag > .wrapper-bg + div{position:relative;z-index:8}
-    #document.skn-srz1._single-parent-drag .outer-square:before{background:#d6d6d6;content:'';position:absolute;height:7px;width:100%;filter:brightness(0.8)}
-    #document.skn-srz1._single-parent-drag .inner-square{background:#003D73}
-    #document.skn-srz1._single-parent-drag .wrapper-bg + div .paragraph{margin-top:0}
-    #document.skn-srz1 .outer-square,#document.skn-srz1 .inner-square{height:7px;position:relative}
-    #document.skn-srz1 .parent-drag.active .wrapper,#document.skn-srz1 .sortable-item .sectiontitle{position:relative}
-  
-    /* support for IE Browser */
-    @media screen and (min-width:0\0) {
-    #document.skn-srz1 .left-box{box-sizing:content-box}
-    #document.skn-srz1 .parentContainer{display:flex}
-    #document.skn-srz1 .right-box{width:calc(100% - 154px)}
-    #document.skn-srz1 .left-box,#document.skn-srz1 .right-box{background:none;display:inline;position:relative}
-    #document.skn-srz1 .left-box:before{content:'';background:#003D73;position:absolute;left:0;top:0;height:100%;width:100%;opacity:.9}
-    }
-  </style>
-  
+    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+        Upload
+    </button>
+    <br>
+   
 </div>
-  
-  
-<div id="document" class="document fontsize fontface vmargins hmargins pagesize skn-srz1 SRZ1 ZTY" style="width: 75%;margin-top: 30px;"><div id="CONTAINER_PARENT_0" class="parentContainer" ><div id="CONTAINER_0" class="left-box" style="background-color: darkcyan;">
-      
-    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-NAME">
-          <div id="SECTION_NAME671b9a7b-6571-4313-8bd1-2acd7b773738" class="section notdraggable SECTION_NAME firstsection  " data-section-cd="NAME">
-              <div class=" doc-item"><div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
-                  
+
+<button type="button" (click)="saveVersion()">save version</button>
+<div  class="scroll-wrapper" style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 550px; max-height: 575px;">
+    <div style="position: relative; overflow: scroll; margin-right: -17px; margin-bottom: -17px; min-height: 567px; max-height: 592px;">
+        <div class="">
+            <div>
+                <style type="text/css" id="static">
+                    /*Font support for MAC*/
+                    
+                    @font-face {
+                        font-family: 'Century Gothic';
+                        font-weight: normal;
+                        font-style: normal;
+                        src: local('Century Gothic'), url('/blobcontent/zty/fonts/CenturyGothic.ttf') format('truetype')
+                    }
+                    
+                    @font-face {
+                        font-family: 'Century Gothic';
+                        font-weight: bold;
+                        font-style: normal;
+                        src: local('Century Gothic Bold'), url('/blobcontent/zty/fonts/CenturyGothicBold.ttf') format('truetype')
+                    }
+                    
+                    @font-face {
+                        font-family: 'Century Gothic';
+                        font-weight: bold;
+                        font-style: italic;
+                        src: local('Century Gothic Bold Italic'), url('/blobcontent/zty/fonts/CenturyGothicBoldItalic.ttf') format('truetype')
+                    }
+                    
+                    @font-face {
+                        font-family: 'Century Gothic';
+                        font-weight: normal;
+                        font-style: italic;
+                        src: local('Century Gothic Italic'), url('/blobcontent/zty/fonts/CenturyGothicItalic.ttf') format('truetype')
+                    }
+                    
+                    html,
+                    body,
+                    div,
+                    span,
+                    applet,
+                    object,
+                    iframe,
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5,
+                    h6,
+                    p,
+                    blockquote,
+                    pre,
+                    a,
+                    abbr,
+                    acronym,
+                    address,
+                    big,
+                    cite,
+                    code,
+                    del,
+                    dfn,
+                    em,
+                    font,
+                    img,
+                    ins,
+                    kbd,
+                    q,
+                    s,
+                    samp,
+                    small,
+                    strike,
+                    strong,
+                    sub,
+                    sup,
+                    tt,
+                    var,
+                    b,
+                    u,
+                    i,
+                    center,
+                    dl,
+                    dt,
+                    dd,
+                    ol,
+                    ul,
+                    li,
+                    fieldset,
+                    form,
+                    label,
+                    legend,
+                    table,
+                    caption,
+                    tbody,
+                    tfoot,
+                    thead,
+                    tr,
+                    th,
+                    td {
+                        margin: 0;
+                        padding: 0;
+                        border: 0;
+                        outline: 0;
+                        vertical-align: baseline;
+                        background: transparent
+                    }
+                    
+                    body {
+                        text-align: left;
+                        font-feature-settings: "liga" 0;
+                        -moz-font-feature-settings: "liga" off
+                    }
+                    
+                    #document.skn-srz1 ol,
+                    #document.skn-srz1 ul {
+                        list-style: none
+                    }
+                    
+                    #document.skn-srz1 table {
+                        border-collapse: collapse;
+                        border-spacing: 0;
+                        font-size: inherit;
+                        color: inherit;
+                        width: 100%
+                    }
+                    /*START content disc style for LI*/
+                    
+                    #document.skn-srz1 ul,
+                    #document.skn-srz1 li {
+                        margin: 0;
+                        padding: 0;
+                        list-style-type: disc
+                    }
+                    
+                    #document.skn-srz1 ul li {
+                        margin: 0 0 0 16px;
+                        padding: 0
+                    }
+                    
+                    @-moz-document url-prefix() {
+                        #document.skn-srz1 ul li {
+                            margin: 0 0 0 12px;
+                            padding: 0 0 0 3px
+                        }
+                    }
+                    /*END content disc style for LI*/
+                    /*common css*/
+                    
+                    #document.skn-srz1 .txtBold {
+                        font-weight: 700
+                    }
+                    
+                    #document.skn-srz1 .paddedline {
+                        display: block
+                    }
+                    
+                    #document.skn-srz1 .mt5 {
+                        margin-top: 5px
+                    }
+                    
+                    #document.skn-srz1 .txtRight {
+                        text-align: right
+                    }
+                    
+                    #document.skn-srz1 table.skills,
+                    #document.skn-srz1 .table_wrapper {
+                        margin-top: 0;
+                        width: 100%;
+                        word-break: break-all
+                    }
+                    
+                    #document.skn-srz1 table.skills th,
+                    #document.skn-srz1 table.skills td {
+                        text-align: center;
+                        width: 20%
+                    }
+                    
+                    #document.skn-srz1 table.skills .skillname,
+                    #document.skn-srz1 table.skills .skillrating {
+                        text-align: left;
+                        width: 35%
+                    }
+                    
+                    #document.skn-srz1 table.skills .skillrating {
+                        width: 20%
+                    }
+                    
+                    #document.skn-srz1 table.skills .skillyears,
+                    #document.skn-srz1 table.skills .skilllast {
+                        width: 19%
+                    }
+                    
+                    #document.skn-srz1 table.skills .pad1 {
+                        width: 5%
+                    }
+                    
+                    #document.skn-srz1 table.skills .pad2,
+                    #document.skn-srz1 table.skills .pad3 {
+                        width: 1%
+                    }
+                    
+                    #document.skn-srz1 {
+                        color: #343434;
+                        font-variant-ligatures: none;
+                        line-height: 16px;
+                        min-height: 792px;
+                        box-sizing: border-box
+                    }
+                    
+                    #document.skn-srz1 .name {
+                        font-weight: 700;
+                        padding: 0;
+                        position: relative;
+                        text-align: left;
+                        word-wrap: break-word
+                    }
+                    
+                    #document.skn-srz1 .address .singlecolumn {
+                        margin-left: 0!important
+                    }
+                    
+                    #document.skn-srz1 .heading {
+                        font-weight: 700;
+                        line-height: 15px;
+                        margin-bottom: 10px
+                    }
+                    
+                    #document.skn-srz1 .sectiontitle {
+                        word-break: break-word
+                    }
+                    
+                    #document.skn-srz1 .degreeGap {
+                        margin-bottom: 4px
+                    }
+                    
+                    #document.skn-srz1 .locationGap {
+                        margin-top: 4px
+                    }
+                    
+                    #document.skn-srz1 .firstsection {
+                        padding-top: 0!important
+                    }
+                    
+                    #document.skn-srz1 .section:empty {
+                        display: none
+                    }
+                    /*Left Box */
+                    
+                    #document.skn-srz1 .left-box {
+                        display: table-cell;
+                        padding: 15px;
+                        box-sizing: initial;
+                    }
+                    
+                    #document.skn-srz1 .left-box .section {
+                        position: relative;
+                        color: #fff
+                    }
+                    
+                    #document.skn-srz1 .left-box .heading {
+                        line-height: 1.5;
+                        margin-left: -15px;
+                        margin-right: -15px;
+                        padding: 0 15px;
+                        position: relative
+                    }
                  
-    <input #file type="file"  accept='image/*' style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)" ><br>
-    <div class="sectiontitle" id="imgeID" >
-        <div class="example">
+                    #document.skn-srz1 .left-box .sectiontitle {
+                        padding: 3px 0;
+                        text-align: left;
+                        position: relative;
+                    }
+                    
+                    #document.skn-srz1 .left-box .SECTION_CNTC {
+                        padding-top: 20px!important
+                    }
+                    
+                    #document.skn-srz1 .parentContainer {
+                        border-collapse: collapse;
+                        display: table;
+                        min-height: inherit;
+                        table-layout: fixed;
+                        width: 100%
+                    }
+                    /*Right Box */
+                    
+                    #document.skn-srz1 .right-box {
+                        display: table-cell;
+                        letter-spacing: .2px;
+                        padding: 15px;
+                        vertical-align: top
+                    }
+                    
+                  
+                    
+                    #document.skn-srz1 .right-box .heading {
+                        border-bottom: 1px solid #d5d6d6;
+                        border-top: 1px solid #d5d6d6;
+                        letter-spacing: 0;
+                        padding: 5px 0
+                    }
+                    
+               
+                    
+                    #document.skn-srz1 .right-box .paddedline.date-content {
+                        position: absolute;
+                        margin-left: 0;
+                        width: 65px
+                    }
+                    
+                    #document.skn-srz1 .paragraph .singlecolumn {
+                        position: relative
+                    }
+                    
+                    #document.skn-srz1 .right-box .summary .paragraph .singlecolumn {
+                        margin-left: 0
+                    }
+                    
+                    #document.skn-srz1 .education .joblocation,
+                    .txtItl {
+                        font-style: italic
+                    }
+                    /* Issues fix for builder page */
+                    
+                    #document.skn-srz1 > div {
+                        min-height: inherit
+                    }
+                    
+                    #displayResume #document.skn-srz1.document {
+                        min-height: 792px
+                    }
+                    
+                    #document.skn-srz1 .left-box .active * {
+                        color: #343434
+                    }
+                    /* Only for firefox */
+                    
+                    @-moz-document url-prefix() {
+                        #document.skn-srz1 .parentContainer {
+                            height: 1px
+                        }
+                    }
+                    
+                    #document.skn-srz1 .word-break {
+                        word-wrap: break-word
+                    }
+                    
+                    #document.skn-srz1 .left-box .outer-square,
+                    #document.skn-srz1 right-box .outer-square,
+                    #document.skn-srz1 .left-box .inner-square,
+                    #document.skn-srz1 .right-box .inner-square {
+                        height: 7px;
+                        position: relative
+                    }
+                    
+                    #document.skn-srz1 .left-box .inner-square {
+                        background: #fff
+                    }
+                    
+                    #document.skn-srz1 .right-box .outer-square {
+                        background: #d6d6d6
+                    }
+                    
+                    #document.skn-srz1 .right-box .inner-square {
+                        background: #003D73;
+                        filter: brightness(.8)
+                    }
+                    /* For dates fix */
+                    
+                    #document.skn-srz1 .right-box .hidedates {
+                        visibility: hidden;
+                        position: static!important;
+                        display: block;
+                        float: left
+                    }
+                    
+                    #document.skn-srz1 .left-box .hidedates {
+                        display: none
+                    }
+                    
+                    #document.skn-srz1 .paragraph.datespara:after {
+                        content: '';
+                        display: table;
+                        clear: both
+                    }
+                </style>
+                <style type="text/css" id="dynamic" data-time="Wed Mar 04 2020 22:05:29 GMT+0100 (heure normale d’Afrique de l’Ouest)">
+                    #document.skn-srz1,
+                    #document.skn-srz1 table {
+                        line-height: 18px
+                    }
+                    
+                    #document.skn-srz1.pagesize {
+                        width: 612px
+                    }
+                    
+                    #document.skn-srz1.fontface {
+                        font-family: Century Gothic
+                    }
+                    
+                    #document.skn-srz1.fontsize {
+                        font-size: 11px
+                    }
+                    
+                    #document.skn-srz1 .section {
+                        padding-top: 20px
+                    }
+                    
+                    #document.skn-srz1 .firstparagraph {
+                        margin-top: 0!important
+                    }
+                    
+                    #document.skn-srz1 .paragraph {
+                        margin-top: 10px
+                    }
+                    
+                    #document.skn-srz1 .singlecolumn,
+                    #document.skn-srz1 .maincolumn {
+                        word-wrap: break-word
+                    }
+                    
+                    #document.skn-srz1 .right-box .singlecolumn,
+                    #document.skn-srz1 .right-box .maincolumn {
+                        margin-left: 0px
+                    }
+                    
+                    #document.skn-srz1 table.skills td {
+                        padding-top: 5px
+                    }
+                    
+                    #document.skn-srz1 .jobtitle,
+                    #document.skn-srz1 .degree,
+                    #document.skn-srz1 .programline {
+                        font-size: 14px
+                    }
+                    
+                    #document.skn-srz1 .name {
+                        font-size: 28px;
+                        line-height: 35px
+                    }
+                    
+                    #document.skn-srz1 .heading {
+                        line-height: 22px
+                    }
+                    
+                    #document.skn-srz1 .sectiontitle {
+                        font-size: 16px
+                    }
+                    
+                    #document.skn-srz1 .resumeTitle {
+                        font-size: 14px;
+                        padding-top: 3px
+                    }
+                    /*Left Box*/
+                    
+                    #document.skn-srz1 .left-box {
+                        background: #003D73;
+                        width: 154px
+                    }
+                    
+                    #document.skn-srz1 .left-box .section {
+                        padding-top: 20px
+                    }
+                    
+                    #document.skn-srz1 .left-box .heading {
+                        line-height: 22px
+                    }
+                    
+                    #document.skn-srz1 .left-box .heading:before {
+                        background: #017777
+                    }
+                    
+                    #document.skn-srz1 .left-box .outer-square:before {
+                        background: #017777;
+                        content: '';
+                        position: absolute;
+                        height: 7px;
+                        width: 100%;
+                        filter: brightness(.8)
+                    }
+                    /*Right Box*/
+                    
+                    #document.skn-srz1 .right-box .paragraph .singlecolumn {
+                        margin-left: 91px
+                    }
+                    
+                    #document.skn-srz1 .right-box .paddedline.date-content {
+                        left: -91px
+                    }
+                    
+                    #document.skn-srz1 .right-box .sectiontitle {
+                        color: #017777
+                    }
+                    
+                    #document.skn-srz1 .right-box .inner-square {
+                        background: #003D73
+                    }
+                    /* Issues fix for builder page */
+                    
+                    #document.skn-srz1 .right-box .sortable-item {
+                        padding-top: 20px
+                    }
+                    
+                    #document.skn-srz1 .left-box > .sortable-item.active > .wrapper .heading:before {
+                        background: none
+                    }
+                    
+                    #document.skn-srz1 .left-box .sortable-item.active .outer-square:before {
+                        background: #d6d6d6
+                    }
+                    
+                    #document.skn-srz1 .left-box .sortable-item.active .inner-square {
+                        background: #003D73
+                    }
+                    /* Issues fix for builder page: Phase 2 */
+                    
+                    #document.skn-srz1._single-parent-drag > .wrapper-bg + div {
+                        position: relative;
+                        z-index: 8
+                    }
+                    
+                    #document.skn-srz1._single-parent-drag .outer-square:before {
+                        background: #d6d6d6;
+                        content: '';
+                        position: absolute;
+                        height: 7px;
+                        width: 100%;
+                        filter: brightness(0.8)
+                    }
+                    
+                    #document.skn-srz1._single-parent-drag .inner-square {
+                        background: #003D73
+                    }
+                    
+                    #document.skn-srz1._single-parent-drag .wrapper-bg + div .paragraph {
+                        margin-top: 0
+                    }
+                    
+                    #document.skn-srz1 .outer-square,
+                    #document.skn-srz1 .inner-square {
+                        height: 7px;
+                        position: relative
+                    }
+                    
+                    #document.skn-srz1 .parent-drag.active .wrapper,
+                    #document.skn-srz1 .sortable-item .sectiontitle {
+                        position: relative
+                    }
+                    /* support for IE Browser */
+                    
+                    @media screen and (min-width:0\0) {
+                        #document.skn-srz1 .left-box {
+                            box-sizing: content-box
+                        }
+                        #document.skn-srz1 .parentContainer {
+                            display: flex
+                        }
+                        #document.skn-srz1 .right-box {
+                            width: calc(100% - 154px)
+                        }
+                        #document.skn-srz1 .left-box,
+                        #document.skn-srz1 .right-box {
+                            background: none;
+                            display: inline;
+                            position: relative
+                        }
+                        #document.skn-srz1 .left-box:before {
+                            content: '';
+                            background: #003D73;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            height: 100%;
+                            width: 100%;
+                            opacity: .9
+                        }
+                    }
+                </style>
 
-            <div *ngIf="localUrl; else elseBlock">
-              <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 150px;">
             </div>
-              
-                  <ng-template #elseBlock>
-                    <img  src="assets/media/users/user4.jpg" title="" style="width: inherit;">
-                </ng-template>
 
-               <div class="fadedbox">
-        <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  onClick="$('#imgeID').hide();$('#buttonImg').show();"> Hide Picture </button><br>
-        <div class="wrapper">
-                      
-            <div class="file-upload">
-             <!-- <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  id="inputImage"type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"/><br>-->
+            <div id="document" class="document fontsize fontface vmargins hmargins pagesize skn-srz1 SRZ1 ZTY" style="width: 75%;margin-top: 30px;">
+                <div id="CONTAINER_PARENT_0" class="parentContainer">
+                    <div id="CONTAINER_0" class="left-box" [ngStyle]="{'background-color': FirstColorInit}">
 
-           
-            </div>
-          
-          </div>
-        </div>
-    </div>
-    </div>
-              
-    
-                    <div class="" id="showImage" >
-                        <div class="example fadedbox">
-              
-                         <button id ="buttonImg" style="background-color:black;width: 100%; color:white; font-size: 8pt; border-style: none;display: none; " class="title text"  onClick="$('#imgeID').show();$('#buttonImg').hide();"> show Picture </button><br>
-     
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-NAME">
+                            <div id="SECTION_NAME671b9a7b-6571-4313-8bd1-2acd7b773738" class="section notdraggable SECTION_NAME firstsection  " data-section-cd="NAME">
+                                <div class=" doc-item">
+                                    <div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
+
+                                        <input #file type="file" accept='image/*' style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)">
+                                        <br>
+                                        <div class="sectiontitle" id="imgeID">
+                                            <div class="example">
+
+                                                <div *ngIf="localUrl; else elseBlock">
+                                                    <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 150px;">
+                                                </div>
+
+                                                <ng-template #elseBlock>
+                                                    <img src="assets/media/users/user4.jpg" title="" style="width: inherit;">
+                                                </ng-template>
+
+                                                <div class="fadedbox">
+                                                    <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" onClick="$('#imgeID').hide();$('#buttonImg').show();"> Hide Picture </button>
+                                                    <br>
+                                                    <div class="wrapper">
+
+                                                        <div class="file-upload">
+                                                            <!-- <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  id="inputImage"type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"/><br>-->
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="" id="showImage">
+                                            <div class="example fadedbox">
+
+                                                <button id="buttonImg" style="background-color:black;width: 100%; color:white; font-size: 8pt; border-style: none;display: none; " class="title text" onClick="$('#imgeID').show();$('#buttonImg').hide();"> show Picture </button>
+                                                <br>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="name word-break">
+                                            <span class="field" id="FIELD_FNAM">Your Name</span>
+                                        </div>
+
+                                        <div class="resumeTitle" id="FIELD_DCTL">Profession</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="name word-break">
-                        <span class="field" id="FIELD_FNAM">Your Name</span>
-                    </div>
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-CNTC">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                            <div id="SECTION_CNTC7f727e17-7e66-47b8-806a-e31c211c9ec5" class="section SECTION_CNTC notdraggable   " data-section-cd="CNTC">
+                                <div class=" doc-item">
+                                    <div class="heading"  [ngStyle]="{'background': SecondColorInit}">
+                                        <div class="sectiontitle" id="SECTIONNAME_CNTC">Contact<span class="rename-section text-rename">
+                                             </span></div>
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <div id="PARAGRAPH_CNTC_7c586dc9-6e7a-3ae8-faa5-d0c1f7348705" class="paragraph PARAGRAPH_CNTC firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+                                                    <div class="address">
+                                                        <div class="singlecolumn">
+                                                            <div dependency="STRT|CITY|STAT|ZIPC">
+                                                                <div class="txtBold">Address </div>
+                                                                <div class="field" id="FIELD_STRT">123 Main Street</div>
+                                                                <span class="field" id="FIELD_CITY">Berkeley</span><span dependency="CITY+STAT|ZIPC">,</span>
+                                                                <span class="field" id="FIELD_STAT">CA</span><span dependency="STAT+ZIPC">, </span>
+                                                                <span class="field" id="FIELD_ZIPC">Zip</span>
+                                                            </div>
+                                                            <div class="txtBold mt5" dependency="HPHN|CPHN">E-mail Perso </div>
+                                                            <div dependency="HPHN">
+                                                                <span class="field" id="FIELD_HPHN">{{contacts.MailPerso}}</span>
+                                                            </div>
 
-                    <div class="resumeTitle" id="FIELD_DCTL">Profession</div>
-                </div></div></div></div>
+                                                            <div class="txtBold mt5" dependency="EMAI">E-mail Pro </div>
+                                                            <div dependency="EMAI" class="word-break">
+                                                                <span class="field" id="FIELD_EMAI">{{contacts.MailPro}}</span>
+                                                            </div>
 
-                
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-CNTC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_CNTC7f727e17-7e66-47b8-806a-e31c211c9ec5" class="section SECTION_CNTC notdraggable   " data-section-cd="CNTC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_CNTC">Contact<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_CNTC_7c586dc9-6e7a-3ae8-faa5-d0c1f7348705" class="paragraph PARAGRAPH_CNTC firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    <div class="address">
-                        <div class="singlecolumn">
-                            <div dependency="STRT|CITY|STAT|ZIPC">
-                                <div class="txtBold">Address </div>
-                                <div class="field" id="FIELD_STRT">123 Main Street</div>
-                                <span class="field" id="FIELD_CITY">Berkeley</span><span dependency="CITY+STAT|ZIPC">,</span>
-                                <span class="field" id="FIELD_STAT">CA</span><span dependency="STAT+ZIPC">, </span>
-                                <span class="field" id="FIELD_ZIPC">Zip</span>
-                            </div>
-                            <div class="txtBold mt5" dependency="HPHN|CPHN">E-mail Perso </div>
-                            <div dependency="HPHN">
-                                <span class="field" id="FIELD_HPHN">{{contacts.MailPerso}}</span>
-                            </div>
-                            
-                            <div class="txtBold mt5" dependency="EMAI">E-mail Pro </div>
-                            <div dependency="EMAI" class="word-break">
-                                <span class="field" id="FIELD_EMAI">{{contacts.MailPro}}</span>
-                            </div>
+                                                            <div class="txtBold mt5" dependency="EMAI">Tél Perso </div>
+                                                            <div dependency="EMAI" class="word-break">
+                                                                <span class="field" id="FIELD_EMAI">{{contacts.telPerso}}</span>
+                                                            </div>
 
-                            <div class="txtBold mt5" dependency="EMAI">Tél Perso </div>
-                            <div dependency="EMAI" class="word-break">
-                                <span class="field" id="FIELD_EMAI">{{contacts.telPerso}}</span>
-                            </div>
+                                                            <div class="txtBold mt5" dependency="EMAI">Tél Pro </div>
+                                                            <div dependency="EMAI" class="word-break">
+                                                                <span class="field" id="FIELD_EMAI">{{contacts.telPro}}</span>
+                                                            </div>
 
-                            <div class="txtBold mt5" dependency="EMAI">Tél Pro </div>
-                            <div dependency="EMAI" class="word-break">
-                                <span class="field" id="FIELD_EMAI">{{contacts.telPro}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            
                         </div>
-                    </div>
-                </div></div></div></div></div></div></div>
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Langues<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    <div class="singlecolumn maincolumn">
-                        <span class="paddedline" id="FIELD_SKC1">
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                            <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
+                                <div class=" doc-item">
+                                    <div class="heading" [ngStyle]="{'background': SecondColorInit}">
+                                        <div class="sectiontitle" id="SECTIONNAME_HILT">Langues <span class="rename-section text-rename">  </span>
+                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Langue_Model"> (+)   </a>
+                                       </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+                                                    <div class="singlecolumn maincolumn">
+                                                        <span class="paddedline" id="FIELD_SKC1">
                             <ul *ngFor="let listLangue of arrayListLang">
                                 <li>{{listLangue.langue}} - {{ listLangue.note }}</li>
                             </ul></span>
-                        
-                    </div>
-                </div></div></div></div></div></div></div>
-           
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Loisirs<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    <div class="singlecolumn maincolumn">
-                        <span class="paddedline" id="FIELD_SKC1">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                            <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
+                                <div class=" doc-item">
+                                    <div class="heading" [ngStyle]="{'background': SecondColorInit}">
+                                        <div class="sectiontitle" id="SECTIONNAME_HILT">Loisirs <span class="rename-section text-rename"> 
+                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Loisir_Model"> (+)   </a>
+                                        </span></div>
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+                                                    <div class="singlecolumn maincolumn">
+                                                        <span class="paddedline" id="FIELD_SKC1">
                             <ul *ngFor="let listLoisirs of arrayListLoisirs">
                                 <li>{{listLoisirs.desc}} </li>
                             </ul></span>
-                        
-                    </div>
-                </div></div></div></div></div></div></div>
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_HILT">Divers<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    <div class="singlecolumn maincolumn">
-                        <span class="paddedline" id="FIELD_SKC1">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                            <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
+                                <div class=" doc-item">
+                                    <div class="heading" [ngStyle]="{'background': SecondColorInit}">
+                                        <div class="sectiontitle" id="SECTIONNAME_HILT">Divers<span class="rename-section text-rename"> </span></div>
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+                                                    <div class="singlecolumn maincolumn">
+                                                        <span class="paddedline" id="FIELD_SKC1">
                             <ul *ngFor="let listDivers of arrayListDivers">
                                 <li>{{listDivers.desc}}</li>
                             </ul></span>
-                        
-                    </div>
-                </div></div></div></div></div></div></div>
-            </div>
 
-                <div id="CONTAINER_1" class="right-box"><div data-react-beautiful-dnd-draggable="2Hig" class="sortable-item section-container SortableItem-sibling  data-SUMM">
-                    <div class="document-tool sec-tool" id="editIcons" style="right: -2px;">
-                    </div>
-                    <div id="SECTION_SUMMfa2859a6-4cc7-43e6-985b-04a3c95ffae2" class="section summary notdraggable SECTION_SUMM  noparagraph " data-section-cd="SUMM">
-                        <div class=" doc-item"><div class=""><div class=""><div id="PARAGRAPH_SUMM_0" class="paragraph PARAGRAPH_SUMM firstparagraph placeholder-text "><div class="clearfix doc-item">
-
-            
-                    <div class="field singlecolumn" id="FIELD_FRFM">
-                        <div id="aboutText" onClick="$('#aboutText').hide();$('#AboutEditor').show();"><a id="textAbout" [innerHTML]="abouts | safeHtml"></a></div>
-
-                       <ckeditor id="AboutEditor" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;height: 10px;" Onfocusout="$('#aboutText').show();style='display: none;'">
-                       </ckeditor>
-                       
-
-                    </div>
-                </div></div></div></div></div></div></div>
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EXPR">Work History<span class="rename-section text-rename"> </span></div></div><div class=""><div class="sortableInner"><div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text "><div class="clearfix doc-item">
-                  
-                  
-                <div *ngFor="let listExperience of arrayListExp">
-                      
-                  
-                    <div id="ExperienceText" class="singlecolumn">
-                        <div class="paddedline date-content" dependency="JSTD|EDDT">
-                            <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listExperience.StartDate}}</span><span dependency="JSTD+EDDT"><br></span>
-                            <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listExperience.EndDate}}</span><br dependency="JTIT|COMP|JSTA|JCIT">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="paddedline" dependency="JTIT">
-                            <span class="jobtitle txtBold" id="FIELD_JTIT">{{listExperience.Poste}}</span>
-                        </span>
-                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-                            <span class="companyname" id="FIELD_COMP">{{listExperience.projet.MOA}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                            <!--<span class="jobcity" id="FIELD_JCIT">San Francisco</span><span dependency="JCIT+JSTA">, </span>
-                            <span class="jobstate" id="FIELD_JSTA">CA</span>-->
-                        </span>
-  
-                        <span class="jobline" id="FIELD_JDES">{{listExperience.projet.ProjetDesc}}</span>
-                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-
-                            <span class="paddedline" id="FIELD_SKC1">
-                               <b> Compétences Technique: </b>{{listExperience.projet.competence.name}}
-                            </span>
-                        </span>
                     </div>
-                 <br><br>   
-                </div>
-               
-               
-               
-               
-               
-               
-               
-                </div>
-                    <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
-                </div>       
-            
-                </div></div></div></div></div></div></div>
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Education<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    <div *ngFor="let listFormation of arrayListFormation">
 
-                    <div class="singlecolumn">
-                        <div class="paddedline date-content" dependency="JSTD|EDDT">
-                            <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listFormation.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
-                            <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listFormation.end_date}}</span><br dependency="JTIT|COMP|JSTA|JCIT">
+                    <div id="CONTAINER_1" class="right-box">
+                        <div data-react-beautiful-dnd-draggable="2Hig" class="sortable-item section-container SortableItem-sibling  data-SUMM">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;">
+                            </div>
+                            <div id="SECTION_SUMMfa2859a6-4cc7-43e6-985b-04a3c95ffae2" class="section summary notdraggable SECTION_SUMM  noparagraph " data-section-cd="SUMM">
+                                <div class=" doc-item">
+                                    <div class="">
+                                        <div class="">
+                                            <div id="PARAGRAPH_SUMM_0" class="paragraph PARAGRAPH_SUMM firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+
+                                                    <div class="field singlecolumn" id="FIELD_FRFM">
+                                                        <div id="aboutText" onClick="$('#aboutText').hide();$('#AboutEditor').show();">
+                                                            <a id="textAbout" [innerHTML]="abouts | safeHtml" ></a>
+                                                        </div>
+
+                                                        <ckeditor id="AboutEditor" [editor]="Editor" [(ngModel)]="abouts" (ready)="onReady($event)" style="display: none;height: 10px;" Onfocusout="$('#aboutText').show();style='display: none;';"(blur)="ChangeAbout()">
+                                                            {{abouts}}aaaaaaaaaaaaaaaaaa
+                                                            <br>
+                                                            <p>test</p>
+                                                        </ckeditor>
+                                                        <br>
+                                                        <br>
+                                                        <!--<ckeditor [editor]="Editor" [config]="ckeConfig">
+                                                            <a>aatest</a>
+                                                        </ckeditor>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="paddedline" dependency="JTIT">
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                            <div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR">
+                                <div class=" doc-item">
+                                    <div class="heading">
+                                        <div class="sectiontitle" id="SECTIONNAME_EXPR" [ngStyle]="{'color': SecondColorInit}">
+
+                                            Work History <span class="rename-section text-rename"> </span>
+                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Experience_Model"> (+)   </a> 
+                                            <div class="btn-group btn-group-sm mb-2" role="group" >
+                                                <button type="button" class="btn btn-secondary"(click)="LongDesc()">Long</button>
+                                                <button type="button" class="btn btn-secondary"(click)="ShortDesc()">Short</button>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="sortableInner">
+                                            <div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+                                                  <div id="ExpDynamicContent">
+                                                    		
+		
+		<div *ngFor="let listExperience of arrayListExp">
+			<div id="ExperienceText" class="singlecolumn">
+				<div class="paddedline date-content" dependency="JSTD|EDDT">
+					<span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listExperience.StartDate}}</span>
+					<span dependency="JSTD+EDDT">
+						<br>
+						</span>
+						<span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listExperience.EndDate}}</span>
+						<br dependency="JTIT|COMP|JSTA|JCIT">
+						</div>
+						<span class="paddedline" dependency="JTIT">
+							<span class="jobtitle txtBold" id="FIELD_JTIT">{{listExperience.Poste}}</span>
+						</span>
+						<span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+							<span class="companyname" id="FIELD_COMP">{{listExperience.projet.MOA}}</span>
+							<span dependency="COMP+JCIT|JSTA">,</span>
+						</span>
+						<span *ngIf="Short_Desc" class="jobline" id="FIELD_JDES">{{listExperience.projet.ProjetShort}}</span>
+						<span *ngIf="Long_Desc" class="jobline" id="FIELD_JDES">{{listExperience.projet.ProjetDesc}}</span>
+						<span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+							<span class="paddedline" id="FIELD_SKC1">
+								<b> Compétences Technique: </b>{{listExperience.projet.competence.name}}
+							</span>
+						</span>
+					</div>
+					<br>
+						<br>
+						</div>'
+		
+		
+                                                
+                                                  </div>
+                                                    
+                                                   <!--<ckeditor [editor]="Editor" [data]="ExperienceData " ></ckeditor>-->
+
+                                                </div>
+                                                <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
+                                                    <div class="clearfix doc-item">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
+                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                            <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
+                                <div class=" doc-item">
+                                    <div class="heading">
+                                        <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}" id="SECTIONNAME_EDUC">Education
+                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Diplome_Model"> (+)   </a></div>
+                                           
+
+                                    </div>
+                                    <div class="">
+                                        <div class="">
+                                            <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
+                                                <div class="clearfix doc-item">
+                                                    <div *ngFor="let listFormation of arrayListFormation">
+
+                                                        <div class="singlecolumn">
+                                                            <div class="paddedline date-content" dependency="JSTD|EDDT">
+                                                                <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listFormation.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
+                                                                <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listFormation.end_date}}</span>
+                                                                <br dependency="JTIT|COMP|JSTA|JCIT">
+                                                            </div>
+                                                            <span class="paddedline" dependency="JTIT">
                             <span class="jobtitle txtBold" id="FIELD_JTIT">{{listFormation.certification}}</span>
-                        </span>
-                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                                                            </span>
+                                                            <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
                             <span class="companyname" id="FIELD_COMP">{{listFormation.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                            <span class="jobcity" id="FIELD_JCIT">{{listFormation.diplome_date}}</span>
-                        </span>
-  
-                    </div>
-                   
-                
-                </div>
+                                                            <span class="jobcity" id="FIELD_JCIT">{{listFormation.diplome_date}}</span>
+                                                            </span>
 
+                                                        </div>
 
-                
-                </div>
-                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Certificats<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
-                    <div *ngFor="let listCertif of arrayListCertif">
+                                                    </div>
 
-                    <div class="singlecolumn">
-                        <div class="paddedline date-content" dependency="JSTD|EDDT">
-                            <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listCertif.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
-                            <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listCertif.end_date}}</span><br dependency="JTIT|COMP|JSTA|JCIT">
-                        </div>
-                        <span class="paddedline" dependency="JTIT">
+                                                </div>
+                                                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
+                                                    <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                                    <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
+                                                        <div class=" doc-item">
+                                                            <div class="heading">
+                                                                <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}"id="SECTIONNAME_EDUC">Certificats
+                                                                    <a class="btn btn-bold  " data-toggle="modal" data-target="#Certif_Model"> (+)   </a></div>
+                                                            </div>
+                                                            <div class="">
+                                                                <div class="">
+                                                                    <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
+                                                                        <div class="clearfix doc-item">
+                                                                            <div *ngFor="let listCertif of arrayListCertif">
+
+                                                                                <div class="singlecolumn">
+                                                                                    <div class="paddedline date-content" dependency="JSTD|EDDT">
+                                                                                        <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listCertif.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
+                                                                                        <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listCertif.end_date}}</span>
+                                                                                        <br dependency="JTIT|COMP|JSTA|JCIT">
+                                                                                    </div>
+                                                                                    <span class="paddedline" dependency="JTIT">
                             <span class="jobtitle txtBold" id="FIELD_JTIT">{{listCertif.certification}}</span>
-                        </span>
-                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                                                                                    </span>
+                                                                                    <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
                             <span class="companyname" id="FIELD_COMP">{{listCertif.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                            <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}</span>
-                        </span>
-  
-                    </div>
-                    </div>
+                                                                                    <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}</span>
+                                                                                    </span>
 
-                </div>
-                        <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
-                    </div>       
-                
-                    </div></div></div></div></div></div></div>
+                                                                                </div>
+                                                                            </div>
 
-                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC"><div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div><div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC"><div class=" doc-item"><div class="heading"><div class="sectiontitle" id="SECTIONNAME_EDUC">Compétences<span class="rename-section text-rename"> </span></div></div><div class=""><div class=""><div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text "><div class="clearfix doc-item">
-                        <div *ngFor="let listComp of arrayListComp">
-    
-                            
-                            <span class="" dependency="JTIT">
+                                                                        </div>
+                                                                        <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
+                                                                            <div class="clearfix doc-item">
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
+                                                    <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                                    <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
+                                                        <div class=" doc-item">
+                                                            <div class="heading">
+                                                                <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}"id="SECTIONNAME_EDUC">Compétences
+                                                                    <a class="btn btn-bold  " data-toggle="modal" data-target="#Competence_Model"> (+)   </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="">
+                                                                <div class="">
+                                                                    <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
+                                                                        <div class="clearfix doc-item">
+                                                                            <div *ngFor="let listComp of arrayListComp">
+
+                                                                                <span class="" dependency="JTIT">
                                 <span class=" txtBold" id="FIELD_JTIT"> &#8226; {{listComp.name}}</span>
-                            </span>
-                            <span class="paddedline locationGap txtItl paddedline" id="FIELD_SKC1" dependency="COMP|JSTA|JCIT">
+                                                                                </span>
+                                                                                <span class="paddedline locationGap txtItl paddedline" id="FIELD_SKC1" dependency="COMP|JSTA|JCIT">
                                 <span class="companyname" id="FIELD_COMP"><b>Niveau</b> {{listComp.niveau}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                            </span>
-                             - outils: {{listComp.tools.name}} - niveau: {{listComp.tools.level}}
-      
-                            <br>
-                        
-                        </div>
-    
-                    </div>
-                            <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text "><div class="clearfix doc-item">
-                        </div>       
-                    
-                        </div></div></div></div></div></div></div>
+                                                                                </span>
+                                                                                - outils: {{listComp.tools.name}} - niveau: {{listComp.tools.level}}
 
-                        
-            </div></div></div></div></div></div></div></div></div></div></div><div class="track-horizontal" style="display: none; visibility: hidden;"><div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;"></div></div><div class="track-vertical" style="visibility: visible;"><div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 407px; transform: translateY(0px);"></div></div></div>
-                <script type="text/javascript">
-                     function onClickEditor()
-                    {
+                                                                                <br>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
+                                                                            <div class="clearfix doc-item">
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="track-horizontal" style="display: none; visibility: hidden;">
+        <div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;"></div>
+    </div>
+    <div class="track-vertical" style="visibility: visible;">
+        <div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 407px; transform: translateY(0px);"></div>
+    </div>
+    
+   <!--begin:: Work experience Modal-->
+   <div class="modal fade" id="Experience_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Expérience Professionnelle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <div class="row">
+                        <div class="example-form col-6" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Fonction</mat-label>
+                                <input  class="form-control" #fonction matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-6">
+                            <mat-form-field>
+                                <mat-label>Localité</mat-label>
+                                <input  class="form-control" #location  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="example-form  col-12">
+
+                            <mat-form-field>
+                                <mat-label>Employeur</mat-label>
+                                <input  class="form-control" #emp  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" style="padding-right: 30px;">
+                            <mat-form-field>
+                                <mat-label>Dépuis</mat-label>
+                                <input  [formControl]="start_date" #dateDebut  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFrom">
+                                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerFrom></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <mat-label>Jusqu'à</mat-label>
+                                <input  [formControl]="end_date" #dateFin matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerTo">
+                                <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerTo></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="example-form  col-12">
+                            <mat-form-field>
+                                <mat-label>Description</mat-label>
+                                <textarea    class="form-control" #desc  matInput placeholder="Ex. It makes me feel..."></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="example-form  col-12">
+                            <mat-form-field>
+                                <mat-label>Projets</mat-label>
+                                <mat-select [formControl]="toppings" multiple>
+                                    <mat-option *ngFor="let listProjet of arrayListProjet" class="form-control"  #projet   [value]="listProjet">{{listProjet.ProjetName}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<!--end:: Work experience  Modal-->
+
+ <!--begin::  Diplome Modal-->
+ <div class="modal fade" id="Diplome_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Education</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="example-form  col-12">
+
+                            <mat-form-field>
+                                <mat-label>Universityt</mat-label>
+                                <input  class="form-control" #univ  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="example-form col-8" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Diplome</mat-label>
+                                <input  class="form-control" #diplome matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-4">
+                            <mat-form-field>
+                                <mat-label>Année</mat-label>
+                                <input  class="form-control" #location  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6" style="padding-right: 30px;">
+                            <mat-form-field>
+                                <mat-label>Dépuis</mat-label>
+                                <input  [formControl]="start_date_diplome" #dateDebutDiplome  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFromDiplome">
+                                <mat-datepicker-toggle matSuffix [for]="pickerFromDiplome"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerFromDiplome></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <mat-label>Jusqu'à</mat-label>
+                                <input  [formControl]="end_date_diplome" #dateFinDiplome matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerToDiplome">
+                                <mat-datepicker-toggle matSuffix [for]="pickerToDiplome"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerToDiplome></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                
+                  
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::  Diplome  Modal-->
+
+ <!--begin::  Certificat Modal-->
+ <div class="modal fade" id="Certif_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Certificat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="example-form  col-12">
+
+                            <mat-form-field>
+                                <mat-label>Centre</mat-label>
+                                <input  class="form-control" #centre  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="example-form col-8" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Certificat</mat-label>
+                                <input  class="form-control" #certif matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-4">
+                            <mat-form-field>
+                                <mat-label>Année</mat-label>
+                                <input  class="form-control" #AnneeCertif  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6" style="padding-right: 30px;">
+                            <mat-form-field>
+                                <mat-label>Dépuis</mat-label>
+                                <input  [formControl]="start_date_Certif" #dateDebutCertif  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFromCertif">
+                                <mat-datepicker-toggle matSuffix [for]="pickerFromCertif"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerFromCertif></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field>
+                                <mat-label>Jusqu'à</mat-label>
+                                <input  [formControl]="end_date_Certif" #dateFinCertif  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerToCertif ">
+                                <mat-datepicker-toggle matSuffix [for]="pickerToCertif"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerToCertif></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                
+                  
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::  Certificat  Modal-->
+
+ <!--begin::  Competence Modal-->
+ <div class="modal fade" id="Competence_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Compétence</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="example-form  col-12">
+                            <mat-form-field>
+                                <mat-label>Type de Compétence</mat-label>
+                                <mat-select [formControl]="toppings" multiple>
+                                    <mat-option *ngFor="let listProjet of arrayListProjet" class="form-control"  #typeCompetence   [value]="listProjet">{{listProjet.ProjetName}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="example-form col-6" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Compétence</mat-label>
+                                <input  class="form-control" #competenceName matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-6">
+                            <mat-form-field>
+                                <mat-label>Niveau</mat-label>
+                                <input  class="form-control" #cometenceNiveau  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    
+                    <div class="row col-12">
+                        <div class="example-form col-6" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Tools</mat-label>
+                                <input  class="form-control" #tool matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-2">
+                            <mat-form-field>
+                                <mat-label>Niveau</mat-label>
+                                <input  class="form-control" #NiveauTools  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-2" style="padding-top: 20px;margin-left: 20px;">
+                            <button type="button" class="btn btn-primary">+</button>
+
+                        </div>
+                    </div>
+                
+                  
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::  Certificat  Modal-->
+
+ <!--begin::  Loisirs Modal-->
+ <div class="modal fade" id="Loisir_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Loisir</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+               
+                    <div class="row">
+                        <div class="example-form col-12" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Loisir</mat-label>
+                                <input  class="form-control" #loisir matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
                        
-                       for (instance in CKEDITOR.instances)
-                       {
-                          var editor = CKEDITOR.instances[instance];
-                          if ( editor )
-                          {
-                             // Call showTBDiv() when editor get the focus
-                            editor.on('focus', function (event)
-                            {
-                                       showTBDiv( event );
-                             });
-                            // Call hideTBDiv() when editor loses the focus
-                            editor.on('blur', function (event)
-                            {
-                                       hideTBDiv( event );
-                            });
-                          }
-                       }
-                    }
-                             // Called whenever a CKEditor get focus.  We will show the corresponding toolbar DIV.
-                             function showTBDiv( event )
-                             {
-                                // Select the correct toolbar DIV and show it.  'event.editor.name' returns the name of the DIV receiving focus.
-                                $('#'+event.editor.name).show();
-                             }
-                                               
-                             // Called whenever a CKEditor loses focus.  We will hide the corresponding toolbar DIV.
-                             function hideTBDiv( event )
-                             {
-                                // Select the correct toolbar DIV and hide it.  'event.editor.name' returns the name of the DIV receiving focus.
-                                $('#'+event.editor.name).hide();
-                             }
-                    </script>
+                    </div>
+                               
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::  Loisirs  Modal-->
+
+ <!--begin::  Langue Modal-->
+ <div class="modal fade" id="Langue_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Langue</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                
+                    <div class="row">
+                        <div class="example-form col-6" style="padding-right: 30px;">
+
+                            <mat-form-field>
+                                <mat-label>Langue</mat-label>
+                                <input  class="form-control" #langue matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-form col-6">
+                            <mat-form-field>
+                                <mat-label>Note</mat-label>
+                                <input  class="form-control" #note  matInput placeholder="Ex. It makes me feel...">
+                            </mat-form-field>
+                        </div>
+                    </div>
+               
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::  Langue  Modal-->
+</div>
+

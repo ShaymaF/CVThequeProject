@@ -32,7 +32,7 @@ competences={
 "name":competence,
 "niveau":competenceLevel.Level3
 }
-projet={
+project={
 "ProjetName":ProjetName,
 "ProjetDesc":ProjetDesc,
 "ProjetShort":ProjetShort,
@@ -43,48 +43,43 @@ projet={
 "competence":competences
 }
 
-experience={
-    "projet":projet,
-	"StartDate":StartDate,
-	"EndDate":EndDate,
-	"Role":faker.lorem.lines(1),
-	"Poste":faker.lorem.words()
 
-}
 //Create new Experience
 
-router.post('/add', function (req, res) {
+router.put('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/experience/';
-    var userReference = firebase.database().ref(referencePath);
-    
+	var userReference = firebase.database().ref(referencePath);
+	experience={
+		"projet":project,
+		"StartDate":StartDate,
+		"EndDate":EndDate,
+		"Role":faker.lorem.lines(1),
+		"Poste":faker.lorem.words()
+	
+	}
+	var newPostRef = userReference.push();
+	
 
-
-
-
-	//var newPostRef = userReference.push();
-
-
-	userReference.set(experience , 
+	newPostRef.set(experience , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
 					} 
-					else { 
-                    //    res.status(200).send(experience)
+					else {
 						res.send("Data saved successfully.");
 					}
 			});
 });
 
+
 //list experience
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
-	var referencePath = '/experience';
-	var userReference = firebase.database().ref(referencePath);
+	var userReference = firebase.database().ref("/experience/");
 
 	//Attach an asynchronous callback to read the data
 	userReference.on("value", 
