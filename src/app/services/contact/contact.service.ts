@@ -13,4 +13,5 @@ export class ContactService {
 getContacts() {
   return this.http.get(environment.apiBaseUrl + '/contact/list');
 }
+
 }

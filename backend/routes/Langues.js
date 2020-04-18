@@ -7,24 +7,19 @@ var firebase = require('firebase');
 
 
 //Create new langues
-router.put('/add', function (req, res) {
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/langues/';
 	var userReference = firebase.database().ref(referencePath);
 
-	langues={
+		var langue = req.body;
 
-		 langue:'Anglais',
-		 
-		 note:'7/10'
-
-	}
 	var newPostRef = userReference.push();
 	
-
-	newPostRef.set(langues , 
+//console.log('langue',langue.id);
+	newPostRef.set(langue ,
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
@@ -63,7 +58,7 @@ router.post('/update', function (req, res) {
 	//var description = req.body.description;
 
 
-	var referencePath = '/langues/';
+	var referencePath = '/langues/'+id;
 	var userReference = firebase.database().ref(referencePath);
 	userReference.update({description: description}, 
 				 function(error) {
@@ -77,10 +72,23 @@ router.post('/update', function (req, res) {
 });
 
 //Delete an instance
-router.delete('/delete', function (req, res) {
+router.get('/delete/:id', function (req, res) {
 
-   console.log("HTTP DELETE Request");
-   //todo
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/langues/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 
 

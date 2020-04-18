@@ -1,0 +1,84 @@
+	<!--Begin::Row-->
+    <div class="row">
+        <div class="col-xl-8 col-lg-12 order-lg-3 order-xl-1">
+
+            <!--begin:: Widgets/Best Sellers-->
+            <div class="kt-portlet kt-portlet--height-fluid">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Best Sellers
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <ul class="nav nav-pills nav-pills-sm nav-pills-label nav-pills-bold" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_widget5_tab1_content" role="tab">
+                                    Latest
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_widget5_tab2_content" role="tab">
+                                    Month
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_widget5_tab3_content" role="tab">
+                                    All time
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="kt_widget5_tab1_content" aria-expanded="true">
+                            <div class="kt-widget5">
+                                <div *ngFor="let listVersion of arrayListVersion">
+
+                                <div class="kt-widget5__item">
+                                    <div class="kt-widget5__content">
+                                        <div class="kt-widget5__pic">
+                                            <img class="kt-widget7__img" src="assets/media/products/product27.jpg" alt="">
+                                        </div>
+                                        <div class="kt-widget5__section">
+                                            <a href="#" class="kt-widget5__title">
+                                                {{ listVersion.reason}}
+                                            </a>
+                                            <p class="kt-widget5__desc">
+                                                Metronic admin themes.
+                                            </p>
+                                            <div class="kt-widget5__info">
+                                                <span>Author:</span>
+                                                <span class="kt-font-info">{{ listVersion.author}}</span>
+                                                <span>Released:</span>
+                                                <span class="kt-font-info">{{ listVersion.dateVersion}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget5__content">
+                                        <div class="kt-widget5__stats">
+                                            <span class="kt-widget5__number">19,200</span>
+                                            <span class="kt-widget5__sales">sales</span>
+                                        </div>
+                                        <div class="kt-widget5__stats">
+                                            <span class="kt-widget5__number">1046</span>
+                                            <span class="kt-widget5__votes">votes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!--end:: Widgets/Best Sellers-->
+        </div>
+        
+    </div>
+
+    <!--End::Row-->

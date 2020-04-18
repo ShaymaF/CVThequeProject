@@ -11,7 +11,7 @@ var loisirs=require('./routes/Loisir');
 var langues=require('./routes/Langues');
 var formation=require('./routes/Formation');
 var certificat=require('./routes/Formation');
-var competence=require('./routes/Competences');
+var competences=require('./routes/Competences');
 var projet=require('./routes/projet');
 
 var version=require('./routes/version');
@@ -31,7 +31,7 @@ app.use("/loisirs", loisirs);
 app.use("/langues", langues);
 app.use("/formation", formation);
 app.use("/certificat", certificat);
-app.use("/competence", competence);
+app.use("/competences", competences);
 
 app.use("/version", version);
 app.use("/projet", projet);

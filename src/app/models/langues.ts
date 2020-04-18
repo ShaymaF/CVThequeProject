@@ -1,4 +1,4 @@
-export interface Langue {
+export class Langue {
     id: string;
     langue: string;
     note: string;

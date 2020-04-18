@@ -1,3 +1,24 @@
+
+.ck .ck-content > :first-child  p{
+	margin-top: 0!important;
+}
+
+.ck .ck-content > :last-child p{
+	margin-bottom: 0!important;
+}
+ .ck .ck-editor__editable_inline > *:first-child {
+    margin-top: 0!important;
+}
+
+ .ck .ck-editor__editable_inline > *:last-child {
+    margin-bottom: 0!important;
+}
+.ck .ck-editor__editable_inline {
+    margin-bottom: 0!important;
+    margin-top: 0!important;
+
+}
+
 .color-picker {
     border-radius: 5px;
   }

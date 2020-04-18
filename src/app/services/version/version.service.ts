@@ -9,7 +9,7 @@ import { Version } from 'src/app/models/version';
 export class VersionService {
 
   constructor(private http: HttpClient) { }
-  addVersion(version: Version) {
+  addVersion(version: any) {
 
     return this.http.post(environment.apiBaseUrl + '/version/add',version);
   }

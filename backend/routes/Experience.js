@@ -115,11 +115,25 @@ router.post('/update', function (req, res) {
 			    });
 });
 
-//Delete an instance
-router.delete('/delete', function (req, res) {
 
-   console.log("HTTP DELETE Request");
-   //todo
+//Delete an instance
+router.get('/delete/:id', function (req, res) {
+
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/experience/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 
 

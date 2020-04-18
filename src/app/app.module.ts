@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule, MatSelectModule,MatInputModule} from '@angular/material';
+import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule, MatSelectModule,MatInputModule, MatIconModule} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutService } from './services/about/about.service';
 import { FormationService } from './services/formation/formation.service';
@@ -27,6 +27,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ShowVersionComponent } from './versions/show-version/show-version.component';
 import { ListVersionsComponent } from './versions/list-versions/list-versions.component';
+import { VersionsListComponent } from './versions-list/versions-list.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ListVersionsComponent } from './versions/list-versions/list-versions.co
     SafeHtmlPipe,
     ShowVersionComponent,
     ListVersionsComponent,
+    VersionsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { ListVersionsComponent } from './versions/list-versions/list-versions.co
        ToastrModule.forRoot() ,
 MatSelectModule,
 MatInputModule,
-ReactiveFormsModule
+ReactiveFormsModule,
+MatIconModule
 
     
   ],

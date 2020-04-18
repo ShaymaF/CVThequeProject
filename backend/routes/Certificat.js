@@ -17,7 +17,7 @@ router.post('/add', function (req, res) {
 	var userReference = firebase.database().ref(referencePath);
 
 	//var newPostRef = userReference.push();
-	company=faker.company.companyName();
+	/*company=faker.company.companyName();
     StartDate=dateFormat(faker.date.past(), "yyyy-mm-dd");
     EndDate=dateFormat(faker.date.between(StartDate,faker.date.recent()),"yyyy-mm-dd");
 	certificat=[{
@@ -28,6 +28,8 @@ router.post('/add', function (req, res) {
 		"diplome_date":EndDate,
 	
 	}]
+*/
+var certificat = req.body;
 
 	userReference.set(certificat , 
 				 function(error) {
@@ -58,5 +60,25 @@ router.get('/list', function (req, res) {
 					res.send("The read failed: " + errorObject.code);
 			 });
 
+});
+
+//Delete an instance
+router.get('/delete/:id', function (req, res) {
+
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/certificat/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 module.exports = router

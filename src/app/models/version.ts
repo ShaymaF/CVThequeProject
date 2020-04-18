@@ -1,6 +1,15 @@
 export class Version {
-    content: any;
    author: string;
    reason: string;
+   dateVersion: string;
+   concatVersion: any;
+   aboutVersion:any;
+   langueVersion:any;
+   diverVersion:any;
+   loisirVersion:any;
+   experienceVersion:any;
+   formationVersion:any;
+   certfificatVersion:any;
+   competenceVersion:any;
 }
   

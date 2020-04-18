@@ -43,5 +43,10 @@ getProjet(): Observable<Projet[]> {
   
   );
 }
-
+addExperience(experience: Experience) {
+  return this.http.post(environment.apiBaseUrl + '/experience/add',experience);
+}
+deleteExperience(id) {
+  return this.http.get(environment.apiBaseUrl + `/experience/delete/${id}`);
+}
 }

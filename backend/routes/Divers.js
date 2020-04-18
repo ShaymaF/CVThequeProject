@@ -14,6 +14,7 @@ router.post('/add', function (req, res) {
 	var referencePath = '/divers/';
     var userReference = firebase.database().ref(referencePath);
     
+	var divers = req.body;
 
 
 
@@ -74,10 +75,23 @@ router.post('/update', function (req, res) {
 });
 
 //Delete an instance
-router.delete('/delete', function (req, res) {
+router.get('/delete/:id', function (req, res) {
 
-   console.log("HTTP DELETE Request");
-   //todo
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/divers/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 
 

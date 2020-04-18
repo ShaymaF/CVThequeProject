@@ -6,20 +6,21 @@ var firebase = require('firebase');
 
 
 //Create new competence
-router.put('/add', function (req, res) {
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/competences/';
 	var userReference = firebase.database().ref(referencePath);
 
-	competence=faker.lorem.word();
+	//competence=faker.lorem.word();
 	var newPostRef = userReference.push();
-	competenceDesc={
+	/*competenceDesc={
 	"competence":competence
-}
+}*/
+var competence = req.body;
 
-	newPostRef.set(competenceDesc , 
+	newPostRef.set(competence , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
@@ -35,7 +36,7 @@ router.put('/add', function (req, res) {
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
-	var userReference = firebase.database().ref("/competence/");
+	var userReference = firebase.database().ref("/competences/");
 
 	//Attach an asynchronous callback to read the data
 	userReference.on("value", 
@@ -50,6 +51,7 @@ router.get('/list', function (req, res) {
 			 });
 
 });
+
 //Update existing instance
 router.post('/update', function (req, res) {
 
@@ -71,11 +73,25 @@ router.post('/update', function (req, res) {
 			    });
 });
 
-//Delete an instance
-router.delete('/delete', function (req, res) {
 
-   console.log("HTTP DELETE Request");
-   //todo
+//Delete an instance
+router.get('/delete/:id', function (req, res) {
+
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/competences/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 
 
