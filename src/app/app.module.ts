@@ -22,12 +22,15 @@ import { PersonService } from './services/person/person.service';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { FileSelectDirective } from 'ng2-file-upload';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { ShowVersionComponent } from './versions/show-version/show-version.component';
 import { ListVersionsComponent } from './versions/list-versions/list-versions.component';
 import { VersionsListComponent } from './versions-list/versions-list.component';
+import {MatButtonModule} from '@angular/material/button';
+import {FileUploadModule, FileUploader} from 'ng2-file-upload';
+import { ListCollabComponent } from './list-collab/list-collab.component';
+import { SearchPipe } from './shared/pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -37,11 +40,12 @@ import { VersionsListComponent } from './versions-list/versions-list.component';
     ContentComponent,
     HomeComponent,
     EditionCVComponent,
-    FileSelectDirective,
     SafeHtmlPipe,
     ShowVersionComponent,
     ListVersionsComponent,
     VersionsListComponent,
+    ListCollabComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -58,11 +62,15 @@ import { VersionsListComponent } from './versions-list/versions-list.component';
 MatSelectModule,
 MatInputModule,
 ReactiveFormsModule,
-MatIconModule
+MatIconModule,
+MatButtonModule,FileUploadModule
 
     
   ],
-  providers: [
+  providers: [{
+    provide: FileUploader,
+    useClass:FileUploader,
+    deps:[] },
     AboutService,
     FormationService,
     CompetenceService,
@@ -70,8 +78,8 @@ MatIconModule
     DiversService,
     ExperienceService,
     LoisirService,
-    PersonService,
-
+    PersonService
+    
   ],
   bootstrap: [AppComponent]
 })

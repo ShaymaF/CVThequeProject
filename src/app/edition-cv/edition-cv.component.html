@@ -1,6 +1,23 @@
 
 
+<div class="wrapper">
+    <h2>Angular Image Upload Demo</h2>
+  
+    <div class="file-upload">
+      <input type="file" name="file" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg" />
+      <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+        Upload
+      </button>
+    </div>
+  
+  </div>
+            <input type="file" ng2FileSelect [uploader]="uploader" (onChange)="showFile(this)" />
 
+<button type="button" class="btn btn-success btn-xs"
+(click)="upload()">
+<span class="fa fa-upload"></span> Upload
+</button>
+<br>
 <ul     class="kt-sticky-toolbar" style="margin-top: 30px; background-color: white;width: 3%;">
 
     <li *ngFor="let paint of chartColor"  class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="Check out more demos" data-placement="right">
@@ -20,14 +37,14 @@
     
     <button (click)="redo()" [disabled]="!showRedo">Redo</button>
    
-<div class="container">
+<!--<div class="container">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
     <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
         Upload
     </button>
     <br>
    
-</div>
+</div>-->
 
 <button type="button" (click)="saveVersion()">save version</button>
 <div  class="scroll-wrapper" style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 550px; max-height: 575px;">

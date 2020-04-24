@@ -5,6 +5,7 @@ import { EditionCVComponent } from './edition-cv/edition-cv.component';
 import { ListVersionsComponent } from './versions/list-versions/list-versions.component';
 import { ShowVersionComponent } from './versions/show-version/show-version.component';
 import { VersionsListComponent } from './versions-list/versions-list.component';
+import { ListCollabComponent } from './list-collab/list-collab.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
     path: 'home', component: HomeComponent,//canActivateChild:[AuthGuard],
     children: [
       {path: 'cv', component: EditionCVComponent},
-      {path: 'version-list', component: VersionsListComponent}
+      {path: 'version-list', component: VersionsListComponent},
+      {path: 'collab-list', component:ListCollabComponent}
    
   ]
 }

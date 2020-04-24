@@ -3,6 +3,7 @@ var express = require('express')
 , router = express.Router()
 //var firebase=require('../Firebase/config').getConnection();
 var firebase = require('firebase');
+
 //var version = require('../model/version');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
@@ -79,6 +80,56 @@ router.delete('/delete', function (req, res) {
    console.log("HTTP DELETE Request");
    //todo
 });
+//Delete an instance
+router.get('/delete/:id', function (req, res) {
+
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/version/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
+});
+
+router.post('/upload/:filename',  (req, res) => {
+    console.log('Upload Image');
+  
+	let file = req.file;
+	let filename=req.params.filename;
+	console.log('file',file);
+	console.log('filename',filename);
+
+	console.log('file',file.filename);
+//	const db = firebase.database()
+	//const storage = firebase.storage()
+	//var gcloud = require('@google-cloud/storage');
+const storage = firebase.storage();
+
+//const bucket = storage.bucket('cvthequepfe.appspot.com')
 
 
+    //var storage = firebase.storage();
+    var storageRef = storage.ref('img/'+filename);
+
+  var task = storageRef.put(file);
+  task.on('state_changed', function progress(snapshot) {
+    var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    uploader.value = percentage;
+
+  }, function error(err) {
+
+
+  },function complete() {
+
+  });
+});  
 module.exports = router

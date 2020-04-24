@@ -1,108 +1,110 @@
-const path = require('path');
 const express = require('express');
-const googleStorage = require('@google-cloud/storage');
-const Multer = require('multer');const bodyParser = require('body-parser')
-const router = express();
-//var firebase = require('firebase');
+const app = express();
+const {Storage} = require('@google-cloud/storage');
+const Multer = require('multer');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const {format} = require('util');
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+const storage = new Storage({
+  projectId: "cvthequepfe",
+  keyFilename: "AIzaSyBQZR7TM60pzo8WrEkQ8-29SQDdk-SQGsw"
+});
+/*const {Storage} = require('@google-cloud/storage');
+ 
+// Creates a client
+const storage = new Storage();
+// Creates a client from a Google service account key.
+// const storage = new Storage({keyFilename: "key.json"});
+ 
 
-const storage = googleStorage({
-    projectId: "cvthequepfe",
-    keyFilename: "AIzaSyBQZR7TM60pzo8WrEkQ8-29SQDdk-SQGsw"
-  });
-  
-  const bucket = storage.bucket("cvthequepfe.appspot.com");
+// const bucketName = 'bucket-name';
+ 
+async function createBucket() {
+  // Creates the new bucket
+  await storage.createBucket(bucketName);
+  console.log(`Bucket ${bucketName} created.`);
+}
+ 
+createBucket().catch(console.error);*/
+const bucket = storage.bucket("cvthequepfe.appspot.com");
 
-  const multer = Multer({
-    storage: Multer.memoryStorage(),
-    limits: {
-      fileSize: 5 * 1024 * 1024 // no larger than 5mb, you can change as needed.
+const multer = Multer({
+  storage: Multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024 // no larger than 5mb, you can change as needed.
+  }
+});
+
+
+/**
+ * Adding new file to the storage
+ */
+app.post('/api/upload', multer.any('image'), (req, res) => {
+  console.log('Upload Image');
+  //const file = req.body;
+  //const base64data = file.content.replace(/^data:.*,/, '');
+ let file = req.files;
+ //let filename=req.params.filename;
+ console.log('file',file);
+ //console.log('filename',filename);
+
+ //console.log('file',file.filename);
+//	const db = firebase.database()
+ //const storage = firebase.storage()
+ //var gcloud = require('@google-cloud/storage');
+
+//const bucket = storage.bucket('cvthequepfe.appspot.com')
+
+
+   //var storage = firebase.storage();
+   var storageRef = storage.ref('img/file.png');
+
+ var task = storageRef.put(file);
+ task.on('state_changed', function progress(snapshot) {
+   var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+   uploader.value = percentage;
+
+ }, function error(err) {
+
+
+ },function complete() {
+
+ });
+});  
+
+/**
+ * Upload the image file to Google Storage
+ * @param {File} file object that will be uploaded to Google Storage
+ */
+const uploadImageToStorage = (file) => {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      reject('No image file');
     }
+    let newFileName = `${file.originalname}_${Date.now()}`;
+
+    let fileUpload = bucket.file(newFileName);
+
+    const blobStream = fileUpload.createWriteStream({
+      metadata: {
+        contentType: file.mimetype
+      }
+    });
+
+    blobStream.on('error', (error) => {
+      reject('Something is wrong! Unable to upload at the moment.');
+    });
+
+    blobStream.on('finish', () => {
+      // The public URL can be used to directly access the file via HTTP.
+      const url = format(`https://storage.googleapis.com/${bucket.name}/${fileUpload.name}`);
+      resolve(url);
+    });
+
+    blobStream.end(file.buffer);
   });
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended: true}));
- 
-router.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Methods', 'POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
- 
-router.get('/api', function (req, res) {
-  res.end('file upload');
-});
- 
-router.post('/api/upload', multer.single('file'), (req, res) => {
-    console.log('Upload Image');
-  
-    let file = req.file;
-    if (file) {
-      uploadImageToStorage(file).then((success) => {
-        res.status(200).send({
-          status: 'success'
-        });
-      }).catch((error) => {
-        console.error(error);
-      });
-    }
-  });
-  
- /*
-//Create new about
-router.post('/api/upload' ,function (req, res) {
-
-	console.log("HTTP Put Request");
-
-
-
-userReference.set(upload.single('file') , 
-				 function(error) {
-                    if (!req.file) {
-                        console.log("Your request doesn’t have any file");
-                        return res.send({
-                          success: false
-                        });
-                    
-                      } else {
-                        console.log('Your file has been received successfully');
-                        return res.send({
-                          success: true
-                        })
-                      }
-			});
-});
-*/
-//list about
-router.get('/list', function (req, res) {
-
-	console.log("HTTP Get Request");
-	var referencePath = '/about/desc';
-	var userReference = firebase.database().ref(referencePath);
-
-	//Attach an asynchronous callback to read the data
-	userReference.on("value", 
-			  function(snapshot) {
-					console.log(snapshot.val());
-					res.json(snapshot.val());
-					userReference.off("value");
-					}, 
-			  function (errorObject) {
-					console.log("The read failed: " + errorObject.code);
-					res.send("The read failed: " + errorObject.code);
-			 });
-
-});
-
-
-
-
-
-
-
-const PORT = process.env.PORT || 8080;
- 
-router.listen(PORT, function () {
-  console.log('Node.js server is running on port ' + PORT);
+}
+app.listen(8080, () => {
+  console.log('App listening to port 8080');
 });

@@ -16,6 +16,7 @@ export class VersionsListComponent implements OnInit {
     this.getAllVersions();
   }
   getAllVersions() {
+    this.arrayListVersion=[];
     this.versionService.getVersion().subscribe((data: Version[]) => {
       this.listVersion = data;
   for(let key in this.listVersion){
@@ -29,5 +30,11 @@ export class VersionsListComponent implements OnInit {
   console.log(this.arrayListVersion);
 
 });
+}
+DeleteVersion(id){
+   this.versionService.deleteVersion(id).subscribe();
+  //this.arrayListVersion=[];
+  this.getAllVersions();
+  console.log('version deleted');
 }
 }

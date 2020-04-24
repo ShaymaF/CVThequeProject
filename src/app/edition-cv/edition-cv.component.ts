@@ -16,7 +16,7 @@ import { ContactService } from '../services/contact/contact.service';
 import { ExperienceService } from '../services/experience/experience.service';
 
 import { ToastrService } from 'ngx-toastr';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader,FileSelectDirective } from 'ng2-file-upload';
 import { LanguesService } from '../services/langues/langues.service';
 import { Langue } from '../models/langues';
 import { Loisirs } from '../models/loisirs';
@@ -36,6 +36,7 @@ import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
 import { CKEditorComponent, ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { ChartColors,Traces } from '../models/Traces';
+import { HttpClient } from '@angular/common/http';
 
 //const URL = 'http://localhost:8080/upload';
 const uploadAPI = 'http://localhost:8080/api/upload';
@@ -50,6 +51,12 @@ const uploadAPI = 'http://localhost:8080/api/upload';
 
 
 export class EditionCVComponent  implements OnInit {
+  file:any;  
+  response:string;
+  public uploader: FileUploader = new FileUploader({
+    url: uploadAPI,
+    itemAlias: 'image'
+  });
   start_date = new FormControl(new Date());
   end_date = new FormControl(new Date());
   dataCurrentArray:Traces;
@@ -98,12 +105,12 @@ langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Form
 
   ExperienceData: any;
 
-  public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
+ /* public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
  myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
-  }
+  }*/
 
   public onFocus( editor ){
   console.log('event',editor);
@@ -123,12 +130,11 @@ constructor(private aboutService :AboutService, private formationService :Format
   private toastr: ToastrService, private langueService :LanguesService
   , private diversService : DiversService, private loisirsService :LoisirService,
   private certificatService : CertificatService, private competenceService : CompetenceService,
-  private serviceVersion: VersionService,
+  private serviceVersion: VersionService,private http: HttpClient,
   
   private el: ElementRef
   ){
-    
-   
+
 
     this.chartColor=[
       
@@ -189,6 +195,16 @@ updateVariables(){
 
 
   ngOnInit() {
+  
+    // this.serviceVersion.uploadImage(file._file,file._file.name).subscribe();
+
+    this.uploader.onAfterAddingFile = (file) => {
+     // file.withCredentials = false;
+    };
+    this.uploader.onCompleteItem = (item: any, status: any) => {
+      console.log('Uploaded File Details:', item);
+      this.toastr.success('File successfully uploaded!');
+    };
     this.getAllLangues();
     this.getAllAbouts();
     this.getAllContacts();
@@ -232,11 +248,12 @@ updateVariables(){
       ],
     };
   
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+  /*  this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
          console.log('FileUpload:uploaded successfully:', item, status, response);
          alert('Your file has been uploaded successfully');
     };
+    */
   }
 
 getAllAbouts() {
@@ -399,7 +416,7 @@ saveVersion(){
   this.version={
       author:'shayma',
       reason:'reason',
-   
+      content:this.HtmlContent=document.querySelector('app-edition-cv').innerHTML,
       dateVersion: dateTime ,
       concatVersion: this.contacts,
       aboutVersion: this.InitAbout,
@@ -705,4 +722,28 @@ redo(): void {
 
 }
 
+
+upload() {
+  console.log('filename');
+
+
+  this.uploader.onCompleteItem = (item: any, status: any) => {
+    console.log('Uploaded File Details:', item._file.filename);
+    console.log('Uploaded File Details:', item);
+
+    this.serviceVersion.uploadImage(item,item._file.filename).subscribe();
+
+    this.toastr.success('File successfully uploaded!');
+
+    
+}
+ 
+}
+showFile(input) {
+
+  let file = input.files[0];
+
+  alert(`File name: ${file.name}`); // e.g my.png
+  alert(`Last modified: ${file.lastModified}`); // e.g 1552830408824
+}
 }

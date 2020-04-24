@@ -1,4 +1,5 @@
 
+
 var firebase = require('firebase');
 //var firebase = require("nativescript-plugin-firebase");
 
@@ -13,7 +14,9 @@ var firebaseConfig = {
     measurementId: "G-2970RFMW04"
   };
   
-  
+
+
+
   module.exports.getConnection = function(){
 // Initialize Firebase
     if (!firebase.apps.length) {

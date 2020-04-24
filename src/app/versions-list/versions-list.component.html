@@ -1,6 +1,6 @@
 	<!--Begin::Row-->
     <div class="row">
-        <div class="col-xl-8 col-lg-12 order-lg-3 order-xl-1">
+        <div class="col-xl-12 col-lg-12 order-lg-3 order-xl-1">
 
             <!--begin:: Widgets/Best Sellers-->
             <div class="kt-portlet kt-portlet--height-fluid">
@@ -57,14 +57,28 @@
                                         </div>
                                     </div>
                                     <div class="kt-widget5__content">
-                                        <div class="kt-widget5__stats">
-                                            <span class="kt-widget5__number">19,200</span>
-                                            <span class="kt-widget5__sales">sales</span>
-                                        </div>
-                                        <div class="kt-widget5__stats">
-                                            <span class="kt-widget5__number">1046</span>
-                                            <span class="kt-widget5__votes">votes</span>
-                                        </div>
+                                 
+ <!--begin::  Version Modal-->
+ <div class="modal fade" id="Version_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button><a id="textAbout" [innerHTML]="listVersion.content | safeHtml"></a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!--end::  Version  Modal-->
+                                       
+                                                    <a class="btn btn-sm btn-icon btn-outline-brand btn-pill btn-icon-md"style="margin-left: 1%;"data-toggle="modal" data-target="#Version_Model"><i class="la la-eye"></i></a>
+                                                    <a class="btn btn-sm btn-icon btn-outline-success btn-pill btn-icon-md"style="margin-left: 1%;"><i class="la la-pencil-square-o"></i></a>
+                                                    <a class="btn btn-sm btn-icon btn-outline-warning btn-pill btn-icon-md"style="margin-left: 1%;"><i class="la la-download"></i></a>
+                                                    <a class="btn btn-sm btn-icon btn-outline-danger btn-pill btn-icon-md"style="margin-left: 1%;"(click)="DeleteVersion(listVersion.id)"><i class="la la-trash"></i></a>
+                                                    
+                            
                                     </div>
                                 </div>
                                 </div>
