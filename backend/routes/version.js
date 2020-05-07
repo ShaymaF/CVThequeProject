@@ -6,8 +6,8 @@ var firebase = require('firebase');
 
 //var version = require('../model/version');
 const bodyParser = require('body-parser');
-router.use(bodyParser.json());
-
+router.use(bodyParser.json({limit: '50mb'}));
+router.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 //Create new version
 router.post('/add', function (req, res) {
 
@@ -39,6 +39,26 @@ router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
 	var userReference = firebase.database().ref("/version/");
+
+	//Attach an asynchronous callback to read the data
+	userReference.on("value", 
+			  function(snapshot) {
+					console.log(snapshot.val());
+					res.json(snapshot.val());
+					userReference.off("value");
+					}, 
+			  function (errorObject) {
+					console.log("The read failed: " + errorObject.code);
+					res.send("The read failed: " + errorObject.code);
+			 });
+
+});
+//getone version
+router.get('/version/:id', function (req, res) {
+	let id = req.params.id;
+
+	console.log("HTTP Get Request");
+	var userReference = firebase.database().ref("/version/"+id);
 
 	//Attach an asynchronous callback to read the data
 	userReference.on("value", 

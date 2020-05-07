@@ -7,13 +7,13 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <h3 class="kt-portlet__head-title">
-                            Best Sellers
+                            Liste
                         </h3>
                     </div>
                     <div class="kt-portlet__head-toolbar">
                         <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
                             <div class="row align-items-center">
-                                <div class="col-xl-8 order-2 order-xl-1">
+                                <div class="col-xl-12 order-2 order-xl-1">
                                     <div class="row align-items-center">				
                                         <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
                                             <div class="kt-input-icon kt-input-icon--left">
@@ -23,7 +23,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
+                                                        <div class="col-md-3 kt-margin-b-20-tablet-and-mobile">
                                             <div class="kt-form__group kt-form__group--inline">
                                                 <div class="kt-form__label">
                                                     <label>Status:</label>
@@ -41,21 +41,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 kt-margin-b-20-tablet-and-mobile">
-                                            <div class="kt-form__group kt-form__group--inline">
-                                                <div class="kt-form__label">
-                                                    <label>Type:</label>
-                                                </div>
-                                                <div class="kt-form__control">
-                                                    <div class="dropdown bootstrap-select form-control"><select class="form-control bootstrap-select" id="kt_form_type" tabindex="-98">
-                                                        <option value="">All</option>
-                                                        <option value="1">Online</option>
-                                                        <option value="2">Retail</option>
-                                                        <option value="3">Direct</option>
-                                                    </select><button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="combobox" aria-owns="bs-select-2" aria-haspopup="listbox" aria-expanded="false" data-id="kt_form_type" title="All"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">All</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-2" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                     
+                                        <div class="col-md-5 kt-margin-b-20-tablet-and-mobile">
+                                        <a [routerLink]="['/home/version-list']" class="btn btn-default btn-bold"style="width: 60%; justify-content: center;">
+                                            List Version </a></div>
                                                     </div>
                                 </div>
                                 <div class="col-xl-4 order-1 order-xl-2 kt-align-right">
@@ -93,7 +82,7 @@
                                         </div>
                 
                                         <div class="kt-widget__action">
-                                            <a href="#" class="btn btn-label-brand btn-sm btn-upper inline">Create CV</a>
+                                            <a [routerLink]="['/home/cv']"  class="btn btn-label-brand btn-sm btn-upper inline">Create CV</a>
                 
                                         </div>
                                     </div>
@@ -116,7 +105,7 @@
                                             <div *ngFor="let tools of listComp.tools | search: term">
 
 
-                                                {{tools.tool}}  {{tools.tools_level}}
+                                                {{tools.tool}} - {{tools.tools_level}}
                                               </div>
                                         </div>
                                     </div>

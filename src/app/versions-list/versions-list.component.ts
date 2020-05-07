@@ -10,10 +10,16 @@ import { Version } from '../models/version';
 export class VersionsListComponent implements OnInit {
   listVersion=[];
   arrayListVersion=[];
+  image;
   constructor(private versionService: VersionService) { }
 
   ngOnInit() {
     this.getAllVersions();
+  }
+  sendImage(imageVersion){
+this.image=imageVersion;
+
+
   }
   getAllVersions() {
     this.arrayListVersion=[];

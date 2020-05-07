@@ -1,8 +1,8 @@
 export class Version {
    author: string;
    reason: string;
+   statut:any;
    dateVersion: string;
-   content: string;
    concatVersion: any;
    aboutVersion:any;
    langueVersion:any;
@@ -12,5 +12,9 @@ export class Version {
    formationVersion:any;
    certfificatVersion:any;
    competenceVersion:any;
+   image:any;
+   FirstColor:any;
+   SecondColor:any;
+   profilePicture:any;
 }
   

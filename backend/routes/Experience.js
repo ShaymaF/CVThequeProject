@@ -46,20 +46,13 @@ project={
 
 //Create new Experience
 
-router.put('/add', function (req, res) {
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/experience/';
 	var userReference = firebase.database().ref(referencePath);
-	experience={
-		"projet":project,
-		"StartDate":StartDate,
-		"EndDate":EndDate,
-		"Role":faker.lorem.lines(1),
-		"Poste":faker.lorem.words()
-	
-	}
+	experience=req.body;
 	var newPostRef = userReference.push();
 	
 

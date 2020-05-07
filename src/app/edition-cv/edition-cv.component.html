@@ -1,24 +1,64 @@
 
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+    <div class="kt-container  kt-container--fluid ">
+        <div class="kt-subheader__main">
+            
+            <h3 class="kt-subheader__title">
+                                    Editer CV                           
+            </h3>
 
-<div class="wrapper">
-    <h2>Angular Image Upload Demo</h2>
-  
-    <div class="file-upload">
-      <input type="file" name="file" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg" />
-      <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-        Upload
-      </button>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            
+            <div class="kt-subheader__group" id="kt_subheader_search">
+                <span class="kt-subheader__desc" id="kt_subheader_total">
+                                                                                </span>
+                
+                            </div>
+
+                    </div>        
+                    <div class="kt-subheader__toolbar"style="width: 50%;">
+                        <button type="button" class="btn btn-secondary btn-icon" (click)="undo()" [disabled]="!showUndo"><i style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"class="fa fa-redo"></i></button>
+                            <button type="button" class="btn btn-secondary btn-icon" (click)="redo()" [disabled]="!showRedo"><i class="fa fa-redo"></i></button>
+                            <button (click)="sendImage()"type="button" class="btn btn-secondary btn-icon" data-toggle="modal" data-target="#Version_Model"><i class="fa fa-eye"></i></button>
+
+                            <a [routerLink]="['/home/collab-list']" class="btn btn-default btn-bold"style="width: 10%; justify-content: center;">
+                            Back </a>
+                            
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-brand btn-bold">
+                                Submit </button>
+                            <button type="button" class="btn btn-brand btn-bold dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <ul class="kt-nav">
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                            <i class="kt-nav__link-icon flaticon2-writing"></i>
+                                            <span class="kt-nav__link-text">Save &amp; continue</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a href="#" class="kt-nav__link">
+                                            <i class="kt-nav__link-icon flaticon2-medical-records"></i>
+                                            <span class="kt-nav__link-text">Save &amp; add new</span>
+                                        </a>
+                                    </li>
+                                    <li class="kt-nav__item">
+                                        <a  class="kt-nav__link">
+                                            <i class="kt-nav__link-icon flaticon2-hourglass-1"></i>
+                                            
+                                            <span class="kt-nav__link-text" data-toggle="modal" data-target="#saveVersion">Save &amp; exit</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
     </div>
-  
-  </div>
-            <input type="file" ng2FileSelect [uploader]="uploader" (onChange)="showFile(this)" />
+</div>
 
-<button type="button" class="btn btn-success btn-xs"
-(click)="upload()">
-<span class="fa fa-upload"></span> Upload
-</button>
-<br>
-<ul     class="kt-sticky-toolbar" style="margin-top: 30px; background-color: white;width: 3%;">
+
+<ul     class="kt-sticky-toolbar " style="margin-top: 30px; background-color: #666666; opacity: 0.8;width: 3%;">
 
     <li *ngFor="let paint of chartColor"  class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="Check out more demos" data-placement="right">
        
@@ -33,9 +73,7 @@
     
     
     
-    <button (click)="undo()" [disabled]="!showUndo">Undo</button>
-    
-    <button (click)="redo()" [disabled]="!showRedo">Redo</button>
+   
    
 <!--<div class="container">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
@@ -46,7 +84,6 @@
    
 </div>-->
 
-<button type="button" (click)="saveVersion()">save version</button>
 <div  class="scroll-wrapper" style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 550px; max-height: 575px;">
     <div style="position: relative; overflow: scroll; margin-right: -17px; margin-bottom: -17px; min-height: 567px; max-height: 592px;">
         <div class="">
@@ -301,7 +338,9 @@
                     
                     #document.skn-srz1 .left-box .section {
                         position: relative;
-                        color: #fff
+                        color: #fff;                      
+                       
+
                     }
                     
                     #document.skn-srz1 .left-box .heading {
@@ -501,8 +540,7 @@
                     /*Left Box*/
                     
                     #document.skn-srz1 .left-box {
-                        background: #003D73;
-                        width: 154px
+                        width: 25%
                     }
                     
                     #document.skn-srz1 .left-box .section {
@@ -634,22 +672,20 @@
                             <div id="SECTION_NAME671b9a7b-6571-4313-8bd1-2acd7b773738" class="section notdraggable SECTION_NAME firstsection  " data-section-cd="NAME">
                                 <div class=" doc-item">
                                     <div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
-
+                                         <!--
                                         <input #file type="file" accept='image/*' style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)">
                                         <br>
+                                        -->
                                         <div class="sectiontitle" id="imgeID">
                                             <div class="example">
 
-                                                <div *ngIf="localUrl; else elseBlock">
-                                                    <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 150px;">
-                                                </div>
+                                                <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 170px;border-style: none;">
 
-                                                <ng-template #elseBlock>
-                                                    <img src="assets/media/users/user4.jpg" title="" style="width: inherit;">
-                                                </ng-template>
 
                                                 <div class="fadedbox">
-                                                    <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" onClick="$('#imgeID').hide();$('#buttonImg').show();"> Hide Picture </button>
+                                                    <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" onClick="$('#imgeID').hide();$('#buttonImg').show();"> Masquer photo </button><br><br>
+                                                    <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" type="file" accept="image/*"  #fileUploader
+                                                    (change)="showPreview($event)">
                                                     <br>
                                                     <div class="wrapper">
 
@@ -671,12 +707,12 @@
 
                                             </div>
                                         </div>
-
+                                        
                                         <div class="name word-break">
-                                            <span class="field" id="FIELD_FNAM">Your Name</span>
+                                            <span class="field" id="FIELD_FNAM"><ckeditor [editor]="Editor"   data='Your Name'></ckeditor></span>
                                         </div>
 
-                                        <div class="resumeTitle" id="FIELD_DCTL">Profession</div>
+                                        <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Profession'></ckeditor></div>
                                     </div>
                                 </div>
                             </div>
@@ -694,6 +730,7 @@
                                         <div class="">
                                             <div id="PARAGRAPH_CNTC_7c586dc9-6e7a-3ae8-faa5-d0c1f7348705" class="paragraph PARAGRAPH_CNTC firstparagraph placeholder-text ">
                                                 <div class="clearfix doc-item">
+                                                    <ckeditor [editor]="Editor"   data=' 
                                                     <div class="address">
                                                         <div class="singlecolumn">
                                                             <div dependency="STRT|CITY|STAT|ZIPC">
@@ -724,7 +761,7 @@
                                                             </div>
 
                                                         </div>
-                                                    </div>
+                                                    </div>'></ckeditor>
                                                 </div>
                                             </div>
                                         </div>
@@ -860,9 +897,9 @@
                                     <div class="heading">
                                         <div class="sectiontitle" id="SECTIONNAME_EXPR" [ngStyle]="{'color': SecondColorInit}">
 
-                                            Work History <span class="rename-section text-rename"> </span>
+                                          <span class="rename-section text-rename">  Work History  </span>
                                             <a class="btn btn-bold  " data-toggle="modal" data-target="#Experience_Model"> (+)   </a> 
-                                            <div class="btn-group btn-group-sm mb-2" role="group" >
+                                            <div class="btn-group btn-group-sm mb-2" role="group" style="float: right;height: 1.95rem;" >
                                                 <button type="button" class="btn btn-secondary"(click)="LongDesc()">Long</button>
                                                 <button type="button" class="btn btn-secondary"(click)="ShortDesc()">Short</button>
                                              </div>
@@ -876,42 +913,37 @@
 		
 		<div  *ngFor="let listExperience of arrayListExp">
         
-<mat-icon style="position: relative;z-index: 99;float: right;"mat-mini-fab color="warn"(click)="deleteExperience(listExperience.id)" >remove_circle</mat-icon>
+<mat-icon style="font-size: 10px; float:right;" mat-mini-fab color="warn"(click)="deleteExperience(listExperience.id)" >remove_circle</mat-icon>
             <div id="ExperienceText" class=" singlecolumn">
+
 				<div class="paddedline date-content" dependency="JSTD|EDDT">
                     <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">
                         
-                        <ckeditor [editor]="Editor" [(ngModel)]="listExperience.StartDate"></ckeditor>
+                       {{listExperience.dateDebut}}
 
 
                     </span>
 					
 						<span class="jobdates" id="FIELD_EDDT" format="%Y-%m">
-                            <ckeditor [editor]="Editor" [(ngModel)]="listExperience.EndDate"></ckeditor>
+                            {{listExperience.dateFin}}
                         </span>
 						<br dependency="JTIT|COMP|JSTA|JCIT">
 						</div>
             
 						<div class="paddedline" dependency="JTIT">
 							<div class="jobtitle txtBold" id="FIELD_JTIT">
-                             <ckeditor [editor]="Editor" [(ngModel)]="listExperience.Poste"></ckeditor>
+                             <ckeditor [editor]="Editor" data="{{listExperience.fonction}} - {{listExperience.emp}} <br> {{listExperience.location}}"></ckeditor>
 
                             </div>
                         </div>
+                        <div  *ngFor="let projet of listExperience.projet">
 						<div class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-							<span class="companyname" id="FIELD_COMP">
-                                <ckeditor [editor]="Editor" [(ngModel)]="listExperience.projet.MOA"></ckeditor>
-
-                             </span>
-							<span dependency="COMP+JCIT|JSTA">,</span>
-                        </div>
-						<span *ngIf="Short_Desc" class="jobline" id="FIELD_JDES"  >{{listExperience.projet.ProjetShort}}</span>
-						<span *ngIf="Long_Desc" class="jobline" id="FIELD_JDES">{{listExperience.projet.ProjetDesc}}</span>
-						<span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-							<span class="paddedline" id="FIELD_SKC1">
-								<b > Compétences Technique: </b>{{listExperience.projet.competence.name}}
-							</span>
-						</span>
+		<ckeditor [editor]="Editor" data="<span> <b>Titre projet :</b>  {{ projet.ProjetName}}</span><br><span ><b>MOA :  </b>{{  projet.MOA}} ,<b>MOE :  </b>{{  projet.MOE}}</span> "></ckeditor>
+            </div>
+						<span *ngIf="Short_Desc" class="jobline" id="FIELD_JDES"  ><ckeditor [editor]="Editor" data="<b>Description :</b> {{projet.ProjetShort}}<br><b> Téchnologies: </b>{{projet.competence}}"></ckeditor></span>
+						<span *ngIf="Long_Desc" class="jobline" id="FIELD_JDES"><ckeditor [editor]="Editor" data="<b>Description :</b> {{projet.ProjetDesc}}<br><b> Téchnologies: </b>{{projet.competence}}"></ckeditor></span>
+					
+                  </div>  
 					</div>
 
 			
@@ -961,6 +993,7 @@
                                                                 <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listFormation.end_date}}</span>
                                                                 <br dependency="JTIT|COMP|JSTA|JCIT">
                                                             </div>
+                                                            
                                                             <span class="paddedline" dependency="JTIT">
                             <span class="jobtitle txtBold" id="FIELD_JTIT">{{listFormation.certification}}</span>
                                                             </span>
@@ -999,7 +1032,7 @@
                                                                                     </span>
                                                                                     <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
                             <span class="companyname" id="FIELD_COMP">{{listCertif.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                                                                                    <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}</span>
+                                                                                    <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}-{{listCertif.centre}}</span>
                                                                                     </span>
 
                                                                                 </div>
@@ -1033,20 +1066,21 @@
                                                                         <div class="clearfix doc-item">
                                                                             <div *ngFor="let listComp of arrayListComp">
                                                                                 <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn" (click)="deleteCompetence(listComp.id)" >remove_circle</mat-icon>
-
+                                                                               
+                                                                                
                                                                                 <span class="" dependency="JTIT">
                                 <span class=" txtBold" id="FIELD_JTIT"> &#8226; {{listComp.competence}}</span>
                                                                                 </span>
                                                                                 <span class="paddedline locationGap txtItl paddedline" id="FIELD_SKC1" dependency="COMP|JSTA|JCIT">
-                                <span class="companyname" id="FIELD_COMP"><b>Niveau</b> {{listComp.competence_level}}</span><span dependency="COMP+JCIT|JSTA">,</span>
+                                <ckeditor [editor]="Editor" data='<b>Niveau</b> {{listComp.competence_level}}'></ckeditor>
                                                                                 </span>
                                                                                 <div *ngFor="let tools of listComp.tools">
 
 
-                                                                                - outils: {{tools.tool}} - niveau: {{tools.tools_level}}
+                                                                                    <ckeditor [editor]="Editor" data=' - outils: {{tools.tool}} - niveau: {{tools.tools_level}}'></ckeditor>
                                                                               </div>
                                                                                 <br>
-
+                                                                              
                                                                             </div>
 
                                                                         </div>
@@ -1091,72 +1125,156 @@
             </div>
             <div class="modal-body">
                 <form>
-
-                    <div class="row">
+                    <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample5">
+                        <div class="card">
+                            <div class="card-header" id="headingOne5">
+                                <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5">
+                                     Ajouter une Experience
+                                </div>
+                            </div>
+                            <div id="collapseOne5" class="collapse" aria-labelledby="headingOne5" data-parent="#accordionExample5" style="">
+                                <div class="card-body">
+                    <div class=" row">
                         <div class="example-form col-6" style="padding-right: 30px;">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Fonction</mat-label>
-                                <input  class="form-control" #fonction matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #fonction matInput placeholder="Ecrire votre fonction..">
+                            </div>
                         </div>
                         <div class="example-form col-6">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Localité</mat-label>
-                                <input  class="form-control" #location  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #location  matInput placeholder="Ville...">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="example-form  col-12">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Employeur</mat-label>
-                                <input  class="form-control" #emp  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #emp  matInput >
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6" style="padding-right: 30px;">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Dépuis</mat-label>
                                 <input  [formControl]="start_date" #dateDebut  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFrom">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerFrom></mat-datepicker>
-                            </mat-form-field>
+                            </div>
                         </div>
                         <div class="col-6">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Jusqu'à</mat-label>
                                 <input  [formControl]="end_date" #dateFin matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerTo">
                                 <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerTo></mat-datepicker>
-                            </mat-form-field>
+                            </div>
                         </div>
                     </div>
+                   
                     <div class="row">
                         <div class="example-form  col-12">
-                            <mat-form-field>
-                                <mat-label>Description</mat-label>
-                                <textarea    class="form-control" #desc  matInput placeholder="Ex. It makes me feel..."></textarea>
-                            </mat-form-field>
+                            <div class="form-group">
+                                <mat-label>Projets</mat-label>                                                                                                                      
+                                <select class="form-control" #projet>
+                                    <option *ngFor="let listProjet of arrayListProjet" class="form-control"  [value]="listProjet">{{listProjet.ProjetName}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="example-form  col-12">
-                            <mat-form-field>
-                                <mat-label>Projets</mat-label>
-                                <mat-select [formControl]="toppings" multiple>
-                                    <mat-option *ngFor="let listProjet of arrayListProjet" class="form-control"  #projet   [value]="listProjet">{{listProjet.ProjetName}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <br>
+                    <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample6">
+                        <div class="card">
+                            <div class="card-header" id="headingOne6">
+                                <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne6" aria-expanded="false" aria-controls="collapseOne6">
+                                     Ajouter un Projet
+                                </div>
+                            </div>
+                            <div id="collapseOne6" class="collapse" aria-labelledby="headingOne6" data-parent="#accordionExample6" style="">
+                                <div class="card-body">
+                                    <div class=" row">
+                                        <div class="example-form col-12" style="padding-right: 30px;">
+                
+                                            <div class="form-group">
+                                                <mat-label>Nom</mat-label>
+                                                <input  class="form-control" #nom matInput placeholder="" >
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class=" row">
+                                        <div class="example-form col-12" style="padding-right: 30px;">
+                
+                                            <div class="form-group">
+                                                <mat-label>Rôle</mat-label>
+                                                <textarea  class="form-control" #role matInput placeholder="" ></textarea>
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class=" row">
+                                        <div class="example-form col-12" style="padding-right: 30px;">
+                
+                                            <div class="form-group">
+                                                <mat-label>Activités / tâches</mat-label>
+                                                <textarea  class="form-control" #tache matInput placeholder=""></textarea>
+
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class=" row">
+                                        <div class="example-form col-6" style="padding-right: 30px;">
+                
+                                            <div class="form-group">
+                                                <mat-label>MOE</mat-label>
+                                                <select #moe class="form-control">
+                                                    <option *ngFor="let listOrga of arrayListOrga" class="form-control"  >{{listOrga.name}}</option>
+                                                </select>                                  
+                                            </div>
+                                        </div>
+                                        <div class="example-form col-6">
+                                            <div class="form-group">
+                                                <mat-label>MOA</mat-label>
+                                                <select #moa class="form-control">
+                                                    <option *ngFor="let listOrga of arrayListOrga" class="form-control"  >{{listOrga.name}}</option>
+                                                </select>                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row">
+                                        <div class="example-form col-12" style="padding-right: 30px;">
+                
+                                            <div class="form-group">
+                                                <mat-label>Technologies</mat-label>
+                                                <input  #techno class="form-control" #fonction matInput placeholder="Angular, Symfony, etc...">
+                                            </div>
+                                        </div>
+                                     
+                                    </div>
+                                    <div class=" row " >
+                                    <button type="button" class="btn btn-brand btn-elevate btn-pill" style="float: right;"(click)="addProject(nom.value,role.value,tache.value,moa.value,moe.value,techno.value)"><i class="flaticon2-plus"></i>Ajouter </button>
+                                  </div>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,location.value,emp.value,dateDebut.value,dateFin.value,projet.value)">Send message</button>
             </div>
         </div>
     </div>
@@ -1178,44 +1296,44 @@
                     <div class="row">
                         <div class="example-form  col-12">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>University</mat-label>
-                                <input  class="form-control" #University  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #University  matInput placeholder="">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="example-form col-8" style="padding-right: 30px;">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Diplome</mat-label>
-                                <input  class="form-control" #certification matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #certification matInput placeholder="">
+                            </div>
                         </div>
                         <div class="example-form col-4">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Année</mat-label>
-                                <input  class="form-control" #diplome_date  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #diplome_date  matInput placeholder="">
+                            </div>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-6" style="padding-right: 30px;">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Dépuis</mat-label>
                                 <input  [formControl]="start_date_diplome" #start_date  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFromDiplome">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFromDiplome"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerFromDiplome></mat-datepicker>
-                            </mat-form-field>
+                            </div>
                         </div>
                         <div class="col-6">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Jusqu'à</mat-label>
                                 <input  [formControl]="end_date_diplome" #end_date matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerToDiplome">
                                 <mat-datepicker-toggle matSuffix [for]="pickerToDiplome"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerToDiplome></mat-datepicker>
-                            </mat-form-field>
+                            </div>
                         </div>
                     </div>
                 
@@ -1245,44 +1363,45 @@
                     <div class="row">
                         <div class="example-form  col-12">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Centre</mat-label>
-                                <input  class="form-control" #centre  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #centre  matInput placeholder="">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="example-form col-8" style="padding-right: 30px;">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Certificat</mat-label>
-                                <input  class="form-control" #certif matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #certif matInput placeholder="">
+                            </div>
                         </div>
                         <div class="example-form col-4">
-                            <mat-form-field>
+                            
+                            <div class="form-group">
                                 <mat-label>Année</mat-label>
-                                <input  class="form-control" #AnneeCertif  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #AnneeCertif  matInput placeholder="">
+                            </div>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-6" style="padding-right: 30px;">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Dépuis</mat-label>
                                 <input  [formControl]="start_date_Certif" #dateDebutCertif  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFromCertif">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFromCertif"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerFromCertif></mat-datepicker>
-                            </mat-form-field>
+                            </div>
                         </div>
                         <div class="col-6">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Jusqu'à</mat-label>
                                 <input  [formControl]="end_date_Certif" #dateFinCertif  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerToCertif ">
                                 <mat-datepicker-toggle matSuffix [for]="pickerToCertif"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerToCertif></mat-datepicker>
-                            </mat-form-field>
+                            </div>
                         </div>
                     </div>
                 
@@ -1291,7 +1410,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+                <button type="button" class="btn btn-primary" (click)="addCertificat(centre.value,certif.value,AnneeCertif.value,dateDebutCertif.value,dateFinCertif.value)">Send message</button>
             </div>
         </div>
     </div>
@@ -1311,43 +1430,45 @@
                 <form>
                     <div class="row">
                         <div class="example-form  col-12">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Type de Compétence</mat-label>
-                                <mat-select [formControl]="toppings" #type  multiple>
-                                    <mat-option *ngFor="let listProjet of arrayListProjet" class="form-control"  #type   [value]="listProjet">{{listProjet.ProjetName}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                                <select class="form-control" #type  >
+                                    <option>Compétence Technique</option>
+                                    <option>Compétences informatiques</option>
+
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="example-form col-6" style="padding-right: 30px;">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Compétence</mat-label>
-                                <input  class="form-control" #competence matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #competence matInput placeholder="">
+                            </div>
                         </div>
                         <div class="example-form col-6">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Niveau</mat-label>
-                                <input  class="form-control" #competence_level  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #competence_level  matInput placeholder="">
+                            </div>
                         </div>
                     </div>
                     
                     <div class="row col-12">
                         <div class="example-form col-6" style="padding-right: 30px;">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Tools</mat-label>
-                                <input  class="form-control" #tool matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #tool matInput placeholder="">
+                            </div>
                         </div>
                         <div class="example-form col-2">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Niveau</mat-label>
-                                <input  class="form-control" #tool_level  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <input  class="form-control" #tool_level  matInput placeholder="">
+                            </div>
                         </div>
                         <div class="example-form col-2" style="padding-top: 20px;margin-left: 20px;">
                             <button type="button" class="btn btn-primary" (click)="addTool(tool.value,tool_level.value)">+</button>
@@ -1377,27 +1498,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-               
+                <form [formGroup]="formLoisir" (ngSubmit)="addLoisirs()">               
                     <div class="row">
                         <div class="example-form col-12" style="padding-right: 30px;">
 
-                            <mat-form-field>
-                                <mat-label>Loisir</mat-label>
-                                <input  class="form-control" #loisir matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                            <div class="form-group">
+                                <label>Loisir</label>
+                                <input  class="form-control" formControlName="desc" placeholder="" [ngClass]="{ 'is-invalid': isSubmitted && formLoisirControls.desc.errors }">
+                                <mat-error *ngIf="isSubmitted && formLoisirControls.desc.errors">
+                                    {{ titleAlert }}
+                                  </mat-error>
+                            </div>
                         </div>
                        
                     </div>
                                
-                </form>
-            </div>
+              
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="addLoisirs(loisir.value)">Send message</button>
+                <button type="reset" class="btn btn-secondary" data-dismiss="modal" (click)="onReset()">Fermer</button>
+                <button type="submit"  class="btn btn-primary" [disabled]="!formLoisir.valid" >Ajouter</button>
             </div>
+        </form>
+    
         </div>
     </div>
+</div>
 </div>
 <!--end::  Loisirs  Modal-->
 
@@ -1411,33 +1536,125 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                
+                    <form >
+
                     <div class="row">
                         <div class="example-form col-6" style="padding-right: 30px;">
 
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Langue</mat-label>
-                                <input  class="form-control" #langue matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <select #langues class="form-control"  >
+                                    <option>Arabe</option>
+                                    <option>Français</option>
+                                    <option>Anglais</option>
+                                    <option>Allemand</option>
+                                    <option>Espagnol</option>
+                                    <option>Russe</option>
+                                    <option>Italien</option>
+                                    <option>Turc</option>
+
+
+                                </select>   
+                               
+                                </div>
                         </div>
                         <div class="example-form col-6">
-                            <mat-form-field>
+                            <div class="form-group">
                                 <mat-label>Note</mat-label>
-                                <input  class="form-control" #note  matInput placeholder="Ex. It makes me feel...">
-                            </mat-form-field>
+                                <select #note  class="form-control" >
+                                    <option  >1</option>
+                                    <option   >2</option>
+                                    <option   >3</option>
+                                    <option  >4</option>
+                                    <option   >5</option>
+                                    <option  >6</option>
+                                    <option  >7</option>
+                                    <option   >8</option>
+                                    <option   >9</option>
+                                    <option  >10</option>
+
+
+                                </select> 
+                               
+                            </div>
                         </div>
                     </div>
                
-                </form>
+            
+            <div class="modal-footer ">
+                    <button type="submit" class="btn btn-primary" (click)="addLangue(langues.value,note.value)">Ajouter</button>
+                    <button  class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="onReset()">Fermer</button>
+           
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="addLangue(langue.value,note.value)">Send message</button>
-            </div>
+        </form>
+    </div>
         </div>
     </div>
 </div>
 <!--end::  Langue  Modal-->
+ <!--begin::  Langue Modal-->
+ <div class="modal fade" id="saveVersion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enregistrer le travail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form >
+
+                    <div class="">
+                        <div class="example-form col-12" style="padding-right: 30px;min-width: 100%">
+
+                            <div class="form-group">
+                                <mat-label>Raison</mat-label>
+                                <textarea  #raison  placeholder="Ecrire la raison pour laquelle vous faites ce CV..." formControlName="langue" class="form-control"></textarea>
+                                
+                                </div>
+                        </div>
+                        <div class="example-form col-12" style="min-width: 100%;">
+                            <div class="form-group">
+                                <mat-label>Statut</mat-label>
+                                <select #statut class="form-control" id="exampleSelectd">
+                                    <option>En cours</option>
+                                    <option>Suspendu</option>
+                                    <option>Terminé</option>
+                                    <option>Annulé</option>
+                                </select>
+                                <mat-error  *ngIf="isSubmitted && formLangueControls.note.errors">
+                                    {{ titleAlert }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+               
+            
+            <div class="modal-footer ">
+                    <button type="submit" class="btn btn-primary"  (click)="saveVersion(raison.value,statut.value)"[routerLink]="['/home/version-list']" data-dismiss="modal">Sauvegarder</button>
+                    <button  class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="onReset()">Fermer</button>
+           
+            </div>
+        </form>
+    </div>
+        </div>
+    </div>
+</div>
+<!--end::  Langue  Modal-->
+  <!--begin::  Version Modal-->
+  <div class="modal fade" id="Version_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="max-width: 75%;">
+        <div class="modal-content">
+          
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+                <img src={{image}}>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!--end::  Version  Modal--> 
 </div>
 

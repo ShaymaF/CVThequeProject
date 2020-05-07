@@ -6,16 +6,20 @@ import { ListVersionsComponent } from './versions/list-versions/list-versions.co
 import { ShowVersionComponent } from './versions/show-version/show-version.component';
 import { VersionsListComponent } from './versions-list/versions-list.component';
 import { ListCollabComponent } from './list-collab/list-collab.component';
+import { VersionEditComponent } from './versions-list/version-edit/version-edit.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 const routes: Routes = [
- // { path : '',component: LoginComponent},
+  { path : '',component: LoginComponent},
   {
     path: 'home', component: HomeComponent,//canActivateChild:[AuthGuard],
     children: [
       {path: 'cv', component: EditionCVComponent},
       {path: 'version-list', component: VersionsListComponent},
-      {path: 'collab-list', component:ListCollabComponent}
+      {path: 'collab-list', component:ListCollabComponent},
+      {path: 'version-edit/:id', component:VersionEditComponent}
+
    
   ]
 }

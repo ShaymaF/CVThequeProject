@@ -11,7 +11,7 @@ export class CertificatService {
   constructor(private http: HttpClient) { }
 
 
-  getFormation() {
+  getCertificat() {
     return this.http.get(environment.apiBaseUrl + '/certificat/list');
   }
   addCertificat(certificat: Certificat) {

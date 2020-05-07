@@ -1,31 +1,38 @@
 import { Competence } from './competence';
 
 export class Experience {
+    //fonction,location,emp,dateDebut,dateFin,projet
     id: string;
-    Poste: string;
-    StartDate: Date;
-    EndDate: Date;
-Role:String;
+    fonction: string;
+    location: string;
+    emp: string;
+    dateDebut: Date;
+    dateFin: Date;
+    projet:any;
+
   constructor( 
-    Poste: string,
-    StartDate: Date,
-    EndDate: Date,
-Role:String){
+    fonction: string,
+    location: string,
+    emp: string,
+    dateDebut: Date,
+    dateFin: Date,
+    projet:any){
    
-    this.Poste=Poste;
-    this.StartDate=StartDate;
-    this.EndDate=EndDate;
-    this.Role=Role;
+    this.fonction=fonction;
+    this.location=location;
+    this.emp=emp;
+    this.dateDebut=dateDebut;
+    this.dateFin=dateFin;
+    this.projet=projet;
+    
 } 
 }
 export interface Projet {
 ProjetName:string;
 ProjetDesc:string;
 ProjetShort:string;
-ProjetStartDate:Date;
-ProjetEndDate:Date;
+
 MOE:string;
 MOA:string;
 competence:string;
-   
 }

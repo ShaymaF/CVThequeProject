@@ -28,7 +28,6 @@
       width: 25px;
       border-radius: 100%;
       cursor: pointer;
-      border: 1px solid #dadada;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     }
   
@@ -273,6 +272,8 @@ html {
     }
     .example .fadedbox {
     background-color: #666666;
+    opacity: 0;
+
     position: absolute;
     top: 0;
     left: 0;
@@ -282,7 +283,6 @@ html {
     -o-transition: all 300ms ease-out;
     -ms-transition: all 300ms ease-out;
     transition: all 300ms ease-out;
-    opacity: 0;
     width: 100%;
     height: 100%;
     padding: 50px 20px;

@@ -17,14 +17,17 @@
     "dateformat": "^3.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
     "faker": "^4.1.0",
     "firebase": "^7.9.1",
     "firebase-admin": "^8.9.2",
+    "jsonwebtoken": "^8.5.1",
     "ldapjs": "^1.0.2",
     "multer": "^1.4.2",
     "nativescript-plugin-firebase": "^10.5.0",
     "passport": "^0.4.1",
-    "passport-ldapauth": "^2.1.4"
+    "passport-ldapauth": "^2.1.4",
+    "uuid": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

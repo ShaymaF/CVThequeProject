@@ -31,7 +31,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {FileUploadModule, FileUploader} from 'ng2-file-upload';
 import { ListCollabComponent } from './list-collab/list-collab.component';
 import { SearchPipe } from './shared/pipes/search.pipe';
+import {AngularFireModule} from "@angular/fire";
+import { AngularFireStorageModule} from "@angular/fire/storage";
+import { AngularFireDatabaseModule} from "@angular/fire/database";
 
+import { environment } from 'src/environments/environment';
+import { VersionEditComponent } from './versions-list/version-edit/version-edit.component';
+import { LoginComponent } from './auth/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +52,8 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     VersionsListComponent,
     ListCollabComponent,
     SearchPipe,
+    VersionEditComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +71,12 @@ MatSelectModule,
 MatInputModule,
 ReactiveFormsModule,
 MatIconModule,
-MatButtonModule,FileUploadModule
+MatButtonModule,FileUploadModule,
+AngularFireModule.initializeApp(environment.firebase),
+AngularFireStorageModule,
+AngularFireDatabaseModule,
+
+
 
     
   ],

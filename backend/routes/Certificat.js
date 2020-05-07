@@ -29,9 +29,16 @@ router.post('/add', function (req, res) {
 	
 	}]
 */
+var newPostRef = userReference.push();
+/*loisirsDesc={
+"desc":loisirs
+}*/
 var certificat = req.body;
 
-	userReference.set(certificat , 
+
+ 
+
+newPostRef.set(certificat , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);

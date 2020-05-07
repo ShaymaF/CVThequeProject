@@ -2,6 +2,9 @@ import { Component, OnInit ,EventEmitter, Input,ElementRef,ViewChild } from '@an
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from "rxjs/operators";
+import { ImagesService } from '../services/images/images.service';
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import { NativeDateAdapter } from '@angular/material';
@@ -31,13 +34,16 @@ import { VersionService } from '../services/version/version.service';
 import { Version } from '../models/version';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators,FormBuilder, FormGroup} from '@angular/forms';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
 import { CKEditorComponent, ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { ChartColors,Traces } from '../models/Traces';
 import { HttpClient } from '@angular/common/http';
-
+//import * as filestack from 'filestack-js';
+import html2canvas from 'html2canvas';
+import { Temp } from '../models/temp';
+import { TempService } from '../services/temp/temp.service';
 //const URL = 'http://localhost:8080/upload';
 const uploadAPI = 'http://localhost:8080/api/upload';
 
@@ -51,6 +57,7 @@ const uploadAPI = 'http://localhost:8080/api/upload';
 
 
 export class EditionCVComponent  implements OnInit {
+  image;
   file:any;  
   response:string;
   public uploader: FileUploader = new FileUploader({
@@ -78,15 +85,15 @@ Long_Desc:boolean=false;
 langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Formation;certificat:Certificat;competence:Competence;
   public chartColor : ChartColors[];
   public message: string;
-  localUrl: any[];
+  localUrl: any;
   objectKeys :any;
   abouts:any;
   formations:any;
   contacts:any;
   exp: Experience;
-  version: Version;
-  toolsArray:Tools[] = [];
-  tool:Tools;
+  version: Version;temp: Temp;
+  toolsArray:Tools[] = []; ProjetArray:Projet[]=[];projet:Projet;
+  tool:Tools;listOrga:any[];arrayListOrga=[];
   listExperiences: any[];listProjet: Projet[];listLangues: Langue[];listLoisirs: Loisirs[];listDivers: Divers[];listFormation: Formation[];
   listCertif: Certificat[];listComp: Competence[];
   HtmlContent: any;
@@ -104,7 +111,15 @@ langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Form
   public Editor= InlineEditor;
 
   ExperienceData: any;
-
+  imgSrc: string;
+  selectedImage: any = null;
+  imageUrl:any
+  isSubmitted = false;
+  titleAlert: string = 'This field is required';
+  formLangue: FormGroup;formDivers :FormGroup;
+  formLoisir:FormGroup;formCompetence:FormGroup;
+  formFormation:FormGroup; formCertificat:FormGroup;
+  formExperience:FormGroup;formTool:FormGroup;
  /* public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
  myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
@@ -124,18 +139,19 @@ langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Form
   }
   public onBlur( {editor,event }) {
     }
-
+    
 constructor(private aboutService :AboutService, private formationService :FormationService ,
   private contactService :ContactService, private experienceService :ExperienceService,
   private toastr: ToastrService, private langueService :LanguesService
   , private diversService : DiversService, private loisirsService :LoisirService,
   private certificatService : CertificatService, private competenceService : CompetenceService,
-  private serviceVersion: VersionService,private http: HttpClient,
+  private serviceVersion: VersionService,private http: HttpClient,private formBuilder: FormBuilder,
   
-  private el: ElementRef
+  private el: ElementRef, private imagesService: ImagesService,private storage: AngularFireStorage,
+  private tempService: TempService
   ){
 
-
+ this.temp= new  Temp();
     this.chartColor=[
       
       {FirstColor: '#008b8b', SecondColor: '#017777'},
@@ -195,7 +211,61 @@ updateVariables(){
 
 
   ngOnInit() {
-  
+    this.localUrl="assets/media/users/user4.jpg";
+    /*this.temp={
+  concatVersion: 'c',
+  aboutVersion:'r', 
+  langueVersion:this.InitLangue,
+  diverVersion:this.InitDivers,
+  loisirVersion:this.InitLoisirs,
+  experienceVersion:this.InitExperience,
+  formationVersion:this.InitFormation,
+  certificatVersion:this.InitFormation,
+  competenceVersion:this.InitCompetence,
+}*/
+
+
+    this.formLangue = this.formBuilder.group({
+      langue: new FormControl('', Validators.required),
+      note: new FormControl('', Validators.required),
+    });
+    this.formLoisir = this.formBuilder.group({
+      desc: new FormControl('', Validators.required)
+     
+    });
+    this.formCompetence = this.formBuilder.group({
+      type: new FormControl('', Validators.required),
+      competence: new FormControl('', Validators.required),
+      competence_level: new FormControl('', Validators.required)
+    });
+    this.formTool = this.formBuilder.group({
+      tool: new FormControl('', Validators.required),
+      tool_level: new FormControl('', Validators.required),
+    });
+    this.formFormation = this.formBuilder.group({
+      University: new FormControl('', Validators.required),
+      certification: new FormControl('', Validators.required),
+      start_date: new FormControl('', Validators.required),
+      end_date: new FormControl('', Validators.required),
+      diplome_date: new FormControl('', Validators.required)
+
+
+    });
+    this.formCertificat = this.formBuilder.group({
+      centre: new FormControl('', Validators.required),
+      certification: new FormControl('', Validators.required),
+      start_date: new FormControl('', Validators.required),
+      end_date: new FormControl('', Validators.required),
+      diplome_date: new FormControl('', Validators.required)
+    });
+    this.formExperience = this.formBuilder.group({
+      caption: new FormControl('', Validators.required),
+      category: new FormControl(''),
+      imageUrl: new FormControl('', Validators.required)
+    });
+    this.formDivers = this.formBuilder.group({
+      desc: new FormControl('', Validators.required)
+    });
     // this.serviceVersion.uploadImage(file._file,file._file.name).subscribe();
 
     this.uploader.onAfterAddingFile = (file) => {
@@ -215,10 +285,18 @@ updateVariables(){
    this.getAllCertificats();
    this.getAllCompetence();
    this.getAllProjects();
-   
-   
-  
-
+   this.getAllOrganisation();
+console.log('temppp',this.temp);
+ 
+/**concatVersion: any;
+    aboutVersion:any;
+    langueVersion:any;
+    diverVersion:any;
+    loisirVersion:any;
+    experienceVersion:any;
+    formationVersion:any;
+    certfificatVersion:any;
+    competenceVersion:any; */
    
     if(document.getElementById("ExpDynamicContent") != null){
       this.ExperienceData=document.getElementById("ExpDynamicContent").innerHTML;
@@ -255,6 +333,40 @@ updateVariables(){
     };
     */
   }
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.localUrl = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+      
+
+      console.log('selected image',this.selectedImage);
+/**upload */   
+var filePath = `${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+const fileRef = this.storage.ref(filePath);
+this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+  finalize(() => {
+    fileRef.getDownloadURL().subscribe((url) => {
+    this.imageUrl= url;
+    this.localUrl=url;
+  //    this.imagesService.insertImageDetails(this.imageUrl);
+      console.log('form',this.localUrl);
+    //  this.resetForm();
+    })
+  })
+).subscribe();
+
+    }
+    else {
+      this.selectedImage = null;
+    }
+  }
+
+  upload() {
+    //this.isSubmitted = true;
+     
+    }
 
 getAllAbouts() {
   this.aboutService.getAbout().subscribe(data => {
@@ -281,7 +393,9 @@ for(let key in this.listLangues){
 }
 
 }
+
   });  
+
 }
 getAllLoisirs() {
   this.loisirsService.getLoisirs().subscribe((data: Loisirs[]) => {
@@ -320,7 +434,7 @@ for(let key in this.listDivers){
 }
 
 getAllCertificats() {
-  this.certificatService.getFormation().subscribe((data: Certificat[]) => {
+  this.certificatService.getCertificat().subscribe((data: Certificat[]) => {
     this.listCertif = data;
 for(let key in this.listCertif){
  if(this.listCertif.hasOwnProperty(key)){
@@ -345,6 +459,18 @@ for(let key in this.listExperiences){
   this.InitExperience.push(this.listExperiences[key]);
 
  }
+}
+  });  
+}
+getAllOrganisation(){
+  this.experienceService.getOrganisation().subscribe((data: any[]) => {
+    this.listOrga = data;
+for(let key in this.listOrga){
+ if(this.listOrga.hasOwnProperty(key)){
+  this.listOrga[key].id=key;
+
+  this.arrayListOrga.push(this.listOrga[key]);
+}
 }
   });  
 }
@@ -388,7 +514,8 @@ for(let key in this.listComp){
   this.listComp[key].id=key;
   this.arrayListComp.push(this.listComp[key]);
   this.InitCompetence.push(this.listComp[key]);
-console.log('competence list',this.arrayListComp);
+  console.log('competence list',this.arrayListComp);
+
 //console.log('tool list',this.InitCompetence.tools);
 
     
@@ -407,39 +534,61 @@ showPreviewImage(event: any) {
   }
 }
  
+capture() {
+ 
+  
+}
+saveVersion(raison,statut){
+  var capturedImage;
+  html2canvas(document.querySelector("#CONTAINER_PARENT_0")).then(canvas => {
+     capturedImage = canvas.toDataURL();
+        canvas.toBlob(function (blob) {
+             var reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = function () {
+        let base64data = reader.result;
+        
+      }
 
-saveVersion(){
-  var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  var dateTime = date+' '+time;
-  this.version={
-      author:'shayma',
-      reason:'reason',
-      content:this.HtmlContent=document.querySelector('app-edition-cv').innerHTML,
-      dateVersion: dateTime ,
-      concatVersion: this.contacts,
-      aboutVersion: this.InitAbout,
-      langueVersion: this.InitLangue,
-      diverVersion: this.InitDivers,
-      loisirVersion: this.InitLoisirs,
-      experienceVersion: this.arrayListExp,
-      formationVersion: this.InitFormation,
-      certfificatVersion: this.InitCertificat ,
-      competenceVersion: this.InitCompetence,
+    });
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    this.version={
+        author:'Admin',
+        reason:raison,
+        statut:statut,
+        dateVersion: dateTime ,
+        concatVersion: this.contacts,
+        aboutVersion: this.InitAbout,
+        langueVersion: this.InitLangue,
+        diverVersion: this.InitDivers,
+        loisirVersion: this.InitLoisirs,
+        experienceVersion: this.arrayListExp,
+        formationVersion: this.InitFormation,
+        certfificatVersion: this.InitCertificat ,
+        competenceVersion: this.InitCompetence,
+        image: capturedImage,
+        FirstColor: this.dataCurrentArray.FirstColor,
+        SecondColor:this.dataCurrentArray.SecondColor,
+        profilePicture:this.localUrl
+  
+  
+    }
+  
+  
+    this.serviceVersion.addVersion(this.version).subscribe();
+    console.log('version',this.version);
+  
+  });
 
-
-  }
-
-
-  this.serviceVersion.addVersion(this.version).subscribe();
-  console.log('version',this.version);
-
+ 
 
 }
 deleteLangue(id)
 { 
- this.langueService.deleteLangues(id).subscribe();
+   this.langueService.deleteLangues(id).subscribe();
  this.arrayListLang=[];
  this.InitLangue=[];
  this.getAllLangues();
@@ -490,71 +639,91 @@ deleteCompetence(id){ this.competenceService.deleteCompetence(id).subscribe();
   this.doSomething() ;
 }
 addLangue(langue,note){
-this.langue={id: 'key', langue:langue, note: note}
-this.langueService.addLangue(this.langue).subscribe();
-this.arrayListLang=[];
-this.InitLangue=[];
-this.getAllLangues();
-this.LangueVersion=this.arrayListLang;
-this.doSomething() ;
+  this.isSubmitted = true;
+
+    
+      this.langue={id: 'key', langue:langue, note: note}
+      this.langueService.addLangue(this.langue).subscribe();
+      this.arrayListLang=[];
+      this.InitLangue=[];
+      this.getAllLangues();
+      this.LangueVersion=this.arrayListLang;
+      this.doSomething() ;
+
 }
-addLoisirs(desc){
-this.loisirs={id: 'key', desc}
-  this.loisirsService.addLoisirs(this.loisirs).subscribe();
+addLoisirs(){
+  this.isSubmitted = true;
+
+  if (this.formLoisir.valid) {
+
+  //this.loisirs={id: 'key', desc}
+  this.loisirsService.addLoisirs(this.formLoisir.value).subscribe();
   this.arrayListLoisirs=[];
   this.InitLoisirs=[];
   this.getAllLoisirs();
   this.LoisirsVersion=this.arrayListLoisirs;
   this.doSomething() ;
   }
-  addDivers(desc){
-    this.divers={id: 'key', desc:desc}
-    this.diversService.addDivers(this.divers).subscribe();
+}
+  addDivers(){
+    this.isSubmitted = true;
+
+    if (this.formDivers.valid) {
+
+    //this.divers={id: 'key', desc:desc}
+    this.diversService.addDivers(this.formDivers.value).subscribe();
     this.arrayListDivers=[];
     this.InitDivers=[];
     this.getAllDivers();
     this.DiversVersion=this.arrayListDivers;
     this.doSomething() ;
     }
-addFormation(University,certification,start_date,end_date,diplome_date){
+  }
+  addFormation(University,certification,start_date,end_date,diplome_date){
 
-this.formation={id: 'key', University:University, certification: certification,start_date:start_date,
-end_date:end_date,diplome_date:diplome_date}
-this.formationService.addFormation(this.formation).subscribe();
-this.arrayListFormation=[];
-this.InitFormation=[];
-this.getAllFormation();
-this.FormationVersion=this.arrayListFormation;
-this.doSomething() ;
-}
-addCertificat(centre,certification,start_date,end_date,diplome_date){
-  this.certificat={id: 'key', centre:centre, certification: certification,start_date:start_date,
-  end_date:end_date,diplome_date:diplome_date}
+    this.formation={id: 'key', University:University, certification: certification,start_date:start_date,
+    end_date:end_date,diplome_date:diplome_date}
+    this.formationService.addFormation(this.formation).subscribe();
+    this.arrayListFormation=[];
+    this.InitFormation=[];
+    this.getAllFormation();
+    this.FormationVersion=this.arrayListFormation;
+    this.doSomething() ;
+    }
+    addCertificat(centre,certification,diplome_date,start_date,end_date){
+      this.certificat={id: 'key', centre:centre, certification: certification,start_date:start_date,
+      end_date:end_date,diplome_date:diplome_date}
+      
+      this.certificatService.addCertificat(this.certificat).subscribe();
+      this.arrayListCertif=[];
+      this.InitCertificat=[];
+      this.getAllCertificats();
+      this.CertificatVersion=this.arrayListCertif;
+      this.doSomething() ;
+      }
+  addProject(nom,role,tache,moa,moe,techno){
   
-  this.certificatService.addCertificat(this.certificat).subscribe();
-  this.arrayListCertif=[];
-  this.InitCertificat=[];
-  this.getAllCertificats();
-  this.CertificatVersion=this.arrayListCertif;
-  this.doSomething() ;
+    this.projet={ProjetName:nom,ProjetDesc:tache,ProjetShort:role,MOE:moe,MOA:moa,competence:techno}
+    this.ProjetArray.push(this.projet);
+ console.log('ProjetArray',this.ProjetArray);
   }
   addTool(tool,tool_level){
     this.tool={tool:tool,tools_level:tool_level}
     this.toolsArray.push(this.tool);
  console.log('tools arrat',this.toolsArray);
   }
-  addCompetence(type,competence,competence_level){
+addCompetence(type,competence,competence_level){
   
-    this.competence={id: 'key',type:type, competence:competence, competence_level:competence_level,tools:this.toolsArray }
-    this.competenceService.addCompetence(this.competence).subscribe();
-    console.log('competence added',this.competence);
-    this.arrayListComp=[];
-    this.InitCompetence=[];
-    this.toolsArray=[];
-    this.getAllCompetence();
-    this.CompetenceVersion=this.arrayListComp;
-    this.doSomething() ;
-    }
+  this.competence={id: 'key',type:type, competence:competence, competence_level:competence_level,tools:this.toolsArray }
+  this.competenceService.addCompetence(this.competence).subscribe();
+  console.log('competence added',this.competence);
+  this.arrayListComp=[];
+  this.InitCompetence=[];
+  this.toolsArray=[];
+  this.getAllCompetence();
+  this.CompetenceVersion=this.arrayListComp;
+  this.doSomething() ;
+  }
 preview(files) {
   if (files.length === 0)
     return;
@@ -572,19 +741,21 @@ preview(files) {
     this.imgURL = reader.result; 
   }
 }
-saveExperience(Poste,StartDate,EndDate,role){
- 
+saveExperience(fonction,location,emp,dateDebut,dateFin,projet){
+  this.isSubmitted = true;
+projet=this.arrayListProjet[0];
+  //(fonction,location,emp,dateDebut,dateFin,projet)
+     this.ProjetArray.push(projet);
+     const expr= new Experience(fonction,location,emp,dateDebut,dateFin, this.ProjetArray);
 
-const expr= new Experience( Poste,StartDate,EndDate,role)
+     //this.arrayListExp.push(expr);
 
-      this.arrayListExp.push(expr);
-
-     
-//this.arrayListExp.push(experience);
-console.log('expr',expr);
-
-
-  console.log('save',this.arrayListExp);
+     this.experienceService.addExperience(expr).subscribe();
+    this.arrayListExp=[];
+    this.InitExperience=[];
+    this.getAllExperiences();
+    this.ExperienceVersion=this.arrayListExp;
+    this.doSomething() ;
 }
 changeColor(paint){
   this.ColorVersion=
@@ -722,28 +893,51 @@ redo(): void {
 
 }
 
+get formLangueControls() {
+  return this.formLangue.controls;
+}
+get formLoisirControls() {
+  return this.formLoisir.controls;
+}
+onReset() {
+  this.isSubmitted=false;
 
-upload() {
-  console.log('filename');
+  this.formCertificat.reset();
+  this.formCompetence.reset();
+  this.formDivers.reset();
+  this.formLangue.reset();
+  this.formTool.reset();
+  this.formLoisir.reset();
+  this.formFormation.reset();
+  this.formExperience.reset();
 
+ /*this.formLangue.setValue({
+    langue: '',
+    note: ''
 
-  this.uploader.onCompleteItem = (item: any, status: any) => {
-    console.log('Uploaded File Details:', item._file.filename);
-    console.log('Uploaded File Details:', item);
+  });*/
 
-    this.serviceVersion.uploadImage(item,item._file.filename).subscribe();
+}
 
-    this.toastr.success('File successfully uploaded!');
+sendImage( ){
+  
+  html2canvas(document.querySelector("#CONTAINER_PARENT_0")).then(canvas => {
+     this.image = canvas.toDataURL();
+        canvas.toBlob(function (blob) {
+             var reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = function () {
+        let base64data = reader.result;
+        
+      }
 
-    
+    });
+
+  
+  });
+
 }
  
-}
-showFile(input) {
+    
 
-  let file = input.files[0];
-
-  alert(`File name: ${file.name}`); // e.g my.png
-  alert(`Last modified: ${file.lastModified}`); // e.g 1552830408824
-}
 }

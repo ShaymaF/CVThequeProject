@@ -10,18 +10,20 @@ var image=require('./routes/Image');
 var loisirs=require('./routes/Loisir');
 var langues=require('./routes/Langues');
 var formation=require('./routes/Formation');
-var certificat=require('./routes/Formation');
+var certificat=require('./routes/Certificat');
 var competences=require('./routes/Competences');
 var projet=require('./routes/projet');
 
 var version=require('./routes/version');
+var temp=require('./routes/Temp');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
 var app = express();
 
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use("/about", about);
 app.use("/experience", experience);
 app.use("/divers", divers);
@@ -32,7 +34,7 @@ app.use("/langues", langues);
 app.use("/formation", formation);
 app.use("/certificat", certificat);
 app.use("/competences", competences);
-
+app.use("/temp", temp);
 app.use("/version", version);
 app.use("/projet", projet);
 

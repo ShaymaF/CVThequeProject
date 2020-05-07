@@ -18,6 +18,10 @@ export class VersionService {
 
     return this.http.get(environment.apiBaseUrl + '/version/list');
   }
+  getOneVersion(id) {
+
+    return this.http.get(environment.apiBaseUrl +  `/version/version/${id}`);
+  }
   deleteVersion(id) {
     return this.http.get(environment.apiBaseUrl + `/version/delete/${id}`);
   }
