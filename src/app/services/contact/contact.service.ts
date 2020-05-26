@@ -10,8 +10,7 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
 
-getContacts() {
+getService() {
   return this.http.get(environment.apiBaseUrl + '/contact/list');
 }
-
 }

@@ -2,26 +2,24 @@
 var express = require('express')
 , router = express.Router()
 var faker = require('faker/locale/fr');
-var firebase = require('firebase');
+var firebase=require('../Firebase/config').getConnection();
 
 
 //Create new loisirs
-router.post('/add', function (req, res) {
+router.put('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/loisirs/';
 	var userReference = firebase.database().ref(referencePath);
 
-//	loisirs=faker.lorem.word();
+	loisirs=faker.lorem.word();
 	var newPostRef = userReference.push();
-	/*loisirsDesc={
+	loisirsDesc={
 	"desc":loisirs
-}*/
-var loisirs = req.body;
+}
 
-
-	newPostRef.set(loisirs , 
+	newPostRef.set(loisirsDesc , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
@@ -74,25 +72,11 @@ router.post('/update', function (req, res) {
 });
 
 //Delete an instance
-router.get('/delete/:id', function (req, res) {
+router.delete('/delete', function (req, res) {
 
-	console.log("HTTP GET Request");
-	let id = req.params.id;
-	console.log(id);
-
-	var referencePath = '/loisirs/'+id;
-	var userReference = firebase.database().ref(referencePath);
-	userReference.remove( 
-				 function(error) {
-					if (error) {
-						res.send("Data could not be deleted." + error);
-					} 
-					else {
-						res.send("Data deleted successfully.");
-					}
-			    });
+   console.log("HTTP DELETE Request");
+   //todo
 });
-
 
 
 module.exports = router

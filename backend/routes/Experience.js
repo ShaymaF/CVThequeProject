@@ -1,12 +1,10 @@
 
-var express = require('express');
-var firebase = require('firebase');
-
+var express = require('express')
+, router = express.Router()
 //var firebase=require('../Firebase/config').getConnection();
-var router = express();
-
 var faker = require('faker/locale/fr');
 var dateFormat = require('dateformat');
+var firebase=require('../Firebase/config').getConnection();
 
 company=faker.company.companyName();
 ProjetName=faker.lorem.word();
@@ -32,7 +30,7 @@ competences={
 "name":competence,
 "niveau":competenceLevel.Level3
 }
-project={
+projet={
 "ProjetName":ProjetName,
 "ProjetDesc":ProjetDesc,
 "ProjetShort":ProjetShort,
@@ -43,7 +41,14 @@ project={
 "competence":competences
 }
 
+experience={
+    "projet":projet,
+	"StartDate":StartDate,
+	"EndDate":EndDate,
+	"Role":faker.lorem.lines(1),
+	"Poste":faker.lorem.words()
 
+}
 //Create new Experience
 
 router.post('/add', function (req, res) {
@@ -51,22 +56,26 @@ router.post('/add', function (req, res) {
 	console.log("HTTP Put Request");
 
 	var referencePath = '/experience/';
-	var userReference = firebase.database().ref(referencePath);
-	experience=req.body;
-	var newPostRef = userReference.push();
-	
+    var userReference = firebase.database().ref(referencePath);
+    
 
-	newPostRef.set(experience , 
+
+
+
+	//var newPostRef = userReference.push();
+
+
+	userReference.set(experience , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
 					} 
-					else {
+					else { 
+                    //    res.status(200).send(experience)
 						res.send("Data saved successfully.");
 					}
 			});
 });
-
 
 //list experience
 router.get('/list', function (req, res) {
@@ -108,26 +117,12 @@ router.post('/update', function (req, res) {
 			    });
 });
 
-
 //Delete an instance
-router.get('/delete/:id', function (req, res) {
+router.delete('/delete', function (req, res) {
 
-	console.log("HTTP GET Request");
-	let id = req.params.id;
-	console.log(id);
-
-	var referencePath = '/experience/'+id;
-	var userReference = firebase.database().ref(referencePath);
-	userReference.remove( 
-				 function(error) {
-					if (error) {
-						res.send("Data could not be deleted." + error);
-					} 
-					else {
-						res.send("Data deleted successfully.");
-					}
-			    });
+   console.log("HTTP DELETE Request");
+   //todo
 });
 
 
-module.exports = router;
+module.exports = router

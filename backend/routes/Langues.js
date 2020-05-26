@@ -3,23 +3,22 @@ var express = require('express')
 , router = express.Router()
 //var firebase=require('../Firebase/config').getConnection();
 var faker = require('faker/locale/fr');
-var firebase = require('firebase');
+var firebase=require('../Firebase/config').getConnection();
 
 
-//Create new langues
-router.post('/add', function (req, res) {
+//Create new divers
+app.put('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/langues/';
 	var userReference = firebase.database().ref(referencePath);
 
-		var langue = req.body;
-
+	langues=faker.lorem.word();
 	var newPostRef = userReference.push();
 	
-//console.log('langue',langue.id);
-	newPostRef.set(langue ,
+
+	newPostRef.set(langues , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
@@ -31,7 +30,7 @@ router.post('/add', function (req, res) {
 });
 
 
-//list langues
+//list divers
 router.get('/list', function (req, res) {
 
 	console.log("HTTP Get Request");
@@ -58,7 +57,7 @@ router.post('/update', function (req, res) {
 	//var description = req.body.description;
 
 
-	var referencePath = '/langues/'+id;
+	var referencePath = '/langues/';
 	var userReference = firebase.database().ref(referencePath);
 	userReference.update({description: description}, 
 				 function(error) {
@@ -72,23 +71,10 @@ router.post('/update', function (req, res) {
 });
 
 //Delete an instance
-router.get('/delete/:id', function (req, res) {
+router.delete('/delete', function (req, res) {
 
-	console.log("HTTP GET Request");
-	let id = req.params.id;
-	console.log(id);
-
-	var referencePath = '/langues/'+id;
-	var userReference = firebase.database().ref(referencePath);
-	userReference.remove( 
-				 function(error) {
-					if (error) {
-						res.send("Data could not be deleted." + error);
-					} 
-					else {
-						res.send("Data deleted successfully.");
-					}
-			    });
+   console.log("HTTP DELETE Request");
+   //todo
 });
 
 
