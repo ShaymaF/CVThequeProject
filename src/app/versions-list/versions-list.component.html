@@ -1,0 +1,117 @@
+	<!--Begin::Row-->
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 order-lg-3 order-xl-1">
+
+            <!--begin:: Widgets/Best Sellers-->
+            <div class="kt-portlet kt-portlet--height-fluid">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Les Versions
+                        </h3>
+                    </div>
+                    
+                    <div class="kt-portlet__head-toolbar">
+                      <!--  <ul class="nav nav-pills nav-pills-sm nav-pills-label nav-pills-bold" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_widget5_tab1_content" role="tab">
+                                    Latest
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_widget5_tab2_content" role="tab">
+                                    Month
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_widget5_tab3_content" role="tab">
+                                    All time
+                                </a>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="kt_widget5_tab1_content" aria-expanded="true">
+                            <div class="kt-widget5">
+
+                                <div *ngFor="let listVersion of arrayListVersion">
+
+                                    <!--begin::  Version Modal-->
+ <div class="modal fade" id="Version_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+                <img src={{image}}>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!--end::  Version  Modal--> 
+                                <div class="kt-widget5__item">
+                                    <div class="kt-widget5__content">
+                                        <div class="kt-widget5__pic">
+                                            <img class="kt-widget7__img" src={{listVersion.image}} alt="">
+                                        </div>
+                                        <div class="kt-widget5__section">
+                                            <a href="#" class="kt-widget5__title">
+                                                {{ listVersion.reason}}
+                                            </a>
+                                            
+                                            
+                                            <div class="kt-widget5__info">
+                                                <span>Author:</span>
+                                                <span class="kt-font-info">{{ listVersion.author}}</span>
+                                                <span>Released:</span>
+                                                <span class="kt-font-info">{{ listVersion.dateVersion}}</span>
+                                            </div>
+                                            <p class="kt-widget5__desc">
+                                
+                                                
+                                                <ng-template [ngIf]="listVersion.statut=='Suspendu'">
+                                                    <span class="btn btn-label-warning btn-pill">{{listVersion.statut}}</span>
+                                                   </ng-template>
+                                                   <ng-template [ngIf]="listVersion.statut=='En cours'">
+                                                    <span class="btn btn-label-info  btn-pill">{{listVersion.statut}}</span>
+                                                   </ng-template><ng-template [ngIf]="listVersion.statut=='Terminé'">
+                                                    <span class="btn btn-label-success btn-pill">{{listVersion.statut}}</span>
+                                                   </ng-template><ng-template [ngIf]="listVersion.statut=='Annulé'">
+                                                    <span class="btn btn-label-danger btn-pill">{{listVersion.statut}}</span>
+                                                   </ng-template>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget5__content">
+                                 
+ 
+                                       
+                                                    <a class="btn btn-sm btn-icon btn-outline-brand btn-pill btn-icon-md"style="margin-left: 1%;"data-toggle="modal" data-target="#Version_Model"(click)="sendImage(listVersion.image)"><i class="la la-eye"></i></a>
+                                                    <a class="btn btn-sm btn-icon btn-outline-success btn-pill btn-icon-md"style="margin-left: 1%;" [routerLink]="['/home/version-edit', listVersion.id]"><i class="la la-pencil-square-o"></i></a>
+                                                    <a class="btn btn-sm btn-icon btn-outline-warning btn-pill btn-icon-md"style="margin-left: 1%;"><i class="la la-download"></i></a>
+                                                    <a class="btn btn-sm btn-icon btn-outline-danger btn-pill btn-icon-md"style="margin-left: 1%;"(click)="DeleteVersion(listVersion.id)"><i class="la la-trash"></i></a>
+                                                    
+                            
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!--end:: Widgets/Best Sellers-->
+        </div>
+        
+    </div>
+
+    <!--End::Row-->

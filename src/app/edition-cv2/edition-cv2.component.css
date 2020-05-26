@@ -1,0 +1,217 @@
+.container{
+    width: 793.7013px;
+    max-width:793.7013px;
+    background-color: white;
+    height: 2000px;
+    padding-top: 0.5cm;
+    box-shadow: 1px 1px 3px 1px #333;
+}
+  .container .cv{
+    width: auto;
+    max-width:21cm;
+}
+.header_logo{
+    background-image: url(/assets/media/Temp-2/logo_header.png);
+    margin-top: 1.4cm;
+    width: max-content;
+    height:105.8268px ;
+    background-repeat: no-repeat;
+    background-size: 158.7403px 105.8268px;
+    margin-left: 1mm;
+    padding-left: 1.9cm;
+}
+.contact{
+    font-size: small;
+    color:black;
+    margin-left: 3cm; 
+    text-align: right;
+}
+
+.container .cv .name {
+    font-size: 32pt;
+    font-family: ff1;
+    color: rgb(0,0,0);
+    word-spacing: 0.000000px;
+    text-shadow: -0.015em 0 transparent, 0 0.015em transparent, 0.015em 0 transparent, 0 -0.015em transparent;
+    letter-spacing: 0.000000px;
+    white-space: pre;
+
+}
+
+.container .cv .post {
+    font-size: 14pt;
+    font-family: ff2;
+    color: rgb(0,0,0);
+    word-spacing: 0.000000px;
+    text-shadow: -0.015em 0 transparent, 0 0.015em transparent, 0.015em 0 transparent, 0 -0.015em transparent;
+    letter-spacing: 0.000000px;
+    white-space: pre;
+}
+.separator{
+    background-image: url(/assets/media/Temp-2/separator1.png);
+    background-repeat: no-repeat;
+    background-size: 8.5cm;
+    width: 8.5cm;
+    float: right;
+    background-position-y: 16px;
+    padding-bottom: 1cm;
+}
+.title{
+   
+    font-family: ff1;
+    line-height: 0.974000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    font-size: 12pt;
+    color: rgb(87,42,215);
+    -webkit-text-stroke: 0.015em transparent;
+    text-shadow: none;
+    letter-spacing: 0.000000px;
+    word-spacing: 0.000000px;
+    margin-top: 1cm;
+    margin-left: 1cm;
+    padding-bottom: 1cm;
+    /* padding-left: 1cm; */
+    background-image: url(/assets/media/Temp-2/title_background.png);
+    background-repeat: no-repeat;
+    background-size: 1.38cm 0.24cm;
+    background-position-x: left;
+    background-position-y: 8px;
+ 
+}
+.Apropos{
+    margin-left: 0.75cm;
+    margin-right: 0.7cm;
+    color: rgb(0,0,0);
+    word-spacing: 0.000000px;
+    -webkit-text-stroke: 0.015em transparent;
+    text-shadow: none;
+    letter-spacing: 0.000000px;
+    font-size: 10pt;
+    font-family: ff3;
+    /*line-height: 1.059000;*/
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    
+}
+
+.date{
+    font-family: ff4;
+    line-height: 0.957000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+}
+.diplome .data{
+    font-family: ff3;
+    line-height: 1.059000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+}
+.competence{
+    font-family: ff3;
+    line-height: 1.059000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+}
+.level{
+    border-radius:50%;
+    width:2mm;
+    height:2mm;
+    margin-left: 1mm;
+    background-color: #DADAD9;
+}
+
+ .full{
+    border-radius:50%;
+    width:2mm;
+    height:2mm;
+    margin-left: 1mm;
+    background-color: rgb(87,42,215);
+
+}
+.icon{
+    border-radius:50%;
+    width:1.4cm;
+    height:1.4cm;
+    margin-left: 1cm;
+    background-color: rgb(87,42,215);
+
+}
+.icon-s{
+    border-radius:50%;
+    width:1cm;
+    min-width: 1cm;
+    height:1cm;
+    background-color: rgb(87,42,215);
+    display :flex;
+    margin-left: 2mm;
+}
+.contact-a{
+    font-weight:bold;
+    display:flex;
+    float: right;
+    margin-bottom: 2mm;
+    text-align: right;
+}
+.fa{
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-right: auto;
+    font-size: large;
+    color: white;
+}
+.tools{
+
+}
+.project{
+    color: rgb(157,157,156);
+    font-family: ff3;
+    font-size: 8pt;
+    line-height: 1.059000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+}
+.dateProject{
+    font-family: ff5;
+    line-height: 1.036000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    font-size: 9pt;
+
+}
+.titleProject{
+    font-family: ff6;
+    line-height: 1.059000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    font-size: 10pt;
+
+
+}
+.dataProject{
+    font-family: ff3;
+    line-height: 1.059000;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    font-size: 10pt;
+
+
+}
+.mission{
+    font-family: ff5;
+    font-style: normal;
+    font-weight: normal;
+    visibility: visible;
+    font-size: 10pt;
+    color: rgb(87,42,215);
+}

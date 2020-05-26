@@ -15283,7 +15283,6 @@ body.swal2-height-auto {
   border-radius: 4px !important; }
 
 .ck-content {
-  min-height: 200px;
   border-radius: 4px !important; }
   .ck-content.ck-focused {
     border-color: #716aca !important;
@@ -15303,7 +15302,6 @@ body.swal2-height-auto {
   border-bottom-right-radius: 4px !important; }
 
 .ck-body .ck-balloon-panel .ck-content {
-  min-height: 200px;
   border-color: transparent !important; }
   .ck-body .ck-balloon-panel .ck-content.ck-focused {
     border-color: #716aca !important; }

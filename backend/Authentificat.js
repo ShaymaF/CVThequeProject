@@ -3,7 +3,8 @@ var ldap = require("ldapjs");
 
 //var app = express();
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
  try{
 
@@ -12,7 +13,7 @@ var ldap = require("ldapjs");
             //LDAP_PROXYM_HOST=ldap://172.16.200.99:389
             reconnect: true,
             idleTimeout: 3000,
-
+       
 
 
 
@@ -40,7 +41,7 @@ console.log('ok');
         }catch (e) {
             console.log(e)
         }
-
     
-
+    
+   
 

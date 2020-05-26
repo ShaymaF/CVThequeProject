@@ -1,36 +1,38 @@
 
 var express = require('express')
-, router = express.Router()
-//var firebase=require('../Firebase/config').getConnection();
-var faker = require('faker/locale/fr');
-var firebase=require('../Firebase/config').getConnection();
+var firebase = require('firebase');
+var router = express();
 
+var faker = require('faker/locale/fr');
 
 //Create new divers
-router.put('/add', function (req, res) {
+
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
 	var referencePath = '/divers/';
-	var userReference = firebase.database().ref(referencePath);
+    var userReference = firebase.database().ref(referencePath);
+    
+	var divers = req.body;
 
-	divers=faker.lorem.lines(1);
-	var newPostRef = userReference.push();
-	diversDesc={
-	"desc":divers
-}
 
-	newPostRef.set(diversDesc , 
+
+
+	//var newPostRef = userReference.push();
+
+
+	userReference.set(divers , 
 				 function(error) {
 					if (error) {
 						res.send("Data could not be saved." + error);
 					} 
-					else {
+					else { 
+                    //    res.status(200).send(divers)
 						res.send("Data saved successfully.");
 					}
 			});
 });
-
 
 //list divers
 router.get('/list', function (req, res) {
@@ -73,11 +75,24 @@ router.post('/update', function (req, res) {
 });
 
 //Delete an instance
-router.delete('/delete', function (req, res) {
+router.get('/delete/:id', function (req, res) {
 
-   console.log("HTTP DELETE Request");
-   //todo
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/divers/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 
 
-module.exports = router
+module.exports = router;
