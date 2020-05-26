@@ -209,6 +209,7 @@ updateVariables(){
 
 
   ngOnInit() {
+
     this.sub = this.route.paramMap.subscribe(
       params => {
        this.id = params.get('id');});  

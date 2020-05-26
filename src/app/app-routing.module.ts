@@ -8,6 +8,7 @@ import { VersionsListComponent } from './versions-list/versions-list.component';
 import { ListCollabComponent } from './list-collab/list-collab.component';
 import { VersionEditComponent } from './versions-list/version-edit/version-edit.component';
 import { LoginComponent } from './auth/login/login.component';
+import { EditionCv2Component } from './edition-cv2/edition-cv2.component';
 
 
 const routes: Routes = [
@@ -15,14 +16,20 @@ const routes: Routes = [
   {
     path: 'home', component: HomeComponent,//canActivateChild:[AuthGuard],
     children: [
-      {path: 'cv', component: EditionCVComponent},
+      {path: 'cv-temp1', component: EditionCVComponent},
+
+      {path: 'cv-temp2', component: EditionCv2Component},
+
       {path: 'version-list', component: VersionsListComponent},
       {path: 'collab-list', component:ListCollabComponent},
       {path: 'version-edit/:id', component:VersionEditComponent}
 
    
   ]
-}
+  
+},
+{path: 'cv', component: EditionCv2Component},
+
  // { path : '**', component: ErreurComponent}
 ];
 @NgModule({

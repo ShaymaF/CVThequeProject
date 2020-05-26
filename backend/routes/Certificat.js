@@ -11,7 +11,6 @@ var dateFormat = require('dateformat');
 //Create new certificat
 router.post('/add', function (req, res) {
 
-	console.log("HTTP Put Request");
 
 	var referencePath = '/certificat';
 	var userReference = firebase.database().ref(referencePath);
@@ -51,7 +50,7 @@ newPostRef.set(certificat ,
 //list certificat
 router.get('/list', function (req, res) {
 
-	console.log("HTTP Get Request");
+	//console.log("HTTP Get Request from certif", req.headers['x-access-token']);
 	ref=firebase.database().ref('/certificat');
 	var userReference = firebase.database().ref('/certificat');
 

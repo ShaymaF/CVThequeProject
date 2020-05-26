@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,10 +34,14 @@ import { SearchPipe } from './shared/pipes/search.pipe';
 import {AngularFireModule} from "@angular/fire";
 import { AngularFireStorageModule} from "@angular/fire/storage";
 import { AngularFireDatabaseModule} from "@angular/fire/database";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { environment } from 'src/environments/environment';
 import { VersionEditComponent } from './versions-list/version-edit/version-edit.component';
 import { LoginComponent } from './auth/login/login.component';
+import { TokenStorageService } from './services/token-storage/token-storage.service';
+import { authInterceptorProviders } from './services/_helpers/auth.interceptor';
+import { EditionCv2Component } from './edition-cv2/edition-cv2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +58,7 @@ import { LoginComponent } from './auth/login/login.component';
     SearchPipe,
     VersionEditComponent,
     LoginComponent,
+    EditionCv2Component,
   ],
   imports: [
     BrowserModule,
@@ -72,9 +77,10 @@ MatInputModule,
 ReactiveFormsModule,
 MatIconModule,
 MatButtonModule,FileUploadModule,
+AngularFireAuthModule,
 AngularFireModule.initializeApp(environment.firebase),
 AngularFireStorageModule,
-AngularFireDatabaseModule,
+AngularFireDatabaseModule
 
 
 
@@ -91,9 +97,13 @@ AngularFireDatabaseModule,
     DiversService,
     ExperienceService,
     LoisirService,
-    PersonService
-    
+    PersonService,TokenStorageService,
+    authInterceptorProviders
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }

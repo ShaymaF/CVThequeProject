@@ -1,10 +1,14 @@
-var express      = require('express'),
-    passport     = require('passport'),
-    bodyParser   = require('body-parser'),
+
+ var express = require('express')
+
+ var  passport     = require('passport');
+  var app = express.Router(),
     LdapStrategy = require('passport-ldapauth');
 const jwt = require('jsonwebtoken');
 var firebase=require('./Firebase/config').getConnection();
 const { v4: uuidv4 } = require('uuid');
+
+
 var admin = require("firebase-admin");
 var job,role;
 
@@ -26,25 +30,32 @@ var OPTS = {
   }
 };
  
-var app = express();
- 
+
 passport.use(new LdapStrategy(OPTS));
  
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(passport.initialize());
-    //var uid = uuidv4();
 
-app.post('/login', function(req, res, next) {
+    //var uid = uuidv4();
+    app.use(function(req, res, next) {
+      res.header(
+        "Access-Control-Allow-Headers",
+        "x-access-token, Origin, Content-Type, Accept"
+      );
+      next();
+    });
+app.post('/', function(req, res, next) {
   passport.authenticate('ldapauth', {session: false}, function(err, user, info) {
     if (err) {
       return next(err); // will generate a 500 error
     }
     // Generate a JSON response reflecting authentication status
     if (! user) {
+      console.log('failed');
+
       return res.send({ success : false, message : 'authentication failed' });
     }
                            /********** get user Role  ***********/
+                           console.log('ok 200');
     var ref = admin.database().ref("person");
     var query = ref.orderByChild('uid').equalTo(user.uid);
     query.once('value').then(function(snapshot) {
@@ -53,7 +64,10 @@ app.post('/login', function(req, res, next) {
       });
       if(job=="RH"){
         role="RH";
+
        }
+       console.log(role);
+
   });
                 /**********add additional Claims to the Custom TOKEN*********/
   let additionalClaims = {
@@ -61,10 +75,11 @@ app.post('/login', function(req, res, next) {
     password: user.userPassword
   };
                 /****************** create custom token***************/
+                console.log(additionalClaims);
 
 admin.auth().createCustomToken(user.uid,additionalClaims)
       .then((customToken) => {
-//console.log(customToken);
+console.log(customToken);
 
           /***************Sign up user with the custom token created*************/
 
@@ -73,7 +88,7 @@ firebase.auth().signInWithCustomToken(customToken).then(function(result) {
   //  new user signed in will be added  to the realtime database
 	if(result.additionalUserInfo.isNewUser){
     var referencePath = '/users';
-    var userReference = admin.database().ref(referencePath);
+    var userReference = admin.database().ref(referencePath); 
     var newPostRef = userReference.push();
 
     const newUser={
@@ -118,5 +133,5 @@ return res.status(200).send({"token": customToken})
       
   })(req, res, next);
 });
+module.exports = app
 
-app.listen(3000);

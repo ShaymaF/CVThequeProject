@@ -1,5 +1,7 @@
+
 const express = require('express');
-var firebase=require('./Firebase/config').getConnection();
+//var firebase=require('./Firebase/config').getConnection();
+var admin = require("firebase-admin");
 
 var experience=require('./routes/Experience');
 var about=require('./routes/About');
@@ -13,6 +15,7 @@ var formation=require('./routes/Formation');
 var certificat=require('./routes/Certificat');
 var competences=require('./routes/Competences');
 var projet=require('./routes/projet');
+var login=require('./express');
 
 var version=require('./routes/version');
 var temp=require('./routes/Temp');
@@ -21,9 +24,20 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 var app = express();
 
-app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+//CORS Middleware
+app.use(function (req, res, next) {
+   //Enabling CORS
+   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+   next();
+   });
+
+//app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+//const idToken = header('x-access-token')
+
 app.use("/about", about);
 app.use("/experience", experience);
 app.use("/divers", divers);
@@ -37,12 +51,15 @@ app.use("/competences", competences);
 app.use("/temp", temp);
 app.use("/version", version);
 app.use("/projet", projet);
+app.use("/signin", login);
 
 app.use("/api", image);
 app.get("/", function(req,res){
 	res.send("home")
 	
 	})
+
+ 
 
 
 var server = app.listen(8080, function () {
@@ -52,3 +69,4 @@ var server = app.listen(8080, function () {
    
    console.log("Example app listening at http://%s:%s", host, port);
 });
+

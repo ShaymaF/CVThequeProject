@@ -21,13 +21,16 @@
     "faker": "^4.1.0",
     "firebase": "^7.9.1",
     "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.6.1",
     "jsonwebtoken": "^8.5.1",
     "ldapjs": "^1.0.2",
     "multer": "^1.4.2",
     "nativescript-plugin-firebase": "^10.5.0",
     "passport": "^0.4.1",
     "passport-ldapauth": "^2.1.4",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "wkhtmltopdf": "^0.3.4",
+    "wkhtmltox": "^1.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
