@@ -20,10 +20,9 @@ addAbout(about: About) {
 deleteAbout(id) {
   return this.http.get(environment.apiBaseUrl + `/about/delete/${id}`);
 }
-download() {
-  return this.http.get<ArrayBuffer>(environment.apiBaseUrl + '/about/pdf',
-  {responseType: 'arraybuffer' as 'json'})
-  
-  ;
+download(html) {
+  console.log('service ',this.http.post(environment.apiBaseUrl + '/about/pdf',html));
+  return this.http.post(environment.apiBaseUrl + '/about/pdf',html);
 }
+
 }

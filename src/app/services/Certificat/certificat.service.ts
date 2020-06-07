@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Certificat } from 'src/app/models/certificat';
+import { Certificat, Traduction } from 'src/app/models/certificat';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,13 @@ export class CertificatService {
   }
   deleteCertificat(id) {
     return this.http.get(environment.apiBaseUrl + `/certificat/delete/${id}`);
+  }
+  traductionEn(text: Traduction) {
+    return this.http.post(environment.apiBaseUrl + '/traduction/en',text);
+
+  }
+  traductionFr(text: Traduction) {
+    return this.http.post(environment.apiBaseUrl + '/traduction/fr',text);
+
   }
   }

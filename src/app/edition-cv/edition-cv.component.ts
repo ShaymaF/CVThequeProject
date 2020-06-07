@@ -82,7 +82,6 @@ export class EditionCVComponent  implements OnInit {
    SecondColorInit:string;
 Short_Desc:boolean=true;
 Long_Desc:boolean=false;
-langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Formation;certificat:Certificat;competence:Competence;
   public chartColor : ChartColors[];
   public message: string;
   localUrl: any;
@@ -92,14 +91,17 @@ langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Form
   contacts:any;
   exp: Experience;
   version: Version;temp: Temp;
-  toolsArray:Tools[] = []; ProjetArray:Projet[]=[];projet:Projet;
-  tool:Tools;listOrga:any[];arrayListOrga=[];
-  listExperiences: any[];listProjet: Projet[];listLangues: Langue[];listLoisirs: Loisirs[];listDivers: Divers[];listFormation: Formation[];
-  listCertif: Certificat[];listComp: Competence[];
+  langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Formation;certificat:Certificat;competence:Competence;
   HtmlContent: any;
   ColorVersion:ChartColors;AboutVersion:any;LangueVersion:Langue[];LoisirsVersion:Loisirs[];
   DiversVersion:Divers[];ExperienceVersion:Experience[];FormationVersion:Formation[];
   CertificatVersion:Certificat[];CompetenceVersion:Competence[];
+  
+  toolsArray:Tools[] = []; ProjetArray:Projet[]=[];projet:Projet;
+  tool:Tools;listOrga:any[];arrayListOrga=[];
+  listExperiences: any[];listProjet: Projet[];listLangues: Langue[];listLoisirs: Loisirs[];listDivers: Divers[];listFormation: Formation[];
+  listCertif: Certificat[];listComp: Competence[];
+
   InitAbout=null;InitLangue=[];InitDivers=[];InitLoisirs=[];InitExperience=[];InitFormation=[];InitCertificat=[];InitCompetence=[];
   arrayListExp :Experience[] = [];arrayListProjet=[];arrayListLang=[];arrayListDivers=[];arrayListLoisirs=[];arrayListFormation=[];
   arrayListCertif=[]; arrayListComp=[];
@@ -368,6 +370,24 @@ this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
      
     }
 
+
+getAllLangues()  {
+  this.langueService.getLangues().subscribe((data: Langue[]) => {
+    this.listLangues = data;
+
+for(let key in this.listLangues){
+ if(this.listLangues.hasOwnProperty(key)){
+ //  this.listLangues[key].id=key;
+  this.arrayListLang.push(this.listLangues[key]);
+  this.InitLangue.push(this.listLangues[key]);
+
+}
+
+}
+
+  });  
+
+}
 getAllAbouts() {
   this.aboutService.getAbout().subscribe(data => {
  this.InitAbout=data;
@@ -379,23 +399,6 @@ getAllAbouts() {
 
   //  this.abouts= data;
 });
-}
-getAllLangues()  {
-  this.langueService.getLangues().subscribe((data: Langue[]) => {
-    this.listLangues = data;
-
-for(let key in this.listLangues){
- if(this.listLangues.hasOwnProperty(key)){
-   this.listLangues[key].id=key;
-  this.arrayListLang.push(this.listLangues[key]);
-  this.InitLangue.push(this.listLangues[key]);
-
-}
-
-}
-
-  });  
-
 }
 getAllLoisirs() {
   this.loisirsService.getLoisirs().subscribe((data: Loisirs[]) => {
@@ -642,7 +645,7 @@ addLangue(langue,note){
   this.isSubmitted = true;
 
     
-      this.langue={id: 'key', langue:langue, note: note}
+//      this.langue={id: 'key', langue:langue, note: note}
       this.langueService.addLangue(this.langue).subscribe();
       this.arrayListLang=[];
       this.InitLangue=[];

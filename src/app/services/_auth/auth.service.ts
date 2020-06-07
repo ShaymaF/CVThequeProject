@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
 
-const AUTH_API = 'http://localhost:8080/';
+const AUTH_API = 'http://localhost:8080/ldap/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,12 +28,23 @@ export class AuthService {
     }, httpOptions);
    
   }
+  updatePassword(userId,passwordOld,passwordNew): Observable<any> {
+   
+      
+    return this.http.post(AUTH_API + 'updatePassword', {
+      userId: userId,
+      passwordOld: passwordOld,
+      passwordNew: passwordNew 
 
-  register(user): Observable<any> {
+    }, httpOptions);
+   
+  }
+  
+ /* register(user): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
       username: user.username,
       email: user.email,
       password: user.password
     }, httpOptions);
-  }
+  }*/
 }

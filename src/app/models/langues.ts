@@ -1,5 +1,5 @@
 export class Langue {
-    id: string;
+   // id: string;
     langue: string;
     note: string;
    

@@ -1,5 +1,6 @@
 
  var express = require('express')
+ var ldap = require("ldapjs");
 
  var  passport     = require('passport');
   var app = express.Router(),
@@ -43,7 +44,7 @@ app.use(passport.initialize());
       );
       next();
     });
-app.post('/', function(req, res, next) {
+app.post('/signin', function(req, res, next) {
   passport.authenticate('ldapauth', {session: false}, function(err, user, info) {
     if (err) {
       return next(err); // will generate a 500 error
@@ -76,6 +77,7 @@ app.post('/', function(req, res, next) {
   };
                 /****************** create custom token***************/
                 console.log(additionalClaims);
+                console.log('user',user);
 
 admin.auth().createCustomToken(user.uid,additionalClaims)
       .then((customToken) => {
@@ -97,7 +99,7 @@ firebase.auth().signInWithCustomToken(customToken).then(function(result) {
     "password":user.userPassword,
     "role":role
     }
-    console.log('new user',newUser);
+    console.log('new userr',newUser);
     newPostRef.set(newUser);
   }
   // This gives you a Google Access Token. You can use it to access the Google API.
@@ -133,5 +135,60 @@ return res.status(200).send({"token": customToken})
       
   })(req, res, next);
 });
+
+app.post('/updatePassword', function(req, res, next) {
+
+  let username=req.body.userId;
+  let oldPassword=req.body.passwordOld;
+  let newPassword=req.body.passwordNew;
+  
+  var client = ldap.createClient({
+    url: 'ldap://localhost:389'
+});
+
+  try {
+    //ldapClient.bind(userDN, oldPassword, err => {'uid=shaymaFradi,ou=USER,dc=proxym-it,dc=com'
+      client.bind('uid='+username+','+'ou=USER,dc=proxym-it,dc=com', oldPassword, err => {
+      if (err) {
+        console.log(err);
+      }
+     var userDN='dc=proxym-it,dc=com';
+     console.log('old',encodePassword(oldPassword));
+      // try{}
+      client.modify('uid='+username+','+'ou=USER,dc=proxym-it,dc=com', [
+        new ldap.Change({
+          operation: 'delete',
+          modification: {
+           // userPassword: encodePassword(oldPassword)
+           userPassword: oldPassword
+          }
+        }),
+        new ldap.Change({
+          operation: 'add',
+          modification: {
+            //userPassword: encodePassword(newPassword)
+            userPassword: newPassword
+          }
+        })
+      ], (error) => {
+        if (error) {
+          return res.send({ success : false, message : 'password changing failed ' +error});
+        } else {
+  return res.send({ success : true, message : 'password changed successfully' });        
+        }
+      });
+    })
+  } catch (error) {
+    console.error(error);
+    //reject(error);
+
+     }
+  
+
+
+});
+function encodePassword(password) {
+  return new Buffer('"' + password + '"', 'utf16le').toString();
+}
 module.exports = app
 

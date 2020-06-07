@@ -8,4 +8,10 @@ export interface Certificat {
   
    
   }
+  export interface Traduction {
+    text: string;
+  
+  
+   
+  }
   

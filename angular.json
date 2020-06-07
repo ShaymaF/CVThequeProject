@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/CvTheque",
+            "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,27 +24,21 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/pages/login/login-6.css",
               "src/assets/plugins/global/plugins.bundle.css",
               "src/assets/css/style.bundle.css",
               "src/styles.css",
-
               "src/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css",
-              
-
-              
-             "node_modules/bootstrap/dist/css/bootstrap.min.css",
-             "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/ngx-toastr/toastr.css"
-
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/html2canvas/dist/html2canvas.min.js"
-
             ]
           },
           "configurations": {
@@ -73,7 +67,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumError": "50kb"
                 }
               ]
             }
@@ -104,14 +98,19 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "favicon.ico",
+              "assets",
+              "i18n"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/jquery/dist/jquery.min.js",
+                "node_modules/html2canvas/dist/html2canvas.min.js"
+
+            ]
           }
         },
         "lint": {
@@ -136,6 +135,29 @@
           "configurations": {
             "production": {
               "devServerTarget": "CvTheque:serve:production"
+            }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
             }
           }
         }

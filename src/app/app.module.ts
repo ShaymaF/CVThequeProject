@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {MatDatepickerModule,MatNativeDateModule,MatFormFieldModule, MatSelectModule,MatInputModule, MatIconModule} from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AboutService } from './services/about/about.service';
 import { FormationService } from './services/formation/formation.service';
 import { FooterComponent } from './home/footer/footer.component';
@@ -42,6 +42,18 @@ import { LoginComponent } from './auth/login/login.component';
 import { TokenStorageService } from './services/token-storage/token-storage.service';
 import { authInterceptorProviders } from './services/_helpers/auth.interceptor';
 import { EditionCv2Component } from './edition-cv2/edition-cv2.component';
+// import ngx-translate and the http loader
+import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// import ngx-translate-messageformat-compiler
+import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
+import { ProfilModule } from './profil/profil.module';
+import { DemoNumberPipe } from './shared/pipes/demo-number.pipe';
+import  {TranslatePipe} from './shared/pipes/translate/translate.pipe';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,9 +71,11 @@ import { EditionCv2Component } from './edition-cv2/edition-cv2.component';
     VersionEditComponent,
     LoginComponent,
     EditionCv2Component,
+    DemoNumberPipe,TranslatePipe
+    
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'CvTheque' }),
     AppRoutingModule,
    CKEditorModule,
     FormsModule,
@@ -70,6 +84,7 @@ import { EditionCv2Component } from './edition-cv2/edition-cv2.component';
      MatFormFieldModule,  
        HttpClientModule,
        CommonModule,
+       DragDropModule,
        BrowserAnimationsModule,
        ToastrModule.forRoot() ,
 MatSelectModule,
@@ -80,8 +95,21 @@ MatButtonModule,FileUploadModule,
 AngularFireAuthModule,
 AngularFireModule.initializeApp(environment.firebase),
 AngularFireStorageModule,
-AngularFireDatabaseModule
+AngularFireDatabaseModule,
+TranslateModule.forRoot({
+  loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+  },
 
+  // compiler configuration
+  compiler: {
+      provide: TranslateCompiler,
+      useClass: TranslateMessageFormatCompiler
+  }
+}),
+ProfilModule
 
 
     
@@ -98,7 +126,7 @@ AngularFireDatabaseModule
     ExperienceService,
     LoisirService,
     PersonService,TokenStorageService,
-    authInterceptorProviders
+   authInterceptorProviders
   ],
   bootstrap: [AppComponent],
   schemas: [
@@ -107,3 +135,6 @@ AngularFireDatabaseModule
   ]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

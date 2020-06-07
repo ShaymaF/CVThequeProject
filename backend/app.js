@@ -4,6 +4,8 @@ const express = require('express');
 var admin = require("firebase-admin");
 
 var experience=require('./routes/Experience');
+var traduction=require('./routes/traduction');
+
 var about=require('./routes/About');
 var divers=require('./routes/Divers');
 var contact=require('./routes/Contact');
@@ -33,13 +35,14 @@ app.use(function (req, res, next) {
    next();
    });
 
-//app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 //const idToken = header('x-access-token')
 
 app.use("/about", about);
 app.use("/experience", experience);
+app.use("/traduction", traduction);
 app.use("/divers", divers);
 app.use("/contact", contact);
 app.use("/person", person);
@@ -51,7 +54,7 @@ app.use("/competences", competences);
 app.use("/temp", temp);
 app.use("/version", version);
 app.use("/projet", projet);
-app.use("/signin", login);
+app.use("/ldap", login);
 
 app.use("/api", image);
 app.get("/", function(req,res){

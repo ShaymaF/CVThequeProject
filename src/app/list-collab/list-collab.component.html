@@ -1,4 +1,31 @@
-	<!--Begin::Row-->
+
+<div class="modal fade" id="choose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Choose Your template</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row ">
+                    <div class="box col-3 " style="background-image: url(https://craft-cv.com/image/fr/65/modeles-de-cv-glory.png);">
+                        <div class="card-img-overlay"><div class="content"><button type="button" class="btn btn-link" data-index="1" data-displayname="Concept" data-color="#39c3b1" data-skin="SRZ2">Preview Template</button><button data-dismiss="modal" [routerLink]="['/home/cv']"  type="button" class="btn btn-primary" data-buttontype="thumbnail" data-skin="SRZ2" data-htmlurl="https://configservicestorage.blob.core.windows.net/livecareerrepository/SRZ2.htm" data-svgurl="https://configservicestorage.blob.core.windows.net/livecareerrepository/SkinImages/srz2.png" data-displayname="Concept" data-color="#39c3b1">Select Template</button></div></div>
+                    </div>
+                    <div class="box col-3"style="background-image: url(https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/temp2.png?alt=media&token=d4c89b25-2697-495d-95ee-91161641764a);">
+                        <div class="card-img-overlay"><div class="content"><button  type="button" class="btn btn-link" data-index="1" data-displayname="Concept" data-color="#39c3b1" data-skin="SRZ2">Preview Template</button><button data-dismiss="modal"[routerLink]="['/home/cv-temp1']" type="button" class="btn btn-primary" data-buttontype="thumbnail" data-skin="SRZ2" data-htmlurl="https://configservicestorage.blob.core.windows.net/livecareerrepository/SRZ2.htm" data-svgurl="https://configservicestorage.blob.core.windows.net/livecareerrepository/SkinImages/srz2.png" data-displayname="Concept" data-color="#39c3b1">Select Template</button></div></div>
+                    </div>
+                    <div class="box col-3"style="background-image: url(https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/page-0.png?alt=media&token=b739bb78-346d-4c61-8a82-3e500a5f67a0);">
+                        <div class="card-img-overlay"><div class="content"><button type="button" class="btn btn-link" data-index="1" data-displayname="Concept" data-color="#39c3b1" data-skin="SRZ2">Preview Template</button><button data-dismiss="modal" [routerLink]="['/home/cv-temp2']"  type="button" class="btn btn-primary" data-buttontype="thumbnail" data-skin="SRZ2" data-htmlurl="https://configservicestorage.blob.core.windows.net/livecareerrepository/SRZ2.htm" data-svgurl="https://configservicestorage.blob.core.windows.net/livecareerrepository/SkinImages/srz2.png" data-displayname="Concept" data-color="#39c3b1">Select Template</button></div></div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+    <!--Begin::Row-->
     <div class="row">
         <div class="col-xl-12 col-lg-12 order-lg-3 order-xl-1">
 
@@ -82,7 +109,7 @@
                                         </div>
                 
                                         <div class="kt-widget__action">
-                                            <a [routerLink]="['/home/cv']"  class="btn btn-label-brand btn-sm btn-upper inline">Create CV</a>
+                                            <a  data-toggle="modal" data-target="#choose" class="btn btn-label-brand btn-sm btn-upper inline">Create CV</a>
                 
                                         </div>
                                     </div>
