@@ -1,15 +1,15 @@
 
 var express = require('express');
 var firebase = require('firebase');
-var admin = require("firebase-admin");
 
-//var firebase=require('../Firebase/config').getConnection();
 var router = express();
+//var admin = require("firebase-admin");
+
 
 var faker = require('faker/locale/fr');
 
 //Create new person
-router.put('/add', function (req, res) {
+router.post('/add', function (req, res) {
 
 	console.log("HTTP Put Request");
 
@@ -80,23 +80,18 @@ router.delete('/delete', function (req, res) {
    //todo
 });
 
-router.get('/findOne/:id', function (req, res) {
-let userId=req.params.id;
-	console.log("HTTP Get Request");
-	console.log(userId);
- var ref = admin.database().ref("person");
-    var query = ref.orderByChild('uid').equalTo(userId);
-    query.once('value').then(function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-		 
-		 console.log(childSnapshot.val());
-					res.json(childSnapshot.val());
-					//userReference.off("value");
-      });
-     
+router.get('/findOne/:uid', function (req, res) {
+let userId=req.params.uid;
+var ref = firebase.database().ref("person");
+var query = ref.orderByChild('uid').equalTo(userId);
+query.once('value').then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+	console.log(childSnapshot.val());
+	res.json(childSnapshot.val());
+  });
+ 
 
-  }); 
-
+});
 
 });
 module.exports = router;

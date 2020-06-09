@@ -13,6 +13,6 @@ export class SearchPipe implements PipeTransform {
     }
     console.log(term);
     console.log(value); // ('' + item.phone) pour le comprendre comme string et il faut nommer les attributs comme dans BDD//
-    return value.filter(item => item.tool.includes(term) ||  item.tools_level.includes(term) );
+    return value.filter(item => item.name.includes(term) );
   }
 }

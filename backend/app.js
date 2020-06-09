@@ -1,7 +1,6 @@
 
 const express = require('express');
 //var firebase=require('./Firebase/config').getConnection();
-var admin = require("firebase-admin");
 
 var experience=require('./routes/Experience');
 var traduction=require('./routes/traduction');

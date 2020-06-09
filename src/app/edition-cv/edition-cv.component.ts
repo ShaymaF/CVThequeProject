@@ -377,7 +377,7 @@ getAllLangues()  {
 
 for(let key in this.listLangues){
  if(this.listLangues.hasOwnProperty(key)){
- //  this.listLangues[key].id=key;
+ this.listLangues[key].id=key;
   this.arrayListLang.push(this.listLangues[key]);
   this.InitLangue.push(this.listLangues[key]);
 
@@ -405,7 +405,7 @@ getAllLoisirs() {
     this.listLoisirs = data;
 for(let key in this.listLoisirs){
  if(this.listLoisirs.hasOwnProperty(key)){
-  this.listLoisirs[key].id=key;
+this.listLoisirs[key].id=key;
 
   this.arrayListLoisirs.push(this.listLoisirs[key]);
   this.InitLoisirs.push(this.listLoisirs[key]);
@@ -426,7 +426,7 @@ getAllDivers() {
     this.listDivers = data;
 for(let key in this.listDivers){
  if(this.listDivers.hasOwnProperty(key)){
-  this.listDivers[key].id=key;
+ this.listDivers[key].id=key;
 
   this.arrayListDivers.push(this.listDivers[key]);
   this.InitDivers.push(this.listDivers[key]);
@@ -441,7 +441,7 @@ getAllCertificats() {
     this.listCertif = data;
 for(let key in this.listCertif){
  if(this.listCertif.hasOwnProperty(key)){
-  this.listCertif[key].id=key;
+this.listCertif[key].id=key;
 
   this.arrayListCertif.push(this.listCertif[key]);
   this.InitCertificat.push(this.listCertif[key]);
@@ -499,7 +499,7 @@ getAllFormation() {
     this.listFormation = data;
 for(let key in this.listFormation){
  if(this.listFormation.hasOwnProperty(key)){
-  this.listFormation[key].id=key;
+ this.listFormation[key].id=key;
 
   this.arrayListFormation.push(this.listFormation[key]);
   this.InitFormation.push(this.listFormation[key]);
@@ -684,7 +684,7 @@ addLoisirs(){
   }
   addFormation(University,certification,start_date,end_date,diplome_date){
 
-    this.formation={id: 'key', University:University, certification: certification,start_date:start_date,
+    this.formation={id:"key",University:University, certification: certification,start_date:start_date,
     end_date:end_date,diplome_date:diplome_date}
     this.formationService.addFormation(this.formation).subscribe();
     this.arrayListFormation=[];
@@ -694,7 +694,7 @@ addLoisirs(){
     this.doSomething() ;
     }
     addCertificat(centre,certification,diplome_date,start_date,end_date){
-      this.certificat={id: 'key', centre:centre, certification: certification,start_date:start_date,
+      this.certificat={id:"key",centre:centre, certification: certification,start_date:start_date,
       end_date:end_date,diplome_date:diplome_date}
       
       this.certificatService.addCertificat(this.certificat).subscribe();
@@ -717,7 +717,7 @@ addLoisirs(){
   }
 addCompetence(type,competence,competence_level){
   
-  this.competence={id: 'key',type:type, competence:competence, competence_level:competence_level,tools:this.toolsArray }
+  this.competence={id:"key",type:type, competence:competence, competence_level:competence_level,tools:this.toolsArray }
   this.competenceService.addCompetence(this.competence).subscribe();
   console.log('competence added',this.competence);
   this.arrayListComp=[];

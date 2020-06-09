@@ -709,10 +709,12 @@
                                         </div>
                                         
                                         <div class="name word-break">
-                                            <span class="field" id="FIELD_FNAM"><ckeditor [editor]="Editor"   data='Your Name'></ckeditor></span>
+                                            <span class="field" id="FIELD_FNAM"><ckeditor [editor]="Editor"   data='Oussama Lahmadi '></ckeditor></span>
                                         </div>
 
-                                        <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Profession'></ckeditor></div>
+                                        <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Développeur web'></ckeditor></div>
+                                        <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Male'></ckeditor></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -732,6 +734,7 @@
                                                 <div class="clearfix doc-item">
                                                     <ckeditor [editor]="Editor"   data=' 
                                                     <div class="address">
+                                                        
                                                         <div class="singlecolumn">
                                                             <div dependency="STRT|CITY|STAT|ZIPC">
                                                                 <div class="txtBold">Address </div>
@@ -786,7 +789,7 @@
                                                         <span class="paddedline" id="FIELD_SKC1">
                             <div *ngFor="let listLangue of InitLangue">
                                 <ckeditor [editor]="Editor"   data='<a>{{listLangue.langue}} - {{ listLangue.note }}</a> '></ckeditor>
-                                <mat-icon style="font-size: 10px; float:right;" (click)="deleteLangue(listLangue.id)" >remove_circle</mat-icon>
+                                <mat-icon style="font-size: 10px; float:right;" (click)="deleteLangue(listLangue.id,listLangue)" >remove_circle</mat-icon>
                             </div></span>
 
                                                     </div>

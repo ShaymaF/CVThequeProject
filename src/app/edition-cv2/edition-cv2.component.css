@@ -135,8 +135,22 @@
                 color:black;
                 margin-left: 3cm; 
                 text-align: right;
+                margin-left: 0px;
+                 margin-right: 0px;
+                  margin-top: 20px;
+                   margin-bottom: 80px;
+                    width: 100%;
+                    position: inherit;
             }
-            
+            .image{
+                display: none;
+                width:100px;
+                height:150px;
+            }
+            .arabicName{
+                display: none;
+                font-size:15pt; float:right;
+            }
             .container .cv .name {
                 font-size: 32pt;
                 font-family: ff1;
@@ -146,6 +160,10 @@
                 letter-spacing: 0.000000px;
                 white-space: pre;
             
+            }
+            .gender{
+                display: unset;
+                float:right;
             }
             
             .container .cv .post {
@@ -190,6 +208,9 @@
                 background-position-y: 8px;
              
             }
+            .title .loisir{
+                display: inline;padding-left: initial; margin-left: 7.5mm;
+            }
             .Apropos{
                 margin-left: 0.75cm;
                 margin-right: 0.7cm;
@@ -225,8 +246,17 @@
                 font-family: ff3;
                 line-height: 1.059000;
                 font-style: normal;
-                font-weight: normal;
+                display: inherit  ;            
+              font-weight: normal;
                 visibility: visible;
+                margin-bottom: 0.4cm;
+                width: 70px;
+            }
+            .dipoloisir{
+                display:  -webkit-inline-box;
+            }
+            .descLoisir{
+                display:  -webkit-inline-box;
             }
             .level{
                 border-radius:50%;
@@ -235,7 +265,19 @@
                 margin-left: 1mm;
                 background-color: #DADAD9;
             }
-            
+            .levelCompetence{
+                display: -webkit-inline-box;
+            }
+            .LabelLangue{
+                display: inline;padding-left: initial; margin-left: 7.5mm;
+            }
+            .emptyRow{
+                padding-top: 0.9cm;
+            }
+           
+            .levelLangue{
+                float: left;display: -webkit-inline-box;
+            }
              .full{
                 border-radius:50%;
                 width:2mm;
@@ -252,6 +294,10 @@
                 background-color: rgb(87,42,215);
             
             }
+            .icon-ss{
+                padding-left: 0px;
+
+            }
             .icon-s{
                 border-radius:50%;
                 width:1cm;
@@ -259,7 +305,7 @@
                 height:1cm;
                 background-color: rgb(87,42,215);
                 display :flex;
-                margin-left: 2mm;
+                margin-left:0mm;
             }
             .contact-a{
                 font-weight:bold;
@@ -306,6 +352,15 @@
                 font-size: 10pt;
             
             
+            }
+            .cvClass{
+                position: relative;background-color: #f1f8fe;
+            }
+            .span{
+                color:rgb(87,42,215);
+            }
+            .separator .init{
+                float:initial
             }
             .dataProject{
                 font-family: ff3;

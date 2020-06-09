@@ -371,7 +371,7 @@ getAllLoisirs() {
     this.listLoisirs = data;
 for(let key in this.listLoisirs){
  if(this.listLoisirs.hasOwnProperty(key)){
-  this.listLoisirs[key].id=key;
+ this.listLoisirs[key].id=key;
 
   this.arrayListLoisirs.push(this.listLoisirs[key]);
   this.InitLoisirs.push(this.listLoisirs[key]);
@@ -407,7 +407,7 @@ getAllCertificats() {
     this.listCertif = data;
 for(let key in this.listCertif){
  if(this.listCertif.hasOwnProperty(key)){
-  this.listCertif[key].id=key;
+ this.listCertif[key].id=key;
 
   this.arrayListCertif.push(this.listCertif[key]);
   this.InitCertificat.push(this.listCertif[key]);
@@ -453,7 +453,7 @@ getAllFormation() {
     this.listFormation = data;
 for(let key in this.listFormation){
  if(this.listFormation.hasOwnProperty(key)){
-  this.listFormation[key].id=key;
+ this.listFormation[key].id=key;
 
   this.arrayListFormation.push(this.listFormation[key]);
   this.InitFormation.push(this.listFormation[key]);

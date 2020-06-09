@@ -29,6 +29,8 @@ import { LoisirService } from '../services/loisirs/loisir.service';
 import { CompetenceService } from '../services/competence/competence.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
+import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClient } from '@angular/common/http';
 import { VersionService } from '../services/version/version.service';
 import { ImagesService } from '../services/images/images.service';
@@ -36,8 +38,12 @@ import { TempService } from '../services/temp/temp.service';
 import { Temp } from '../models/temp';
 import { Contact } from '../models/contact';
 import { Traces, ChartColors } from '../models/Traces';
+import { Pdf } from '../models/person';
+import { PersonService } from '../services/person/person.service';
+import { Person } from '../models/person';
 const uploadAPI = 'http://localhost:8080/api/upload';
-
+declare var require: any
+const FileSaver = require('file-saver');
  var xepOnline: any;
 @Component({
   selector: 'app-edition-cv2',
@@ -48,20 +54,21 @@ export class EditionCv2Component implements OnInit {
   public Editor= InlineEditor;
 //text="bonjour";
 image:any;
-pdfHtml:any;
-abouts:any;
+pdfHtml:any;pdfHtml1:any;
+linkCSS:string;
+abouts:any;html:Pdf;
 exp: Experience;
 contacts:any;
-  version: Version;temp: Temp;
+  version: Version;temp: Temp;person:Person;
   langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Formation;certificat:Certificat;competence:Competence;
   index=0;
 toolsArray:Tools[] = []; ProjetArray:Projet[]=[];projet:Projet;
 tool:Tools;listOrga:any[];arrayListOrga=[];
 listExperiences: any[];listProjet: Projet[];listLangues: Langue[];listLoisirs: Loisirs[];listDivers: Divers[];listFormation: Formation[];
-listCertif: Certificat[];listComp: Competence[];listContact: Contact[];
-
-InitAbout=null;InitLangue=[];InitContact=[];InitDivers=[];InitLoisirs=[];InitExperience=[];InitFormation=[];InitCertificat=[];InitCompetence=[];
-arrayListExp :Experience[] = [];arrayListProjet=[];arrayListLang=[];arrayListDivers=[];arrayListLoisirs=[];arrayListFormation=[];
+listCertif: Certificat[];listComp: Competence[];listContact: Contact[];listPerson: Person[];
+style:any;currentStyle:any;
+InitAbout=null;InitLangue=[];InitPerson=[];InitContact=[];InitDivers=[];InitLoisirs=[];InitExperience=[];InitFormation=[];InitCertificat=[];InitCompetence=[];
+arrayListExp :Experience[] = [];arrayListProjet=[];arrayListPerson=[];arrayListLang=[];arrayListDivers=[];arrayListLoisirs=[];arrayListFormation=[];
 arrayListCertif=[]; arrayListComp=[];arrayListCantact=[];
 text:any;
 file:any;  
@@ -128,7 +135,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
   private serviceVersion: VersionService,private http: HttpClient,private formBuilder: FormBuilder,
   
   private el: ElementRef, private imagesService: ImagesService,private storage: AngularFireStorage,
-  private tempService: TempService) {
+  private tempService: TempService,private personService:PersonService) {
 
     console.log('thi',this.InitLangue);
 
@@ -163,7 +170,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
    this.getAllProjects();
    this.getAllOrganisation();
    console.log('init+array',this.InitLangue,this.arrayListLang);
-
+this.getPerson();
    //this.InitLangue=Object.assign({}, JSON.parse(localStorage.getItem('InitLangue')));
    //this.arrayListLang=Object.assign({}, JSON.parse(localStorage.getItem('arrayListLang')));
 
@@ -174,6 +181,14 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
     //console.log('after2 init+array',this.InitLangue,this.arrayListLang);
     //console.log('after2 init+array',this.InitLangue,this.InitLangue);
 
+  }
+  getPerson()  {
+    this.personService.getOnePerson(localStorage.getItem("collabId")).subscribe((data: Person[]) => {
+      this.listPerson = data;
+      this.arrayListPerson = data;
+  console.log('personn',this.listPerson);
+ 
+    });  
   }
   getAllLangues()  {
 
@@ -221,7 +236,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
       this.listLoisirs = data;
   for(let key in this.listLoisirs){
    if(this.listLoisirs.hasOwnProperty(key)){
-    this.listLoisirs[key].id=key;
+   // this.listLoisirs[key].id=key;
   
     this.arrayListLoisirs.push(this.listLoisirs[key]);
     this.InitLoisirs.push(this.listLoisirs[key]);
@@ -252,7 +267,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
       this.listDivers = data;
   for(let key in this.listDivers){
    if(this.listDivers.hasOwnProperty(key)){
-    this.listDivers[key].id=key;
+   // this.listDivers[key].id=key;
   
     this.arrayListDivers.push(this.listDivers[key]);
     this.InitDivers.push(this.listDivers[key]);
@@ -267,7 +282,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
       this.listCertif = data;
   for(let key in this.listCertif){
    if(this.listCertif.hasOwnProperty(key)){
-    this.listCertif[key].id=key;
+  //  this.listCertif[key].id=key;
   
     this.arrayListCertif.push(this.listCertif[key]);
     this.InitCertificat.push(this.listCertif[key]);
@@ -325,7 +340,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
       this.listFormation = data;
   for(let key in this.listFormation){
    if(this.listFormation.hasOwnProperty(key)){
-    this.listFormation[key].id=key;
+  //  this.listFormation[key].id=key;
   
     this.arrayListFormation.push(this.listFormation[key]);
     this.InitFormation.push(this.listFormation[key]);
@@ -340,7 +355,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
   
   for(let key in this.listComp){
    if(this.listComp.hasOwnProperty(key)){
-    this.listComp[key].id=key;
+  //  this.listComp[key].id=key;
     this.arrayListComp.push(this.listComp[key]);
     this.InitCompetence.push(this.listComp[key]);
     console.log('competence list',this.arrayListComp);
@@ -357,7 +372,7 @@ constructor(private aboutService: AboutService,public translate: TranslateServic
     //this.isSubmitted = true;
   
       
-        this.langue={ langue:langue, note: note}
+        this.langue={ id:"key",langue:langue, note: note}
       //  this.langueService.addLangue(this.langue).subscribe();
         this.arrayListLang.push( this.langue);
         this.InitLangue.push( this.langue);
@@ -398,10 +413,15 @@ public downloadPDF() {
    doc.save('test.pdf');
 }
 public pdf(){
-  this.pdfHtml=document.getElementById("cv").innerHTML;
+  this.pdfHtml1=document.getElementById("cv").innerHTML;
+  this.linkCSS='https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/temp2.css?alt=media&token=dae2afc6-7b02-49ac-94a4-7de1885c179b';
+  this.pdfHtml=this.linkCSS+ this.pdfHtml1;
   console.log(this.pdfHtml);
-  this.aboutService.download(this.pdfHtml).subscribe();
 
+  this.html ={ "html":this.pdfHtml};
+ 
+this.aboutService.download(this.html).subscribe();
+    
 }
 sendImage() {
   console.log(document.getElementById("cv").innerHTML);
@@ -432,6 +452,19 @@ sendImage() {
   });
 }
 */
+changePersonalInfo(e,id){
+
+  if(e.target.checked){
+    console.log(id,'checked');
+    document.getElementById(id).style.display="unset";
+  }
+  else{
+    console.log(id,'unchecked');
+
+    document.getElementById(id).style.display="none";
+
+  }
+}
 onLangueChange(e,id,langue) {
   console.log('uncheked1',e);
 
@@ -477,6 +510,34 @@ onFormationChange(e,id,formation) {
     console.log('uncheked');
      // do something here
      this.InitFormation.splice(formation.certification,1);
+
+  }
+}
+onExperienceChange(e,id,experience){
+  if(e.target.checked){
+    // do something here
+    this.InitExperience.push(experience);
+
+  }
+  else{
+    console.log('uncheked');
+     // do something here
+     this.InitExperience.splice(experience,1);
+
+  }
+}
+onCertificatChange(e,id,certif) {
+  console.log('uncheked1',e);
+
+  if(e.target.checked){
+    // do something here
+    this.InitCertificat.push(certif);
+
+  }
+  else{
+    console.log('uncheked');
+     // do something here
+     this.InitCertificat.splice(certif,1);
 
   }
 }
@@ -537,19 +598,23 @@ onCantactChange(e,id,cmp) {
   }
  
 }
-addLoisirs(){
-  this.isSubmitted = true;
 
-  if (this.formLoisir.valid) {
+hideSection(id){
+  document.getElementById(id).hidden=true;
+}
+showSection(id){
+  document.getElementById(id).hidden=false;
+}
 
-  //this.loisirs={id: 'key', desc}
-  this.loisirsService.addLoisirs(this.formLoisir.value).subscribe();
-  this.arrayListLoisirs=[];
-  this.InitLoisirs=[];
-  this.getAllLoisirs();
-  this.LoisirsVersion=this.arrayListLoisirs;
+addLoisirs(loisir){
+  console.log(loisir);
+  this.loisirs={id:"key", desc:loisir}
+
+  this.arrayListLoisirs.push (this.loisirs);
+  this.InitLoisirs.push(this.loisirs);
+
   this.doSomething() ;
-  }
+
 }
   addDivers(){
     this.isSubmitted = true;
@@ -560,14 +625,14 @@ addLoisirs(){
     this.diversService.addDivers(this.formDivers.value).subscribe();
     this.arrayListDivers=[];
     this.InitDivers=[];
-    this.getAllDivers();
+
     this.DiversVersion=this.arrayListDivers;
     this.doSomething() ;
     }
   }
   addFormation(University,certification,start_date,end_date,diplome_date){
 
-    this.formation={id: 'key', University:University, certification: certification,start_date:start_date,
+    this.formation={id:"key", University:University, certification: certification,start_date:start_date,
     end_date:end_date,diplome_date:diplome_date}
     this.formationService.addFormation(this.formation).subscribe();
     this.arrayListFormation=[];
@@ -577,7 +642,7 @@ addLoisirs(){
     this.doSomething() ;
     }
     addCertificat(centre,certification,diplome_date,start_date,end_date){
-      this.certificat={id: 'key', centre:centre, certification: certification,start_date:start_date,
+      this.certificat={ id:"key",centre:centre, certification: certification,start_date:start_date,
       end_date:end_date,diplome_date:diplome_date}
       
       this.certificatService.addCertificat(this.certificat).subscribe();
@@ -600,7 +665,7 @@ addLoisirs(){
   }
 addCompetence(type,competence,competence_level){
   
-  this.competence={id: 'key',type:type, competence:competence, competence_level:competence_level,tools:this.toolsArray }
+  this.competence={id:"key",type:type, competence:competence, competence_level:competence_level,tools:this.toolsArray }
   this.competenceService.addCompetence(this.competence).subscribe();
   console.log('competence added',this.competence);
   this.arrayListComp=[];
@@ -720,7 +785,6 @@ console.log('dosomething',this.dataCurrentArray);
 }
 
 
-
 undo(): void {
   this.showRedo = true;
   if (this.dataUndoArray.length != 0) {    
@@ -779,5 +843,11 @@ redo(): void {
 
 }
 
-
+inlineStyle(){
+  var elem = document.getElementById("cv");
+  var style = window.getComputedStyle ? getComputedStyle(elem) : elem.style;
+  if (style) { // This will be true on major browsers
+      console.log(style);// Or whatever
+  }
+}
 }

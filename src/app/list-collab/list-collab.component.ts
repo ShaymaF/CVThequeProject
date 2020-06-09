@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CompetenceService } from '../services/competence/competence.service';
+import { PersonService } from '../services/person/person.service';
+import { Person } from '../models/person';
 import { Competence } from '../models/competence';
 
 @Component({
@@ -8,20 +9,20 @@ import { Competence } from '../models/competence';
   styleUrls: ['./list-collab.component.css']
 })
 export class ListCollabComponent implements OnInit {
-  listComp: Competence[];arrayListComp=[];
-  constructor(private competenceService : CompetenceService) { }
+  listComp: Competence[];arrayListPerson=[];listPerson: Person[];
+  constructor(private personService : PersonService) { }
 
   ngOnInit() {
-    this.getAllCompetence();
+    this.getAllPerson();
   }
-  getAllCompetence() {
-    this.competenceService.getCompetence().subscribe((data: Competence[]) => {
-      this.listComp = data;
+  getAllPerson() {
+    this.personService.getPerson().subscribe((data: Person[]) => {
+      this.listPerson = data;
   
-  for(let key in this.listComp){
-   if(this.listComp.hasOwnProperty(key)){
-    this.listComp[key].id=key;
-    this.arrayListComp.push(this.listComp[key]);
+  for(let key in this.listPerson){
+   if(this.listPerson.hasOwnProperty(key)){
+    //this.listComp[key].id=key;
+    this.arrayListPerson.push(this.listPerson[key]);
   //console.log('tool list',this.InitCompetence.tools);
   
       
@@ -29,5 +30,8 @@ export class ListCollabComponent implements OnInit {
   }
   }
     });  
+  }
+  sendId(id){
+    localStorage.setItem("collabId",id);
   }
 }

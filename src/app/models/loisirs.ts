@@ -1,5 +1,5 @@
 export interface Loisirs {
-    id: string;
+   id: string;
     desc: string;
    
 }

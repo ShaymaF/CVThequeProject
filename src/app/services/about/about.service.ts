@@ -24,5 +24,9 @@ download(html) {
   console.log('service ',this.http.post(environment.apiBaseUrl + '/about/pdf',html));
   return this.http.post(environment.apiBaseUrl + '/about/pdf',html);
 }
+getPDF(){
+  return this.http.get(environment.apiBaseUrl + '/about/getPdf');
+  
+}
 
 }

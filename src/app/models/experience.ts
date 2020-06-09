@@ -2,7 +2,7 @@ import { Competence } from './competence';
 
 export class Experience {
     //fonction,location,emp,dateDebut,dateFin,projet
-    id: string;
+  id: string;
     fonction: string;
     location: string;
     emp: string;

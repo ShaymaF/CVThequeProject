@@ -11,7 +11,10 @@ export class PersonService {
   constructor(private http: HttpClient) { }
 
 
-getCompetence() {
+getPerson() {
   return this.http.get(environment.apiBaseUrl + '/person/list');
+}
+getOnePerson(uid) {
+  return this.http.get(environment.apiBaseUrl + `/person/findOne/${uid}`);
 }
 }

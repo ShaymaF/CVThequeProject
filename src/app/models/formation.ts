@@ -1,5 +1,5 @@
 export interface Formation {
-  id: string;
+ id: string;
   University: string;
   certification: string;
   start_date: string;
