@@ -11,6 +11,7 @@ import { Competence } from '../models/competence';
 export class ListCollabComponent implements OnInit {
   listComp: Competence[];arrayListPerson=[];listPerson: Person[];
   constructor(private personService : PersonService) { }
+  searchText;searchText1;
 
   ngOnInit() {
     this.getAllPerson();

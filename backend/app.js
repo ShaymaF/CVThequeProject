@@ -35,8 +35,8 @@ app.use(function (req, res, next) {
    });
 
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
-app.use(bodyParser.json({limit: '50mb', extended: true}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '10000mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '10000mb', extended: true}));
 //const idToken = header('x-access-token')
 
 app.use("/about", about);

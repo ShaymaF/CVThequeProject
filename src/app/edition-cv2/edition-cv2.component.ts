@@ -403,7 +403,7 @@ public downloadPDF() {
        }
    };
 
-   const content = document.getElementById('cv');
+   const content = document.getElementById('html');
 
    doc.fromHTML(content.innerHTML, 15, 15, {
       width: 190,
@@ -413,7 +413,7 @@ public downloadPDF() {
    doc.save('test.pdf');
 }
 public pdf(){
-  this.pdfHtml1=document.getElementById("cv").innerHTML;
+  this.pdfHtml1=document.getElementById("html").innerHTML;
   this.linkCSS='https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/temp2.css?alt=media&token=dae2afc6-7b02-49ac-94a4-7de1885c179b';
   this.pdfHtml=this.linkCSS+ this.pdfHtml1;
   console.log(this.pdfHtml);
@@ -424,8 +424,8 @@ this.aboutService.download(this.html).subscribe();
     
 }
 sendImage() {
-  console.log(document.getElementById("cv").innerHTML);
-  console.log(document.getElementById("cv").style);
+  console.log(document.getElementById("html").innerHTML);
+  console.log(document.getElementById("html").style);
 
 
 }
@@ -844,7 +844,7 @@ redo(): void {
 }
 
 inlineStyle(){
-  var elem = document.getElementById("cv");
+  var elem = document.getElementById("html");
   var style = window.getComputedStyle ? getComputedStyle(elem) : elem.style;
   if (style) { // This will be true on major browsers
       console.log(style);// Or whatever

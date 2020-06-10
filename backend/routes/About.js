@@ -5,6 +5,8 @@ var admin = require("firebase-admin");
 var wkhtmltopdf = require('wkhtmltopdf');
 var x11 = require('x11');
 var sleep = require('system-sleep');
+ 
+const path = require('path');
 
 wkhtmltopdf.command = 'C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe';
 //var firebase=require('../Firebase/config').getConnection();
@@ -156,13 +158,13 @@ res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIO
 		 javascriptDelay:'2000',// time out avant de finir le javascript
 		 zoom:zoom,//  min 1, maximum: 100, default:1,
 		 lowquality:false,
-		 viewportSize: "1280x1024",
+		 viewportSize: "500x500",
 		 footerHtml:"https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/footer.html?alt=media&token=26c0f0f3-7912-4046-8bac-b4cf2928254b",
-		"enable-smart-shrinking":true,
+		//"enable-smart-shrinking":true,
 		//"--use-xserver":true
 		
 	 })
-	 .pipe(fs.createWriteStream('files/newcv12.pdf'));
+	 .pipe(fs.createWriteStream('files/newcv111.pdf'));
 	 sleep(20*1000); // sleep for 10 seconds
 res.send()
 	 //.pipe(res);
@@ -182,7 +184,7 @@ console.log(res);
 		});
 	*/	});
 	router.get('/getPdf', function (req, res) {
-		var filePath = "files/newcv1.pdf";
+		/*var filePath = "files/newcv1.pdf";
 	
 		fs.readFile(__dirname + filePath , function (err,data){
 			res.contentType("application/pdf");
@@ -192,6 +194,9 @@ console.log(res);
 	function sleep(ms) {
 		return new Promise((resolve) => {
 		  setTimeout(resolve, ms);
-		});
-	  } 
+		*/
+
+
+	});
+	  
 module.exports = router;

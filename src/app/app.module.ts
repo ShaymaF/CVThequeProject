@@ -52,6 +52,7 @@ import { ProfilModule } from './profil/profil.module';
 import { DemoNumberPipe } from './shared/pipes/demo-number.pipe';
 import  {TranslatePipe} from './shared/pipes/translate/translate.pipe';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AppRoutingModule,
    CKEditorModule,
     FormsModule,
+    Ng2SearchPipeModule,
     MatDatepickerModule,
      MatNativeDateModule,
      MatFormFieldModule,  
