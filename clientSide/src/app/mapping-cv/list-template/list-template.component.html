@@ -1,0 +1,37 @@
+<div _ngcontent-cvtheque-c2="" class="kt-todo__top">
+    <div _ngcontent-cvtheque-c2="" class="kt-portlet">
+        <div _ngcontent-cvtheque-c2="" class="kt-todo__header "><h3 _ngcontent-cvtheque-c2="" class="kt-todo__title" style="margin-top: 10px;margin-top: 10px;margin-left: 10px;">Templates</h3>
+
+    
+       </div>
+    </div>
+</div>
+<div class="kt-portlet" style="width:100%;">
+    <div class="kt-portlet__head kt-portlet__head--noborder">
+        
+
+ <div class="kt-portlet__body" style="width:100%;">
+    
+    <label for="file-upload" class="custom-file-upload btn btn-link" >
+        <i class="la la-upload "  ></i> Add new 
+    </label>
+    <input id="file-upload" type="file" data-dismiss="modal" (change)="onChange($event.target.files)" />
+ <a (cdkDragEnded)="dragAbout($event)" id="about"cdkDrag>about</a>
+    <div class="tab">
+        <button class="tablinks" (click)="showView()" >VIEW</button>
+        <button class="tablinks" (click)="showHtml()">HTML</button>
+    </div>
+    <span >{{name}}</span>
+      <div (click)="event($event)"id="view" class="tabcontent">
+       
+
+      </div>
+      
+      <div id="html" class="tabcontent">
+  
+        <textarea #host ></textarea>
+
+      </div>
+
+</div>
+</div>

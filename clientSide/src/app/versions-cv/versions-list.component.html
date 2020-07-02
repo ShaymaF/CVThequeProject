@@ -1,0 +1,114 @@
+<div _ngcontent-cvtheque-c2="" class="kt-todo__top">
+    <div _ngcontent-cvtheque-c2="" class="kt-portlet">
+        <div _ngcontent-cvtheque-c2="" class="kt-todo__header "><h3 _ngcontent-cvtheque-c2="" class="kt-todo__title" style="margin-top: 10px;margin-top: 10px;margin-left: 10px;">Saved Versions</h3>
+
+      <a _ngcontent-cvtheque-c2="" class="kt-media kt-media--xs  kt-bg-success kt-margin-l-10"  style="float: right;margin-bottom: 10px;margin-right: 10px;margin-top: -30px;" data-toggle="modal" data-target="#Folder_Model">
+        <span _ngcontent-cvtheque-c2=""><i _ngcontent-cvtheque-c2="" class="kt-nav__link-icon fa flaticon2-plus kt-font-light"></i></span>
+      </a>
+       </div>
+    </div>
+</div>
+<div class="kt-todo__bottom">
+
+    <!--Begin::Section-->
+    <div class="row">
+        <div *ngFor="let listFolder of arrayListFolder">
+        <div class="col-xl-3 col-lg-3 col-md-3">
+
+            <!--Begin::Portlet-->
+            <div class="kt-portlet" style="width:max-content;">
+                <div class="kt-portlet__head kt-portlet__head--noborder">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <a  class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown">
+                            <i class="flaticon-more-1"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <ul class="kt-nav">
+                                <li class="kt-nav__item">
+                                    <a  [routerLink]="['/home/versions', listFolder.FID]" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon flaticon2-file"></i>
+                                        <span class="kt-nav__link-text" >Open</span>
+                                    </a>
+                                </li>
+                                <li class="kt-nav__item">
+                                    <a (click)="deleteFolder(listFolder.FID,listFolder)" class="kt-nav__link">
+                                        <i class="kt-nav__link-icon flaticon-delete-1"></i>
+                                        <span class="kt-nav__link-text">Delete</span>
+                                    </a>
+                                </li>
+                        
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+
+                    <!--begin::Widget -->
+                    <div class="kt-widget__files row">
+                        <i class="jstree-icon jstree-themeicon fa fa-folder kt-font-warning jstree-themeicon-custom" role="presentation" style="font-size: 10rem;  float: left; margin-top: -40px;padding-left: 5%;"></i>
+                       
+                        <div  class="" style="padding-left: 10%;">
+                           
+                        
+                        <a href="#"> {{listFolder.name}}</a><br>
+                        <a>{{listFolder.creation_date}}</a><br>
+                        <a>16 files</a>
+                        </div>
+                    </div>
+
+                    <!--end::Widget -->
+                </div>
+            </div>
+
+            <!--End::Portlet-->
+        </div>
+        </div>
+    </div>
+
+    <!--End::Section-->
+
+   
+</div>
+
+  <!--begin::  add folder Modal-->
+  <div class="modal fade" id="Folder_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new folder</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                    <form >
+
+                    <div class="">
+                        <div class="example-form col-12" style="padding-right: 30px;min-width: 100%">
+
+                            <div class="form-group">
+                                <mat-label>Name</mat-label>
+                                <input  #name type="text" class="form-control"/>
+                                
+                                </div>
+                        </div>
+                      
+                    </div>
+               
+            
+            <div class="modal-footer ">
+                    <button type="submit" class="btn btn-primary"  (click)="addFolder(name.value)" data-dismiss="modal">Add</button>
+                    <button  class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="onReset()">Close</button>
+           
+            </div>
+        </form>
+    </div>
+            
+        </div>
+    </div>
+</div>
+<!--end::  add folder  Modal--> 
