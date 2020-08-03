@@ -8,12 +8,15 @@
 const jwt = require('jsonwebtoken');
 var firebase=require('./Firebase/firebase-admin-config').getConnectionFirebase();
 var admin=require('./Firebase/firebase-admin-config').getConnectionFirebaseAdmin();
+firebase = require('firebase');
 
 const { v4: uuidv4 } = require('uuid');
 
 
-var admin = require("firebase-admin");
-var job,role,departement;
+var ref = firebase.database().ref("person");
+
+
+var job,roleUser,UserDep,departement;
 
 var serviceAccount = require("./generate-token/serviceAccountKey.json");
 
@@ -43,8 +46,39 @@ app.use(passport.initialize());
       );
       next();
     });
+    function roleAssign(role) {
+      // We want this to show the "results" from the callback function.
+      console.log('2',role);
+      roleUser=role;
+      console.log('3',roleUser);
+      return roleUser;
+    }
+    function depAssign(departement) {
+      // We want this to show the "results" from the callback function.
+      console.log('2',departement);
+      UserDep=departement;
+      console.log('3',UserDep);
+
+return UserDep;
+    }
+ 
+   var search=function (uid) {
+      var ref = admin.database().ref("person");
+      var query = ref.orderByChild('uid').equalTo(uid);
+      query.once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+           job=childSnapshot.val().jobTitle;
+           departement=childSnapshot.val().departement
+           console.log('dep',departement);
+          /// roleAssign(job);depAssign(departement);  
+           //roleAssign(job);
+            //depAssign(departement);
+        });
+       
+    });
+    }
 app.post('/signin', function(req, res, next) {
-  passport.authenticate('ldapauth', {session: false}, function(err, user, info) {
+  passport.authenticate('ldapauth', {session: false}, async  function(err, user, info) {
     console.log(req.body);
     if (err) {
       return next(err); // will generate a 500 error
@@ -57,81 +91,68 @@ app.post('/signin', function(req, res, next) {
     }
                            /********** get user Role  ***********/
                            console.log('ok 200');
-    var ref = admin.database().ref("person");
-    var query = ref.orderByChild('uid').equalTo(user.uid);
-    query.once('value').then(function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-         job=childSnapshot.val().jobTitle;
-         departement=childSnapshot.val().departement
-         console.log('dep',departement);
-      });
-      if(job=="RH"){
-        role="RH";
 
-       }
-       else if(job=="MANAGER")
-       {
-         role="MANAGER";
-
-       }
-       else if(job=="COMMERCIALE") {
-         role="COMMERCIALE";
-       }
-       else
-       {
-         role="GUEST";
-       }
-       console.log(role);
-
-  });
+  
                 /**********add additional Claims to the Custom TOKEN*********/
-  let additionalClaims = {
-    departement:departement,
-    role: role,
-    password: user.userPassword
-  };
-                /****************** create custom token***************/
-                console.log(additionalClaims);
-                console.log('user',user);
-
-admin.auth().createCustomToken(user.uid,additionalClaims)
-      .then((customToken) => {
-console.log(customToken);
-
-          /***************Sign up user with the custom token created*************/
-
-firebase.auth().signInWithCustomToken(customToken).then(function(result) {
-  console.log('new user',result.additionalUserInfo.isNewUser);
-  //  new user signed in will be added  to the realtime database
-  console.log(result.user.getIdToken())
-	if(result.additionalUserInfo.isNewUser){
-    var referencePath = '/users';
-    var userReference = admin.database().ref(referencePath); 
-    var newPostRef = userReference.push();
-
-    const newUser={
-    "uid":user.uid,
-    "email":user.mail,
-    "password":user.userPassword,
-    "role":role
-    }
-    console.log('new userr',newUser);
-    newPostRef.set(newUser);
-  }
- 
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-
-  // ...
-});
-
-return res.status(200).send({"token": customToken})
-      })
-      .catch((error)=> {
-        console.log('Error creating custom token:',error)
-      });
+                var query = ref.orderByChild('uid').equalTo(user.uid);
+                query.once('value').then(function(snapshot) {
+                  snapshot.forEach(function(childSnapshot) {
+                     job=childSnapshot.val().jobTitle;
+                     departement=childSnapshot.val().departement
+                     console.log('dep',departement);
+                     console.log('ss',roleUser)  ;
+                     let additionalClaims = {
+                         departement:departement,
+                         role: job,
+                         password: user.userPassword
+                       };
+                                     /****************** create custom token***************/
+                                     console.log('cl',additionalClaims);
+                                     console.log('user',user);
+                     
+                     admin.auth().createCustomToken(user.uid,additionalClaims)
+                           .then((customToken) => {
+                     console.log(customToken);
+                     
+                               /***************Sign up user with the custom token created*************/
+                     
+                               firebase.auth().signInWithCustomToken(customToken).then(function(result) {
+                       console.log('new user',result.additionalUserInfo.isNewUser);
+                       //  new user signed in will be added  to the realtime database
+                       console.log(result.user.getIdToken())
+                       if(result.additionalUserInfo.isNewUser){
+                         var referencePath = '/users';
+                         var userReference = admin.database().ref(referencePath); 
+                         var newPostRef = userReference.push();
+                     
+                         const newUser={
+                         "uid":user.uid,
+                         "email":user.mail,
+                         "password":user.userPassword,
+                         "role":roleUser
+                         }
+                         console.log('new userr',newUser);
+                         newPostRef.set(newUser);
+                       }
+                      
+                     }).catch(function(error) {
+                       // Handle Errors here.
+                       var errorCode = error.code;
+                       var errorMessage = error.message;
+                     
+                       // ...
+                     });
+                     
+                     return res.status(200).send({"token": customToken})
+                           })
+                           .catch((error)=> {
+                             console.log('Error creating custom token:',error)
+                           });
+                  });
+                 
+              }).catch((error)=> {
+                console.log('Error creating custom token:',error)
+              });           
       
   })(req, res, next);
 });

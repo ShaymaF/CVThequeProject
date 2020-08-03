@@ -1,37 +1,159 @@
-<div _ngcontent-cvtheque-c2="" class="kt-todo__top">
-    <div _ngcontent-cvtheque-c2="" class="kt-portlet">
-        <div _ngcontent-cvtheque-c2="" class="kt-todo__header "><h3 _ngcontent-cvtheque-c2="" class="kt-todo__title" style="margin-top: 10px;margin-top: 10px;margin-left: 10px;">Templates</h3>
 
     
-       </div>
-    </div>
-</div>
-<div class="kt-portlet" style="width:100%;">
-    <div class="kt-portlet__head kt-portlet__head--noborder">
-        
-
- <div class="kt-portlet__body" style="width:100%;">
-    
-    <label for="file-upload" class="custom-file-upload btn btn-link" >
+    <!--<label for="file-upload" class="custom-file-upload btn btn-link" >
         <i class="la la-upload "  ></i> Add new 
     </label>
-    <input id="file-upload" type="file" data-dismiss="modal" (change)="onChange($event.target.files)" />
- <a (cdkDragEnded)="dragAbout($event)" id="about"cdkDrag>about</a>
-    <div class="tab">
-        <button class="tablinks" (click)="showView()" >VIEW</button>
-        <button class="tablinks" (click)="showHtml()">HTML</button>
-    </div>
-    <span >{{name}}</span>
-      <div (click)="event($event)"id="view" class="tabcontent">
-       
-
+    <input id="file-upload" type="file" data-dismiss="modal" (change)="onChange($event.target.files)" />-->
+    <div _ngcontent-cvtheque-c2="" class="kt-todo__top">
+        <div _ngcontent-cvtheque-c2="" class="kt-portlet">
+            <div class="kt-portlet__head kt-portlet__head--lg">
+                <div class="kt-portlet__head-label">
+                   <span class="kt-portlet__head-icon">
+                   <i class="kt-font-brand flaticon2-line-chart"></i>
+                   </span>
+                   <h3 class="kt-portlet__head-title">
+                     Add Template
+                   </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                   <div class="kt-portlet__head-wrapper">
+                    &nbsp;
+                    <a (click)="delete()" class="btn btn-clean btn-icon-sm">
+                        <i class="fa fa-times"></i>
+                        Delete
+                        </a>
+                        &nbsp;
+                    <a href="#" class="btn btn-clean btn-icon-sm">
+                        <i class="fa fa-undo"></i>
+                        Rerfresh
+                        </a>    
+                                    &nbsp;
+                      <a (click)="save()" class="btn btn-clean btn-icon-sm">
+                      <i class="fa fa-check"></i>
+                      Save
+                      </a>
+                      &nbsp;
+                      <div class="dropdown dropdown-inline">
+                        <label for="file-upload" class="custom-file-upload btn btn-success" >
+                            <i class="la la-upload "  ></i> Add new 
+                        </label>
+                        <input id="file-upload" type="file" data-dismiss="modal" (change)="onChange($event.target.files)" />
+                    </div>
+                    <!--<label for="file-upload" class="custom-file-upload btn btn-link" >
+        <i class="la la-upload "  ></i> Add new 
+    </label>
+    <input id="file-upload" type="file" data-dismiss="modal" (change)="onChange($event.target.files)" />-->
+                   </div>
+                </div>
+             </div>
+        
+           </div>
+        </div>
+    
+    <div class="kt-portlet" style="width:100%;">
+        <div class="kt-portlet__head kt-portlet__head--noborder">
+            
+    
+     <div class="kt-portlet__body" style="width:100%;">
+        
+      <div class="row">
+        &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Experiences
+       </button>
+       </div>
+        &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cetificats
+       </button>
+       </div>
+        &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Education
+       </button>
+       </div>
+        &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button id="competence"type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Competences
+       </button>
+       <div class="dropdown-menu" aria-labelledby="competence">
+        <a class="dropdown-item" (click)="clickComp()">competence</a>
+        <a class="dropdown-item" (click)="clickCompNote()">note</a>
       </div>
+       </div>
+        &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button (click)="Clickloisirs()" type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Hobbies
+       </button>
+       </div>
+        &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button (click)="Clickdivers()" type="button" class="btn btn-outline-success btn-icon-sm " aria-haspopup="true" aria-expanded="false">
+            Divers
+       </button>
+       </div>
+             &nbsp;
+        <div class="dropdown dropdown-inline">
+    
+          <button id="langue"type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Langue
+       </button>
+       <div class="dropdown-menu" aria-labelledby="langue">
+        <a class="dropdown-item" (click)="clickLangue()">Langue</a>
+        <a class="dropdown-item" (click)="clickLangueNote()">note</a>
+      </div>
+       </div>
+       &nbsp;
+       <div class="dropdown dropdown-inline">
+    
+         <button type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Contacts
+      </button>
+      </div>
+      &nbsp;
+      <div class="dropdown dropdown-inline">
+    
+        <button type="button" class="btn btn-outline-success btn-icon-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Personal Information
+     </button>
+     </div>
+        &nbsp;
+        
+        <div class="dropdown dropdown-inline">
+    
+          <button (click)="Clickabout()"type="button" class="btn btn-outline-success btn-icon-sm "aria-haspopup="true" aria-expanded="false">
+            About
+       </button>
+       </div>
+       &nbsp;
+      </div>
+     <a (cdkDragEnded)="dragAbout($event)" id="about"cdkDrag>about</a>
+        <div class="tab">
+            <button class="tablinks" (click)="showView()" >VIEW</button>
+            <button class="tablinks" (click)="showHtml()">HTML</button>
+        </div>
+          <div (click)="event($event)"id="view" class="tabcontent">
+           
+    
+          </div>
+          
+          <div id="html" class="tabcontent">
       
-      <div id="html" class="tabcontent">
-  
-        <textarea #host ></textarea>
-
-      </div>
-
-</div>
-</div>
+            <textarea #host ></textarea>
+    
+          </div>
+    
+    </div>
+    </div>
+    

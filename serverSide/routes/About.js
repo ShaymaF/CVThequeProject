@@ -5,7 +5,8 @@ var admin = require("firebase-admin");
 var wkhtmltopdf = require('wkhtmltopdf');
 var x11 = require('x11');
 var sleep = require('system-sleep');
- 
+const open = require('open');
+
 const path = require('path');
 
 wkhtmltopdf.command = 'C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe';
@@ -74,13 +75,13 @@ router.get('/all', function (req, res) {
 
 	console.log("HTTP Get Request from about",idToken);
 
-		 admin.auth().verifyIdToken(idToken)
+		/* admin.auth().verifyIdToken(idToken)
 		.then(function(decodedToken) {
 			let uid = decodedToken.uid;
 		console.log('ID Token correctly decoded', uid);
 		//req.user = decodedIdToken;
 		});
-
+*/
 		var referencePath = '/about';
 		var userReference = firebase.database().ref(referencePath);
 	
@@ -130,11 +131,10 @@ router.delete('/delete', function (req, res) {
 });
 
 
-router.get('/test', (req, res) => {
-	res.render('index', {
-	  title: 'Hello, world!',
-	  content: 'How are you?'
-	})
+router.get('/getPDF', (req, res) => {
+	
+	res.sendFile("C://Users//shayma fradi//CvTheque//serverSide//files//news2020.pdf");
+
   })
 router.post('/pdf', (req, res) => {
 	//let id = req.params.id;
@@ -142,7 +142,7 @@ router.post('/pdf', (req, res) => {
 	//let url ='http://localhost:4200/cv'
 //var html =''+JSON.parse(res.body.html);
 	//	res.send(JSON.stringify(req.body.html, null, 2));
-console.log(req.body.html);
+//console.log(req.body.html);
 html= req.body.html;
 	 const name = "file.pdf";
 	 const format = "Letter";
@@ -173,7 +173,7 @@ html,
 	  {
 		 encoding: 'utf-8' ,
 		 pageSize: "A4", // taille du pdf généré; 'A3','A4','A5','Letter', 'Legal', 'Tabloid' 
-		 marginTop:"20px", // marge haut
+		 marginTop:"5px", // marge haut
 		 marginBottom:"40px", // marge bas
 		 marginLeft:"20px",  // marge gauche
 		 marginRight:"20px", // marge droite
@@ -188,15 +188,27 @@ html,
 		 //"--use-xserver":true
 		
 	 })
-	 .pipe(fs.createWriteStream('files/newcv42.pdf'));
-	 //sleep(20*1000); // sleep for 10 seconds
-     res.send()
+	 .pipe(fs.createWriteStream('files/PDFcv2.pdf'));
+	 
+	// res.download(__dirname + 'files/news1.pdf','cv.pdf');
+	//open(__dirname + '/files/news1.pdf');
+	/*res.download(__dirname + '/files/news1.pdf', function (err) {
+		if (err) {
+			console.log("Error");
+			console.log(err);
+		} else {
+			console.log("Success");
+		}
+	});*/
+//	res.download("C://Users//shayma fradi//CvTheque//serverSide//files//news1.pdf");
+	 //sleep(20*1000); // sleep1 for 10 seconds
+     //res.send()
 	 //.pipe(res);
 		//await sleep(1000)
 
 		// res.send();
 		// var file = fs.createReadStream(newcv.pdf);
-      console.log(res);
+     // console.log(res);
 	/*.pipe(fs.createWriteStream('newcv1.pdf'));
 		res.download( "newcv.pdf",function (err) {
 			if (err) {
@@ -207,8 +219,8 @@ html,
 			}
 		});
 	*/	});
-	router.get('/getPdf', function (req, res) {
-		/*var filePath = "files/newcv1.pdf";
+	/*router.get('/getPdf', function (req, res) {
+		var filePath = "files/newcv1.pdf";
 	
 		fs.readFile(__dirname + filePath , function (err,data){
 			res.contentType("application/pdf");
@@ -218,9 +230,9 @@ html,
 	function sleep(ms) {
 		return new Promise((resolve) => {
 		  setTimeout(resolve, ms);
-		*/
+		
 
+	});*/
 
-	});
 	  
 module.exports = router;

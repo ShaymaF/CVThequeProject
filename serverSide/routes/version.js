@@ -99,11 +99,11 @@ router.get('/list/folder', function (req, res) {
 
 });
 //getone version
-router.get('/version/:id', function (req, res) {
+router.get('/version/:id/:IDF', function (req, res) {
 	let id = req.params.id;
-
+let IDF=req.params.IDF;
 	console.log("HTTP Get Request");
-	var userReference = firebase.database().ref("/version/"+id);
+	var userReference = firebase.database().ref("/folders/"+IDF+"/versions/"+id);
 
 	//Attach an asynchronous callback to read the data
 	userReference.on("value", 

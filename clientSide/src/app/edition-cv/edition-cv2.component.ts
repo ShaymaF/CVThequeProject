@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef, Version } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import InlineEditor from '@ckeditor/ckeditor5-build-inline';
 import {  ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { from, Subscription } from 'rxjs';
+import html2canvas from 'html2canvas';
 import { FileUploader } from 'ng2-file-upload';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -33,6 +34,10 @@ import { ImagesService } from '../shared/services/images/images.service';
 import { PersonService } from '../shared/services/person/person.service';
 import { TempService } from '../shared/services/temp/temp.service';
 import { VersionService } from '../shared/services/version/version.service';
+import { About } from '../shared/models/about';
+import { Version, Folder } from '../shared/models/version';
+declare var require: any
+const FileSaver = require('file-saver');
 
 @Component({
   selector: 'app-edition-cv2',
@@ -50,19 +55,19 @@ positionImageInit=null;positionArabeNameInit=null;positionGenderInit=null;
 image:any;
 pdfHtml:any;pdfHtml1:any;
 linkCSS:string;
-abouts:any;html:Pdf;
+abouts:About;html:Pdf;
 exp: Experience;
 contacts:any;
 version: Version;temp: Temp;person:Person;
 langue:Langue;divers:Divers;loisirs:Loisirs;experience:Experience;formation:Formation;certificat:Certificat;competence:Competence;
 index=0;
 toolsArray:Tools[] = []; ProjetArray:Projet[]=[];projet:Projet;
-tool:Tools;listOrga:any[];arrayListOrga=[];
-listExperiences: any[];listProjet: Projet[];listLangues: Langue[];listLoisirs: Loisirs[];listDivers: Divers[];listFormation: Formation[];
-listCertif: Certificat[];listComp: Competence[];listContact: Contact[];listPerson: Person[];
+tool:Tools;listOrga:any[];arrayListOrga=[];listAbout: About[];
+listExperiences: any[];listProjet: Projet[];listFolders:Folder[];listLangues: Langue[];listLoisirs: Loisirs[];listDivers: Divers[];listFormation: Formation[];
+listCertif: Certificat[];listComp: Competence[];listContact: Contact[];listPerson: Person;
 style:any;currentStyle:any;
-InitAbout=null;InitLangue=[];InitPerson=[];InitContact=[];InitDivers=[];InitLoisirs=[];InitExperience=[];InitFormation=[];InitCertificat=[];InitCompetence=[];
-arrayListExp :Experience[] = [];arrayListProjet=[];arrayListPerson=[];arrayListLang=[];arrayListDivers=[];arrayListLoisirs=[];arrayListFormation=[];
+InitAbout=[];InitLangue=[];InitPerson=[];InitContact=[];InitDivers=[];InitLoisirs=[];InitExperience=[];InitFormation=[];InitCertificat=[];InitCompetence=[];
+arrayListExp :Experience[] = [];arrayListFolder:Folder[];arrayListProjet=[];arrayListPerson="";arrayListLang=[];arrayListDivers=[];arrayListLoisirs=[];arrayListFormation=[];
 arrayListCertif=[]; arrayListComp=[];arrayListCantact=[];
 text:any;
 file:any;  
@@ -93,7 +98,7 @@ formations:any;
 HtmlContent: any;
 ColorVersion:ChartColors;AboutVersion:any;LangueVersion:Langue[];LoisirsVersion:Loisirs[];
 DiversVersion:Divers[];ExperienceVersion:Experience[];FormationVersion:Formation[];
-CertificatVersion:Certificat[];CompetenceVersion:Competence[];
+CertificatVersion:Certificat[];CompetenceVersion:Competence[];PersonVersion:Person;
 public backgroundColor: string;public fontColor: string;public linkColor: string;
 url:any;
 urlExist: boolean=false;
@@ -139,20 +144,7 @@ this.route.queryParams.subscribe(params => {
   this.template=params.url
 });
 
-    this.chartColor=[
-      
-      {FirstColor: '#008b8b', SecondColor: '#017777'},
-      {FirstColor: '#f0ca68', SecondColor: '#b88709'},
-      {FirstColor: '#62382f', SecondColor: '#4d261e'},
-      {FirstColor: '#c97545', SecondColor: '#8c451c'},
-      {FirstColor: '#c1800b', SecondColor: '#805406'},
-      
-  ];
-
- 
-  
-
-  
+   
   //use selected template
   if(this.template==null){
     this.template=localStorage.getItem("template");
@@ -177,8 +169,23 @@ this.route.queryParams.subscribe(params => {
    this.getAllFormation();
    this.getAllCertificats();
    this.getAllCompetence();
+   this.chartColor=[
+      
+    {FirstColor: '#008b8b', SecondColor: '#017777'},
+    {FirstColor: '#f0ca68', SecondColor: '#b88709'},
+    {FirstColor: '#62382f', SecondColor: '#4d261e'},
+    {FirstColor: '#c97545', SecondColor: '#8c451c'},
+    {FirstColor: '#c1800b', SecondColor: '#805406'},
+    
+];
+
+
+
+
+
    this.getAllProjects();
    this.getAllOrganisation();
+   this.getFolders();
     //initial position of draged elements
    this.positionNameInit=document.getElementById("name").style.transform;
    this.positionArabeNameInit=document.getElementById("arabicName").style.transform;
@@ -215,9 +222,10 @@ this.route.queryParams.subscribe(params => {
   }
   //return person informations
   getPerson()  {
-    this.personService.getOnePerson(localStorage.getItem("collabId")).subscribe((data: Person[]) => {
+    this.personService.getOnePerson(localStorage.getItem("collabId")).subscribe((data: Person) => {
       this.listPerson = data;
-      this.arrayListPerson = data;
+      //this.arrayListPerson = data;
+      this.PersonVersion=data;
   console.log('personn',this.listPerson);
   //console.log(this.profil=this.listPerson[8]);
 
@@ -317,11 +325,18 @@ dragProjet($event: CdkDragEnd) {
     //return person about section
 
   getAllAbouts() {
-    this.aboutService.getAbout(this.profil).subscribe(data => {
-   this.InitAbout=data;
-   this.dataCurrentArray.abouts=this.InitAbout;
+    this.aboutService.getAbout(this.profil).subscribe((data: About[])=>{
+   this.listAbout=data;
+   for(let key in this.listAbout){
+    if(this.listAbout.hasOwnProperty(key)){
+    this.InitAbout.push(this.listAbout[key]);
+console.log('aboutt',this.InitAbout[0])
+   }
+   
+   }
+   this.AboutVersion=this.InitAbout;
  
-  });
+     });  
   }
     //return loisirs informations
 
@@ -484,19 +499,37 @@ dragProjet($event: CdkDragEnd) {
 
   //export to pdf 
 public pdf(){
-  this.pdfHtml1=document.getElementById("html").innerHTML;
+  var tempID;
+  if(this.template=="temp2"){tempID="cv1";}
+    else if(this.template=="temp1"){tempID="cv2";}
+  this.pdfHtml1=document.getElementById(tempID).innerHTML;
  this.linkCSS=' <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"><link href="https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/temp2.css?alt=media&token=dae2afc6-7b02-49ac-94a4-7de1885c179b" rel="stylesheet" type="text/css" />';
 //this.linkCSS='<link href="https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/styleCv1.css?alt=media&token=120c3990-ec8c-4583-9efa-20a6444acda1" rel="stylesheet" type="text/css" />';
 
 this.pdfHtml=this.linkCSS+''+ this.pdfHtml1;
-  console.log(this.pdfHtml);
+  //console.log(this.pdfHtml);
 
   this.html ={"html":this.pdfHtml};
- 
-this.aboutService.download(this.html).subscribe();
-    
-}
 
+ 
+
+this.aboutService.download(this.html).subscribe();
+this.load();
+/*this.aboutService.getPDF().subscribe(data => {
+ console.log('data',data);
+ });*/
+//window.open('localhost:8080/about/getPDF');
+//window.URL.createObjectURL(res)
+}
+isLoading = false;
+
+  load() : void {
+    this.isLoading = true;
+    const pdfUrl = 'localhost:8080/about/getPDF';
+    const pdfName = 'cv';
+    setTimeout( () => {this.isLoading = false;FileSaver.saveAs(pdfUrl, pdfName)}, 1500*10 )
+
+  }
 changePersonalInfo(e,id){
 
   if(e.target.checked){
@@ -709,6 +742,84 @@ ShortDesc(){
   this.Short_Desc=true;
   this.Long_Desc=false;
 }
+getFolders() {
+  this.arrayListFolder=[];
+  this.serviceVersion.getFolders().subscribe((data: Folder[]) => {
+    this.listFolders = data;
+for(let key in this.listFolders){
+ if(this.listFolders.hasOwnProperty(key)){
+  this.listFolders[key].FID=key;
+
+  this.arrayListFolder.push(this.listFolders[key]);
+   //this.listFolders.push(this.listFolders[key]);
+}  
+}
+console.log('folder list',this.arrayListFolder);
+
+});
+}
+saveVersion(raison,statut,folder){
+  console.log(folder);
+    var capturedImage;var tempID="";
+    this.template=localStorage.getItem("template");
+    if(this.template=="temp2"){tempID="cv1";}
+    else if(this.template=="temp1"){tempID="cv2";}
+    console.log('canvas temp id',tempID)
+    html2canvas(document.getElementById(tempID)).then(canvas => {
+       capturedImage = canvas.toDataURL();
+          canvas.toBlob(function (blob) {
+               var reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+          let base64data = reader.result;
+          
+        }
+  
+      });
+      var today = new Date();
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' '+time;
+      this.version={
+          FID:folder,
+          temp:tempID,
+           author:'Admin',
+          reason:raison,
+          statut:statut,
+          dateVersion: dateTime ,
+          concatVersion: this.InitContact,
+          aboutVersion: this.AboutVersion,
+          personVersion:this.PersonVersion,
+          langueVersion: this.InitLangue,
+          diverVersion: this.InitDivers,
+          loisirVersion: this.InitLoisirs,
+          experienceVersion: this.arrayListExp,
+          formationVersion: this.InitFormation,
+          certfificatVersion: this.InitCertificat ,
+          competenceVersion: this.InitCompetence,
+          image: capturedImage,
+          FirstColor: this.dataCurrentArray.FirstColor,
+          SecondColor:this.dataCurrentArray.SecondColor,
+          profilePicture:this.localUrl,
+          positionName:this.positionNameInit,positionEmail:this.positionEmailInit,positionTel:this.positionTelInit,
+          positionAdress:this.positionAdressInit, positionLinkedin:this.positionLinkedinInit, positionAbout:this.positionAboutInit,
+          positionFormation:this.positionFormationInit,positionCetificat:this.positionCertificatInit,positionCompetence:this.positionCompetenceInit,
+          positionLangue:this.positionLangueInit,positionLoisirs:this.positionLoisirsInit,positionDivers:this.positionDiversInit,
+          positionExperience:this.positionExperienceInit,positionImage:this.positionImageInit,positionArabeName:this.positionNameInit,
+          positionGender:this.positionGenderInit 
+    
+    
+      }
+    
+    
+      this.serviceVersion.addVersion(this.version).subscribe();
+      console.log('version',this.version);
+    
+    });
+  
+   
+  
+  }
 
 //save editing traces
 doSomething() {
@@ -785,12 +896,13 @@ console.log('undo',this.dataCurrentArray)
 
   this.FirstColorInit = this.dataCurrentArray.FirstColor;
   this.SecondColorInit= this.dataCurrentArray.SecondColor;
-  this.InitAbout=this.dataCurrentArray.abouts;
   console.log('current langue',this.dataCurrentArray.langues);
   this.InitLangue=[];this.InitLangue=this.dataCurrentArray.langues;
   console.log('init langue',this.InitLangue);
 
   this.InitLoisirs=[];this.InitLoisirs=this.dataCurrentArray.loisirs;
+  this.InitAbout=[];this.InitAbout=this.dataCurrentArray.abouts;
+
   this.InitDivers=[];this.InitDivers=this.dataCurrentArray.divers;
   this.InitExperience=[];this.InitExperience=this.dataCurrentArray.experiences;
   this.InitFormation=[];this.InitFormation=this.dataCurrentArray.formations;
@@ -837,7 +949,7 @@ redo(): void {
   console.log('redo',this.InitCompetence)
   this.FirstColorInit = this.dataCurrentArray.FirstColor;
   this.SecondColorInit= this.dataCurrentArray.SecondColor;
-  this.InitAbout=this.dataCurrentArray.abouts;
+  this.InitAbout=[];this.InitAbout=this.dataCurrentArray.abouts;
   this.InitLangue=[];this.InitLangue=this.dataCurrentArray.langues;
   this.InitLoisirs=[];this.InitLoisirs=this.dataCurrentArray.loisirs;
   this.InitDivers=[];this.InitDivers=this.dataCurrentArray.divers;

@@ -22,7 +22,7 @@ import { TokenStorageService } from 'src/app/shared/services/token-storage/token
 import { TempService } from 'src/app/shared/services/temp/temp.service';
 
 
-
+var data;
 @Component({
   selector: 'app-list-template',
   templateUrl: './list-template.component.html',
@@ -30,7 +30,6 @@ import { TempService } from 'src/app/shared/services/temp/temp.service';
 })
 export class ListTemplateComponent implements OnInit {
   opts:any;
-
   //@ViewChild('host',opts) hostComponent;
   @ViewChild('host',{ static: true }) hostComponent;
   elt:Element=null;
@@ -42,15 +41,7 @@ about=`<div class="content"(cdkDragEnded)="dragAbout($event)" cdkDrag id="about"
 
 <div class="Apropos">
        
-       <ckeditor [editor]="Editor" data= '<p id ="id1">Développeur front end, j’ai travaillé sur des sujets passionnants et challengeant autour des technologies Front end dans les domaine de bancaire, service RH et Télécommunication et les applicationmobile d’entreprise.
-   
-    Cela fait 5 ans que j’interviens sur des projets en tant que Solution Builder ce qui m’a permis d’acquérir de
-        bonnes compétences dans la conception, l’architecture, le développement en équipe, ainsi que savoir être
-        à l’écoute du client durant les différentes étape des projets, s’appuyant souvent sur la méthodologie Agile.
-  
-     Aujourd’hui mon rôle de lead développeur me permet de continuer de m’épanouir au travers de
-      nouveasux défis humaissns et technique.
-   '></ckeditor>
+       <ckeditor [editor]="Editor" data= 'hello'</ckeditor>
    
 </div>
 </div>`;
@@ -60,6 +51,9 @@ about=`<div class="content"(cdkDragEnded)="dragAbout($event)" cdkDrag id="about"
    }
 
   ngOnInit() {
+    sessionStorage.setItem("data","")
+
+  data="";
     document.getElementById("html").hidden=true;
     document.getElementById("view").hidden=false;
 
@@ -102,6 +96,49 @@ about=`<div class="content"(cdkDragEnded)="dragAbout($event)" cdkDrag id="about"
     document.getElementById("view").hidden=false;
 
   }
+  Clickabout(){
+    data=`<ckeditor [editor]="Editor" [(ngModel)="InitAbout"></ckeditor>`
+
+  }
+  clickComp(){
+    data=`<div *ngFor="let cp of InitCompetence">
+
+       <a>{{cp.competence}}</a>`;
+  }
+  clickCompNote(){
+    data= `   <a>{{cp.note}}</a>
+       </div>`;
+       
+  }
+
+  clickLangue(){
+    data=` <div *ngFor="let c of InitLangue">
+                    
+
+        <a>{{c.langue}}</a>`;
+  }
+  clickLangueNote(){
+    data= ` <a>{{c.note}}</a>
+       </div>`;
+       
+  }
+delete(){
+  data='';
+}
+  Clickdivers(){
+    data= ` <div *ngFor="let f of InitDivers">
+    <ckeditor [editor]="Editor" [(ngModel)]="f.desc"></ckeditor>
+    
+    </div>  ` 
+  }
+  Clickloisirs(){
+    data= ` <div *ngFor="let l of InitLoisirs">
+
+    <a>{{l.desc}}</a>
+      
+    </div>    ` 
+
+  }
   public onChange(fileList: FileList): void {
     let file = fileList[0];
     let fileReader: FileReader = new FileReader();
@@ -111,31 +148,30 @@ about=`<div class="content"(cdkDragEnded)="dragAbout($event)" cdkDrag id="about"
    // console.log("self.fileContent",self.fileContent);
     document.getElementById("view").innerHTML=self.fileContent;
     self.codeEditor.setValue(self.fileContent);
+    self.template={html:self.fileContent,TID:"1"}
 
     }
     fileReader.readAsText(file);
     self.code=self.fileContent;
-
-    //this.template={html:self.fileContent,TID:""}
-    //this.tempService.addTemp(this.template);
-    
   }
   onCodeChanged(value) {
     this.code=value;
   }
+  save(){
+    console.log('template',this.template);
+    this.tempService.addTemp(this.template).subscribe();
+  }
   event(event){
     //his.code=document
-    document.getElementById("code");
+             document.getElementById('view').style.cursor='copy';
+            document.getElementById("code");
     console.log('event',event);
     document.onclick=e=>{
       console.log(e.target);
       console.log(event.target.innerText);
      // event.target.outerHTML=+'<a>{{name}}</a>';
-      event.target.innerHTML='<a>{{name}}</a>';
-         document.getElementById('view').style.cursor='copy';
-     // console.log('1',document.getElementById('view').innerHTML)
-      //console.log('2',document.getElementById('view').outerHTML)
-      //console.log('3',document.getElementById('view'))
+      event.target.innerHTML=data;
+    
 
       
 

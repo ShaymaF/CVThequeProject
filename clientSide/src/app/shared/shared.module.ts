@@ -35,6 +35,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 import { AuthGuardService } from './services/_guards/auth-guard.service';
+import { TempService } from './services/temp/temp.service';
+import { VersionService } from './services/version/version.service';
+
 @NgModule({
   declarations: [
     FooterComponent,
@@ -44,7 +47,7 @@ import { AuthGuardService } from './services/_guards/auth-guard.service';
     SafeHtmlPipe,
     SearchPipe,
     DemoNumberPipe,
-    TranslatePipe,
+    TranslatePipe
   ],
   imports: [
      CommonModule,
@@ -68,12 +71,12 @@ import { AuthGuardService } from './services/_guards/auth-guard.service';
   ],
   exports:[
     SafeHtmlPipe,
-    SearchPipe,
     DemoNumberPipe,
     TranslatePipe,
     Ng2SearchPipeModule,
     CKEditorModule,
-    DragDropModule
+    DragDropModule,
+    SearchPipe
   ]
 })
 export class SharedModule {
@@ -91,11 +94,13 @@ export class SharedModule {
         DiversService,
         ExperienceService,
         LoisirService,
-        PersonService,
+        PersonService,Ng2SearchPipeModule,
         TokenStorageService,
         { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
         JwtHelperService,
         AuthGuardService,
+        TempService,
+        VersionService,
        authInterceptorProviders ]
     };
   }

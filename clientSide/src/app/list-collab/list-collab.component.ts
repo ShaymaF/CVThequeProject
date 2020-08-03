@@ -20,9 +20,9 @@ import { TempService } from '../shared/services/temp/temp.service';
   styleUrls: ['./list-collab.component.css']
 })
 export class ListCollabComponent implements OnInit {
-  listComp: Competence[];arrayListPerson=[];listPerson: Person[];
-  searchText;searchText1;
-role;departement;
+  searchText;searchDep;searchAge;searchExp;searchPoste;searchComp;
+  listComp: Competence[];arrayListPerson=[];listPerson: Person[];listTemp:Template[];
+  searchDepartement;role;departement;arrayListTemp=[];
 localUrl;selectedImage;imageUrl;
 template:Template;
   constructor(private personService : PersonService,private authService: AuthService, private tokenStorage: TokenStorageService,
@@ -32,6 +32,7 @@ template:Template;
    }
 
   ngOnInit() {
+    this. getAllTemp();
     //get role from decoded token
     var decoded = jwt_decode(this.tokenStorage.getToken());
     this.role=decoded.claims.role;
@@ -67,6 +68,21 @@ template:Template;
     //this.listComp[key].id=key;
     this.arrayListPerson.push(this.listPerson[key]);
   //console.log('tool list',this.InitCompetence.tools);
+  
+      
+  
+  }
+  }
+    });  
+  }
+  getAllTemp() {
+    this.tempService.getAll().subscribe((data: Template[]) => {
+      this.listTemp = data;
+
+  for(let key in this.listTemp){
+   if(this.listTemp.hasOwnProperty(key)){
+    this.listTemp[key].TID=key;
+    this.arrayListTemp.push(this.listTemp[key]);
   
       
   

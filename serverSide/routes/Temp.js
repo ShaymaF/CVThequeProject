@@ -54,8 +54,9 @@ router.get('/list', function (req, res) {
 			 });
 
 });
+
 //getone version
-router.get('/temp/:id', function (req, res) {
+router.get('/getOne/:id', function (req, res) {
 	let id = req.params.id;
 
 	console.log("HTTP Get Request");
@@ -73,6 +74,24 @@ router.get('/temp/:id', function (req, res) {
 					res.send("The read failed: " + errorObject.code);
 			 });
 
+});
+router.get('/delete/:id', function (req, res) {
+
+	console.log("HTTP GET Request");
+	let id = req.params.id;
+	console.log(id);
+
+	var referencePath = '/temp/'+id;
+	var userReference = firebase.database().ref(referencePath);
+	userReference.remove( 
+				 function(error) {
+					if (error) {
+						res.send("Data could not be deleted." + error);
+					} 
+					else {
+						res.send("Data deleted successfully.");
+					}
+			    });
 });
 //Update existing instance
 router.post('/update', function (req, res) {

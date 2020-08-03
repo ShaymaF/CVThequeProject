@@ -480,41 +480,53 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enregistrer le travail</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Save Work</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
-                    <form >
+                <form >
 
-                    <div class="">
-                        <div class="example-form col-12" style="padding-right: 30px;min-width: 100%">
+                <div class="">
+                    <div class="example-form col-12" style="padding-right: 30px;min-width: 100%">
 
-                            <div class="form-group">
-                                <mat-label>Raison</mat-label>
-                                <textarea  #raison  placeholder="Ecrire la raison pour laquelle vous faites ce CV..." formControlName="langue" class="form-control"></textarea>
-                                
-                                </div>
-                        </div>
-                        <div class="example-form col-12" style="min-width: 100%;">
-                            <div class="form-group">
-                                <mat-label>Statut</mat-label>
-                                <select #statut class="form-control" id="exampleSelectd">
-                                    <option>En cours</option>
-                                    <option>Suspendu</option>
-                                    <option>Terminé</option>
-                                    <option>Annulé</option>
-                                </select>
-                                <mat-error  *ngIf="isSubmitted && formLangueControls.note.errors">
-                                    {{ titleAlert }}
-                                </mat-error>
+                        <div class="form-group">
+                            <mat-label>Raison</mat-label>
+                            <textarea  #raison  placeholder="Ecrire la raison pour laquelle vous faites ce CV..." formControlName="langue" class="form-control"></textarea>
+                            
                             </div>
+                    </div>
+                    <div class="example-form col-12" style="min-width: 100%;">
+                        <div class="form-group">
+                            <mat-label>Statut</mat-label>
+                            <select #statut class="form-control" id="exampleSelectd">
+                                <option>En cours</option>
+                                <option>Suspendu</option>
+                                <option>Terminé</option>
+                                <option>Annulé</option>
+                            </select>
+                            <mat-error  *ngIf="isSubmitted && formLangueControls.note.errors">
+                                {{ titleAlert }}
+                            </mat-error>
                         </div>
                     </div>
+                    <div class="example-form col-12" style="min-width: 100%;">
+                        <div class="form-group">
+                            <mat-label>Folder</mat-label> 
+                          <!--  <div *ngFor="let listFolder of arrayListFolder">
+                                {{listFolder.name}}
+                           </div>      -->    
+
+                          <select class="form-control" #folder>
+                                    <option  class="form-control" *ngFor="let listFolder of arrayListFolder" [value]="listFolder.FID"> {{listFolder.name}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                </div>
                
-            
-            <div class="modal-footer ">
-                    <button type="submit" class="btn btn-primary"  (click)="saveVersion(raison.value,statut.value)"[routerLink]="['/home/version-list']" data-dismiss="modal">Sauvegarder</button>
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-primary"  (click)="saveVersion(raison.value,statut.value,folder.value)"[routerLink]="['/home/version-list']" data-dismiss="modal">Sauvegarder</button>
                     <button  class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="onReset()">Fermer</button>
            
             </div>
@@ -993,11 +1005,15 @@
                         </div>        
                         <div class="kt-subheader__toolbar"style="width: 80%;">
                             <div  id="google_translate_element"></div>  
-
+                            <div class="btn-group btn-group-sm " role="group"  >
+                                <button type="button" class="btn btn-secondary"(click)="LongDesc()">Long</button>
+                                <button type="button" class="btn btn-secondary"(click)="ShortDesc()">Short</button>
+                             </div>
                             <button type="button" class="btn btn-secondary btn-icon" (click)="undo()" [disabled]="!showUndo"><i style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"class="fa fa-redo"></i></button>
                                 <button type="button" class="btn btn-secondary btn-icon" (click)="redo()" [disabled]="!showRedo"><i class="fa fa-redo"></i></button>
                                 <button (click)="inlineStyle()"type="button" class="btn btn-secondary btn-icon" ><i class="fa fa-eye"></i></button>
-           
+                                <loading *ngIf="isLoading">{{ isLoading }}</loading>
+
                                  <button (click)="pdf()"  class="btn btn-secondary btn-icon" ><i class="fa fa-download"></i></button>
 
                                 
@@ -1011,18 +1027,7 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <ul class="kt-nav">
-                                        <li class="kt-nav__item">
-                                            <a href="#" class="kt-nav__link">
-                                                <i class="kt-nav__link-icon flaticon2-writing"></i>
-                                                <span class="kt-nav__link-text">Save &amp; continue</span>
-                                            </a>
-                                        </li>
-                                        <li class="kt-nav__item">
-                                            <a href="#" class="kt-nav__link">
-                                                <i class="kt-nav__link-icon flaticon2-medical-records"></i>
-                                                <span class="kt-nav__link-text">Save &amp; add new</span>
-                                            </a>
-                                        </li>
+                                      
                                         <li class="kt-nav__item">
                                             <a  class="kt-nav__link">
                                                 <i class="kt-nav__link-icon flaticon2-hourglass-1"></i>
@@ -1047,11 +1052,11 @@
       
            <div class="cv" id="html" style="padding-bottom:10px;">
            
-               <div class="row">
+               <div class="row" style="display: -webkit-flex;">
                    
         <div class="header_logo col-6  "   (cdkDragEnded)="dragName($event)" id="name"cdkDrag> 
 
-            <div class="name "contenteditable="true"><a [(ngModel)]="listPerson.firstName">{{listPerson.firstName}}</a> {{listPerson.lastName}}
+            <div class="name "><a >{{listPerson.firstName}}</a> {{listPerson.lastName}}
             </div>    
             <div class="post"contenteditable="true">{{listPerson.jobTitle}}</div> 
            
@@ -1073,7 +1078,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="contact row col-12" id="contact" >
+        <div class="contact row col-12" style="display: -webkit-flex;"id="contact" >
             <br>             
             <a (cdkDragEnded)="dragAdresse($event)" id="adresse" class="contact-a row col-3"cdkDrag><a></a>{{InitContact[index].adresse}}<br> {{InitContact[index].ville}} {{InitContact[index].code}} - {{InitContact[index].pays}}<span class="icon-s " cdkDrag><i class="fa fa-location-arrow"></i></span></a>
             <a (cdkDragEnded)="dragTel($event)"  id="tel"class="contact-a row col-3"cdkDrag>{{InitContact[index].telPerso}} <br> {{InitContact[index].telPro}}<span class="icon-s" cdkDrag><i class="fa fa-mobile-alt"></i></span></a>
@@ -1087,16 +1092,9 @@
             <div class="title">A PROPOS</div>
             <div class="Apropos">
                    
-                   <ckeditor [editor]="Editor" data= '<p id ="id1">Développeur front end, j’ai travaillé sur des sujets passionnants et challengeant autour des technologies Front end dans les domaine de bancaire, service RH et Télécommunication et les applicationmobile d’entreprise.
-               
-                Cela fait 5 ans que j’interviens sur des projets en tant que Solution Builder ce qui m’a permis d’acquérir de
-                    bonnes compétences dans la conception, l’architecture, le développement en équipe, ainsi que savoir être
-                    à l’écoute du client durant les différentes étape des projets, s’appuyant souvent sur la méthodologie Agile.
-              
-                 Aujourd’hui mon rôle de lead développeur me permet de continuer de m’épanouir au travers de
-                  nouveasux défis humaissns et technique.
-               '></ckeditor>
-               
+                <ckeditor id="aboutId"  [editor]="Editor" [(ngModel)]="InitAbout[0].desc" (change)="onChange($event)" >
+                                                                        
+                </ckeditor>               
             </div>
         </div>
         <div class="content"cdkDrag (cdkDragEnded)="dragFormation($event)" id="formation">
@@ -1104,7 +1102,7 @@
              <div class="title">FORMATIONS</div>
 
              <div *ngFor="let f of InitFormation">
-             <div class="Apropos row" id="id2">
+             <div class="Apropos row" style="display: -webkit-flex;"id="id2">
              <div class="date col-2">{{f.start_date}}-{{f.end_date}}</div>
              <div class="diplome col-10">{{f.certification}}</div>
              </div>
@@ -1116,7 +1114,7 @@
              <div class="title">CERTIFICATS</div>
 
              <div *ngFor="let f of InitCertificat">
-             <div class="Apropos row" id="id2">
+             <div class="Apropos row" style="display: -webkit-flex;" id="id2">
              <div class="date col-2" >{{f.start_date}}-{{f.end_date}}</div>
              <div class="diplome col-10">{{f.certification}} - {{f.centre}} - {{f.diplome_date}}</div>
              </div>
@@ -1128,9 +1126,9 @@
              <div class="title">COMPÉTENCES CLÉS</div>
              <div *ngFor="let cp of InitCompetence">
 
-             <div class="Apropos row ">
+             <div class="Apropos row "style="display: -webkit-flex;">
                 <div class="dateProject  col-6">{{cp.competence}}</div>
-                <div class="col-3 competence" > 
+                <div class="col-3 competence" style="display:-webkit-inline-box;" > 
                     <div class="full"></div>
                     <div class="full"></div>
                     <div class="full"></div>
@@ -1150,9 +1148,9 @@
          </div>
          <br><br>
          <div class="content " cdkDrag>
-             <div class="row col-12">
+             <div class="row col-12" style="display: -webkit-inline-box;">
              <div class="col-6 "cdkDrag (cdkDragEnded)="dragLangue($event)" id="langue">
-                <div class="separator col-8"></div> 
+                <div class="separator col-4"></div> 
                 <div class="title col-2 LabelLangue" >LANGUES</div>
                 <div class="row emptyRow"></div>
                 <div *ngFor="let c of InitLangue">
@@ -1174,7 +1172,7 @@
                 </div>
              </div>
              <div class="col-6"cdkDrag (cdkDragEnded)="dragLoisir($event)" id="loisir">
-                <div class="separator col-8"></div> 
+                <div class="separator col-4"></div> 
                 <div class="title LabelLangue col-2" >LOISIR</div>
                 <div class="emptyRow"></div>
                 <div class="Apropos row dipoloisir" >
@@ -1235,7 +1233,10 @@
               </div>
             <div class="row  col-12">
                 <div class="diplome ">
-            <a>{{p.ProjetShort}}</a>
+            
+            <span *ngIf="Short_Desc" class="jobline" id="FIELD_JDES"  ><ckeditor [editor]="Editor" data="<a>{{p.ProjetShort}}</a>"></ckeditor></span>
+       <span *ngIf="Long_Desc" class="jobline" id="FIELD_JDES"><ckeditor [editor]="Editor" data="<a>{{p.ProjetDesc}}</a>"></ckeditor></span>
+                                
             </div> 
             </div><br>
 
@@ -1535,10 +1536,7 @@
                                                     <div class="sectiontitle" id="SECTIONNAME_EXPR" [ngStyle]="{'color': SecondColorInit}">
             
                                                       <span class="rename-section text-rename">  Work History  </span>
-                                                        <div class="btn-group btn-group-sm mb-2" role="group" style="float: right;height: 1.95rem;" >
-                                                            <button type="button" class="btn btn-secondary"(click)="LongDesc()">Long</button>
-                                                            <button type="button" class="btn btn-secondary"(click)="ShortDesc()">Short</button>
-                                                         </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="">

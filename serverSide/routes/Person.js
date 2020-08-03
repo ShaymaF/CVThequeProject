@@ -1,10 +1,12 @@
 
 var express = require('express');
-var firebase = require('firebase');
-
+//var firebase = require('firebase');
+var firebase=require('../Firebase/firebase-admin-config').getConnectionFirebase();
+ firebase = require('firebase');
 var router = express();
-//var admin = require("firebase-admin");
+var admin = require("firebase-admin");
 
+var ref = firebase.database().ref("person");
 
 var faker = require('faker/locale/fr');
 
@@ -82,7 +84,6 @@ router.delete('/delete', function (req, res) {
 
 router.get('/findOne/:uid', function (req, res) {
 let userId=req.params.uid;
-var ref = firebase.database().ref("person");
 var query = ref.orderByChild('uid').equalTo(userId);
 query.once('value').then(function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
@@ -96,7 +97,6 @@ query.once('value').then(function(snapshot) {
 });
 router.get('/findByDep/:departement', function (req, res) {
 	let departement=req.params.departement;
-	var ref = firebase.database().ref("person");
 	var query = ref.orderByChild('departement').equalTo(departement);
 	query.once('value').then(function(snapshot) {
 	  snapshot.forEach(function(childSnapshot) {

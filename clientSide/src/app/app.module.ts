@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,8 @@ import { EditionCv2Component } from './edition-cv/edition-cv2.component';
 import { ListCollabComponent } from './list-collab/list-collab.component';
 import { VersionsListComponent } from './versions-cv/versions-list.component';
 import { VersionEditComponent } from './versions-cv/version-edit/version-edit.component';
+import { LoadingComponent } from './spinner/loading'
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -31,15 +35,17 @@ import { VersionEditComponent } from './versions-cv/version-edit/version-edit.co
     VersionEditComponent,
     
     EditionCv2Component,
-    ShowVersionComponent
+    ShowVersionComponent,
+    LoadingComponent
     
   ],
   imports: [
-    SharedModule.forRoot(),
+    BrowserModule.withServerTransition({ appId: 'CvTheque' }),
+    FormsModule,ReactiveFormsModule,
+    SharedModule.forRoot(),Ng2SearchPipeModule,
     ProfilModule,
     MappingModule,
     AuthModule,
-    BrowserModule.withServerTransition({ appId: 'CvTheque' }),
     AppRoutingModule,
     HttpClientModule,
     CommonModule,

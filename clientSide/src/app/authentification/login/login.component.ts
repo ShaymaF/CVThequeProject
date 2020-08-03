@@ -33,14 +33,16 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         //save token in session storage
         this.tokenStorage.saveToken(data.token);
-        //recupere user roles from saved token
-        this.roles = this.tokenStorage.getUser().roles;
-        //navigate to the first page
-        this.router.navigateByUrl('home/collab-list');
-       //decode token and save user in session storage
+
+        //decode token and save user in session storage
         var decoded = jwt_decode(this.tokenStorage.getToken());
          this.tokenStorage.saveUser(decoded.uid);
         console.log(decoded);   
+       
+        //recupere user roles from saved token
+        this.roles=this.tokenStorage.getUser().roles;
+        //navigate to the first page
+        this.router.navigateByUrl('home/collab-list');
        
         console.log('role',this.roles);
 

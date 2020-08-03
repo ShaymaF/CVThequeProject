@@ -42,7 +42,7 @@
 
                                     <!--begin::  Version Modal-->
  <div class="modal fade" id="Version_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg" role="document" style="min-width: fit-content;">
         <div class="modal-content">
           
             <div class="modal-body">
@@ -94,7 +94,6 @@
                                        
                                                     <a class="btn btn-sm btn-icon btn-outline-brand btn-pill btn-icon-md"style="margin-left: 1%;"data-toggle="modal" data-target="#Version_Model"(click)="sendImage(listVersion.image)"><i class="la la-eye"></i></a>
                                                     <a class="btn btn-sm btn-icon btn-outline-success btn-pill btn-icon-md"style="margin-left: 1%;" [routerLink]="['/home/version-edit', listVersion.id]"><i class="la la-pencil-square-o"></i></a>
-                                                    <a class="btn btn-sm btn-icon btn-outline-warning btn-pill btn-icon-md"style="margin-left: 1%;"><i class="la la-download"></i></a>
                                                     <a class="btn btn-sm btn-icon btn-outline-danger btn-pill btn-icon-md"style="margin-left: 1%;"(click)="DeleteVersion(listVersion.id)"><i class="la la-trash"></i></a>
                                                     
                             

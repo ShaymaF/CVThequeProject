@@ -1,1117 +1,3 @@
-
-<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-    <div class="kt-container  kt-container--fluid ">
-        <div class="kt-subheader__main">
-            
-            <h3 class="kt-subheader__title">
-                                    Modifier Version                           
-            </h3>
-
-            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
-            
-            <div class="kt-subheader__group" id="kt_subheader_search">
-                <span class="kt-subheader__desc" id="kt_subheader_total">
-                                                                                </span>
-                
-                            </div>
-
-                    </div>        
-                    <div class="kt-subheader__toolbar"style="width: 50%;">
-                        <button type="button" class="btn btn-secondary btn-icon" (click)="undo()" [disabled]="!showUndo"><i style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"class="fa fa-redo"></i></button>
-                            <button type="button" class="btn btn-secondary btn-icon" (click)="redo()" [disabled]="!showRedo"><i class="fa fa-redo"></i></button>
-                            <button (click)="sendImage()"type="button" class="btn btn-secondary btn-icon" data-toggle="modal" data-target="#Version_Model"><i class="fa fa-eye"></i></button>
-
-                            <a [routerLink]="['/home/collab-list']" class="btn btn-default btn-bold"style="width: 10%; justify-content: center;">
-                            Back </a>
-                            
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-brand btn-bold">
-                                Submit </button>
-                            <button type="button" class="btn btn-brand btn-bold dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <ul class="kt-nav">
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-writing"></i>
-                                            <span class="kt-nav__link-text">Save &amp; continue</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a href="#" class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-medical-records"></i>
-                                            <span class="kt-nav__link-text">Save &amp; add new</span>
-                                        </a>
-                                    </li>
-                                    <li class="kt-nav__item">
-                                        <a  class="kt-nav__link">
-                                            <i class="kt-nav__link-icon flaticon2-hourglass-1"></i>
-                                            
-                                            <span class="kt-nav__link-text" data-toggle="modal" data-target="#saveVersion">Save &amp; exit</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-    </div>
-</div>
-
-
-<ul     class="kt-sticky-toolbar " style="margin-top: 30px; background-color: #666666; opacity: 0.8;width: 3%;">
-
-    <li *ngFor="let paint of chartColor"  class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="Check out more demos" data-placement="right">
-       
-
-        <div  class="circle"  [ngStyle]="{'background': paint.FirstColor}" (click)="changeColor(paint)" > </div>
-  
-   </li>
-
-</ul>
-
-
-    
-    
-    
-   
-   
-<!--<div class="container">
-    <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-        Upload
-    </button>
-    <br>
-   
-</div>-->
-
-<div  class="scroll-wrapper" style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 550px; max-height: 575px;">
-    <div style="position: relative; overflow: scroll; margin-right: -17px; margin-bottom: -17px; min-height: 567px; max-height: 592px;">
-        <div class="">
-            <div>
-                <style type="text/css" id="static">
-                    /*Font support for MAC*/
-                    
-                    @font-face {
-                        font-family: 'Century Gothic';
-                        font-weight: normal;
-                        font-style: normal;
-                        src: local('Century Gothic'), url('/blobcontent/zty/fonts/CenturyGothic.ttf') format('truetype')
-                    }
-                    
-                    @font-face {
-                        font-family: 'Century Gothic';
-                        font-weight: bold;
-                        font-style: normal;
-                        src: local('Century Gothic Bold'), url('/blobcontent/zty/fonts/CenturyGothicBold.ttf') format('truetype')
-                    }
-                    
-                    @font-face {
-                        font-family: 'Century Gothic';
-                        font-weight: bold;
-                        font-style: italic;
-                        src: local('Century Gothic Bold Italic'), url('/blobcontent/zty/fonts/CenturyGothicBoldItalic.ttf') format('truetype')
-                    }
-                    
-                    @font-face {
-                        font-family: 'Century Gothic';
-                        font-weight: normal;
-                        font-style: italic;
-                        src: local('Century Gothic Italic'), url('/blobcontent/zty/fonts/CenturyGothicItalic.ttf') format('truetype')
-                    }
-                    
-                    html,
-                    body,
-                    div,
-                    span,
-                    applet,
-                    object,
-                    iframe,
-                    h1,
-                    h2,
-                    h3,
-                    h4,
-                    h5,
-                    h6,
-                    p,
-                    blockquote,
-                    pre,
-                    a,
-                    abbr,
-                    acronym,
-                    address,
-                    big,
-                    cite,
-                    code,
-                    del,
-                    dfn,
-                    em,
-                    font,
-                    img,
-                    ins,
-                    kbd,
-                    q,
-                    s,
-                    samp,
-                    small,
-                    strike,
-                    strong,
-                    sub,
-                    sup,
-                    tt,
-                    var,
-                    b,
-                    u,
-                    i,
-                    center,
-                    dl,
-                    dt,
-                    dd,
-                    ol,
-                    ul,
-                    li,
-                    fieldset,
-                    form,
-                    label,
-                    legend,
-                    table,
-                    caption,
-                    tbody,
-                    tfoot,
-                    thead,
-                    tr,
-                    th,
-                    td {
-                        margin: 0;
-                        padding: 0;
-                        border: 0;
-                        outline: 0;
-                        vertical-align: baseline;
-                        background: transparent
-                    }
-                    
-                    body {
-                        text-align: left;
-                        font-feature-settings: "liga" 0;
-                        -moz-font-feature-settings: "liga" off
-                    }
-                    
-                    #document.skn-srz1 ol,
-                    #document.skn-srz1 ul {
-                        list-style: none
-                    }
-                    
-                    #document.skn-srz1 table {
-                        border-collapse: collapse;
-                        border-spacing: 0;
-                        font-size: inherit;
-                        color: inherit;
-                        width: 100%
-                    }
-                    /*START content disc style for LI*/
-                    
-                    #document.skn-srz1 ul,
-                    #document.skn-srz1 li {
-                        margin: 0;
-                        padding: 0;
-                        list-style-type: disc
-                    }
-                    
-                    #document.skn-srz1 ul li {
-                        margin: 0 0 0 16px;
-                        padding: 0
-                    }
-                    
-                    @-moz-document url-prefix() {
-                        #document.skn-srz1 ul li {
-                            margin: 0 0 0 12px;
-                            padding: 0 0 0 3px
-                        }
-                    }
-                    /*END content disc style for LI*/
-                    /*common css*/
-                    
-                    #document.skn-srz1 .txtBold {
-                        font-weight: 700
-                    }
-                    
-                    #document.skn-srz1 .paddedline {
-                        display: block
-                    }
-                    
-                    #document.skn-srz1 .mt5 {
-                        margin-top: 5px
-                    }
-                    
-                    #document.skn-srz1 .txtRight {
-                        text-align: right
-                    }
-                    
-                    #document.skn-srz1 table.skills,
-                    #document.skn-srz1 .table_wrapper {
-                        margin-top: 0;
-                        width: 100%;
-                        word-break: break-all
-                    }
-                    
-                    #document.skn-srz1 table.skills th,
-                    #document.skn-srz1 table.skills td {
-                        text-align: center;
-                        width: 20%
-                    }
-                    
-                    #document.skn-srz1 table.skills .skillname,
-                    #document.skn-srz1 table.skills .skillrating {
-                        text-align: left;
-                        width: 35%
-                    }
-                    
-                    #document.skn-srz1 table.skills .skillrating {
-                        width: 20%
-                    }
-                    
-                    #document.skn-srz1 table.skills .skillyears,
-                    #document.skn-srz1 table.skills .skilllast {
-                        width: 19%
-                    }
-                    
-                    #document.skn-srz1 table.skills .pad1 {
-                        width: 5%
-                    }
-                    
-                    #document.skn-srz1 table.skills .pad2,
-                    #document.skn-srz1 table.skills .pad3 {
-                        width: 1%
-                    }
-                    
-                    #document.skn-srz1 {
-                        color: #343434;
-                        font-variant-ligatures: none;
-                        line-height: 16px;
-                        min-height: 792px;
-                        box-sizing: border-box
-                    }
-                    
-                    #document.skn-srz1 .name {
-                        font-weight: 700;
-                        padding: 0;
-                        position: relative;
-                        text-align: left;
-                        word-wrap: break-word
-                    }
-                    
-                    #document.skn-srz1 .address .singlecolumn {
-                        margin-left: 0!important
-                    }
-                    
-                    #document.skn-srz1 .heading {
-                        font-weight: 700;
-                        line-height: 15px;
-                        margin-bottom: 10px
-                    }
-                    
-                    #document.skn-srz1 .sectiontitle {
-                        word-break: break-word
-                    }
-                    
-                    #document.skn-srz1 .degreeGap {
-                        margin-bottom: 4px
-                    }
-                    
-                    #document.skn-srz1 .locationGap {
-                        margin-top: 4px
-                    }
-                    
-                    #document.skn-srz1 .firstsection {
-                        padding-top: 0!important
-                    }
-                    
-                    #document.skn-srz1 .section:empty {
-                        display: none
-                    }
-                    /*Left Box */
-                    
-                    #document.skn-srz1 .left-box {
-                        display: table-cell;
-                        padding: 15px;
-                        box-sizing: initial;
-                    }
-                    
-                    #document.skn-srz1 .left-box .section {
-                        position: relative;
-                        color: #fff;                      
-                       
-
-                    }
-                    
-                    #document.skn-srz1 .left-box .heading {
-                        line-height: 1.5;
-                        margin-left: -15px;
-                        margin-right: -15px;
-                        padding: 0 15px;
-                        position: relative
-                    }
-                 
-                    #document.skn-srz1 .left-box .sectiontitle {
-                        padding: 3px 0;
-                        text-align: left;
-                        position: relative;
-                    }
-                    
-                    #document.skn-srz1 .left-box .SECTION_CNTC {
-                        padding-top: 20px!important
-                    }
-                    
-                    #document.skn-srz1 .parentContainer {
-                        border-collapse: collapse;
-                        display: table;
-                        min-height: inherit;
-                        table-layout: fixed;
-                        width: 100%
-                    }
-                    /*Right Box */
-                    
-                    #document.skn-srz1 .right-box {
-                        display: table-cell;
-                        letter-spacing: .2px;
-                        padding: 15px;
-                        vertical-align: top
-                    }
-                    
-                  
-                    
-                    #document.skn-srz1 .right-box .heading {
-                        border-bottom: 1px solid #d5d6d6;
-                        border-top: 1px solid #d5d6d6;
-                        letter-spacing: 0;
-                        padding: 5px 0
-                    }
-                    
-               
-                    
-                    #document.skn-srz1 .right-box .paddedline.date-content {
-                        position: absolute;
-                        margin-left: 0;
-                        width: 65px
-                    }
-                    
-                    #document.skn-srz1 .paragraph .singlecolumn {
-                        position: relative
-                    }
-                    
-                    #document.skn-srz1 .right-box .summary .paragraph .singlecolumn {
-                        margin-left: 0
-                    }
-                    
-                    #document.skn-srz1 .education .joblocation,
-                    .txtItl {
-                        font-style: italic
-                    }
-                    /* Issues fix for builder page */
-                    
-                    #document.skn-srz1 > div {
-                        min-height: inherit
-                    }
-                    
-                    #displayResume #document.skn-srz1.document {
-                        min-height: 792px
-                    }
-                    
-                    #document.skn-srz1 .left-box .active * {
-                        color: #343434
-                    }
-                    /* Only for firefox */
-                    
-                    @-moz-document url-prefix() {
-                        #document.skn-srz1 .parentContainer {
-                            height: 1px
-                        }
-                    }
-                    
-                    #document.skn-srz1 .word-break {
-                        word-wrap: break-word
-                    }
-                    
-                    #document.skn-srz1 .left-box .outer-square,
-                    #document.skn-srz1 right-box .outer-square,
-                    #document.skn-srz1 .left-box .inner-square,
-                    #document.skn-srz1 .right-box .inner-square {
-                        height: 7px;
-                        position: relative
-                    }
-                    
-                    #document.skn-srz1 .left-box .inner-square {
-                        background: #fff
-                    }
-                    
-                    #document.skn-srz1 .right-box .outer-square {
-                        background: #d6d6d6
-                    }
-                    
-                    #document.skn-srz1 .right-box .inner-square {
-                        background: #003D73;
-                        filter: brightness(.8)
-                    }
-                    /* For dates fix */
-                    
-                    #document.skn-srz1 .right-box .hidedates {
-                        visibility: hidden;
-                        position: static!important;
-                        display: block;
-                        float: left
-                    }
-                    
-                    #document.skn-srz1 .left-box .hidedates {
-                        display: none
-                    }
-                    
-                    #document.skn-srz1 .paragraph.datespara:after {
-                        content: '';
-                        display: table;
-                        clear: both
-                    }
-                </style>
-                <style type="text/css" id="dynamic" data-time="Wed Mar 04 2020 22:05:29 GMT+0100 (heure normale d’Afrique de l’Ouest)">
-                    #document.skn-srz1,
-                    #document.skn-srz1 table {
-                        line-height: 18px
-                    }
-                    
-                    #document.skn-srz1.pagesize {
-                        width: 612px
-                    }
-                    
-                    #document.skn-srz1.fontface {
-                        font-family: Century Gothic
-                    }
-                    
-                    #document.skn-srz1.fontsize {
-                        font-size: 11px
-                    }
-                    
-                    #document.skn-srz1 .section {
-                        padding-top: 20px
-                    }
-                    
-                    #document.skn-srz1 .firstparagraph {
-                        margin-top: 0!important
-                    }
-                    
-                    #document.skn-srz1 .paragraph {
-                        margin-top: 10px
-                    }
-                    
-                    #document.skn-srz1 .singlecolumn,
-                    #document.skn-srz1 .maincolumn {
-                        word-wrap: break-word
-                    }
-                    
-                    #document.skn-srz1 .right-box .singlecolumn,
-                    #document.skn-srz1 .right-box .maincolumn {
-                        margin-left: 0px
-                    }
-                    
-                    #document.skn-srz1 table.skills td {
-                        padding-top: 5px
-                    }
-                    
-                    #document.skn-srz1 .jobtitle,
-                    #document.skn-srz1 .degree,
-                    #document.skn-srz1 .programline {
-                        font-size: 14px
-                    }
-                    
-                    #document.skn-srz1 .name {
-                        font-size: 28px;
-                        line-height: 35px
-                    }
-                    
-                    #document.skn-srz1 .heading {
-                        line-height: 22px
-                    }
-                    
-                    #document.skn-srz1 .sectiontitle {
-                        font-size: 16px
-                    }
-                    
-                    #document.skn-srz1 .resumeTitle {
-                        font-size: 14px;
-                        padding-top: 3px
-                    }
-                    /*Left Box*/
-                    
-                    #document.skn-srz1 .left-box {
-                        width: 25%
-                    }
-                    
-                    #document.skn-srz1 .left-box .section {
-                        padding-top: 20px
-                    }
-                    
-                    #document.skn-srz1 .left-box .heading {
-                        line-height: 22px
-                    }
-                    
-                    #document.skn-srz1 .left-box .heading:before {
-                        background: #017777
-                    }
-                    
-                    #document.skn-srz1 .left-box .outer-square:before {
-                        background: #017777;
-                        content: '';
-                        position: absolute;
-                        height: 7px;
-                        width: 100%;
-                        filter: brightness(.8)
-                    }
-                    /*Right Box*/
-                    
-                    #document.skn-srz1 .right-box .paragraph .singlecolumn {
-                        margin-left: 91px
-                    }
-                    
-                    #document.skn-srz1 .right-box .paddedline.date-content {
-                        left: -91px
-                    }
-                    
-                    #document.skn-srz1 .right-box .sectiontitle {
-                        color: #017777
-                    }
-                    
-                    #document.skn-srz1 .right-box .inner-square {
-                        background: #003D73
-                    }
-                    /* Issues fix for builder page */
-                    
-                    #document.skn-srz1 .right-box .sortable-item {
-                        padding-top: 20px
-                    }
-                    
-                    #document.skn-srz1 .left-box > .sortable-item.active > .wrapper .heading:before {
-                        background: none
-                    }
-                    
-                    #document.skn-srz1 .left-box .sortable-item.active .outer-square:before {
-                        background: #d6d6d6
-                    }
-                    
-                    #document.skn-srz1 .left-box .sortable-item.active .inner-square {
-                        background: #003D73
-                    }
-                    /* Issues fix for builder page: Phase 2 */
-                    
-                    #document.skn-srz1._single-parent-drag > .wrapper-bg + div {
-                        position: relative;
-                        z-index: 8
-                    }
-                    
-                    #document.skn-srz1._single-parent-drag .outer-square:before {
-                        background: #d6d6d6;
-                        content: '';
-                        position: absolute;
-                        height: 7px;
-                        width: 100%;
-                        filter: brightness(0.8)
-                    }
-                    
-                    #document.skn-srz1._single-parent-drag .inner-square {
-                        background: #003D73
-                    }
-                    
-                    #document.skn-srz1._single-parent-drag .wrapper-bg + div .paragraph {
-                        margin-top: 0
-                    }
-                    
-                    #document.skn-srz1 .outer-square,
-                    #document.skn-srz1 .inner-square {
-                        height: 7px;
-                        position: relative
-                    }
-                    
-                    #document.skn-srz1 .parent-drag.active .wrapper,
-                    #document.skn-srz1 .sortable-item .sectiontitle {
-                        position: relative
-                    }
-                    /* support for IE Browser */
-                    
-                    @media screen and (min-width:0\0) {
-                        #document.skn-srz1 .left-box {
-                            box-sizing: content-box
-                        }
-                        #document.skn-srz1 .parentContainer {
-                            display: flex
-                        }
-                        #document.skn-srz1 .right-box {
-                            width: calc(100% - 154px)
-                        }
-                        #document.skn-srz1 .left-box,
-                        #document.skn-srz1 .right-box {
-                            background: none;
-                            display: inline;
-                            position: relative
-                        }
-                        #document.skn-srz1 .left-box:before {
-                            content: '';
-                            background: #003D73;
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            height: 100%;
-                            width: 100%;
-                            opacity: .9
-                        }
-                    }
-                </style>
-
-            </div>
-
-            <div id="document" class="document fontsize fontface vmargins hmargins pagesize skn-srz1 SRZ1 ZTY" style="width: 75%;margin-top: 30px;">
-                <div id="CONTAINER_PARENT_0" class="parentContainer">
-                    <div id="CONTAINER_0" class="left-box" [ngStyle]="{'background-color': FirstColorInit}">
-
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-NAME">
-                            <div id="SECTION_NAME671b9a7b-6571-4313-8bd1-2acd7b773738" class="section notdraggable SECTION_NAME firstsection  " data-section-cd="NAME">
-                                <div class=" doc-item">
-                                    <div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
-                                         <!--
-                                        <input #file type="file" accept='image/*' style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)">
-                                        <br>
-                                        -->
-                                        <div class="sectiontitle" id="imgeID">
-                                            <div class="example">
-
-                                                <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 170px;border-style: none;">
-
-
-                                                <div class="fadedbox">
-                                                    <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" onClick="$('#imgeID').hide();$('#buttonImg').show();"> Masquer photo </button><br><br>
-                                                    <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" type="file" accept="image/*"  #fileUploader
-                                                    (change)="showPreview($event)">
-                                                    <br>
-                                                    <div class="wrapper">
-
-                                                        <div class="file-upload">
-                                                            <!-- <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  id="inputImage"type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"/><br>-->
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="" id="showImage">
-                                            <div class="example fadedbox">
-
-                                                <button id="buttonImg" style="background-color:black;width: 100%; color:white; font-size: 8pt; border-style: none;display: none; " class="title text" onClick="$('#imgeID').show();$('#buttonImg').hide();"> show Picture </button>
-                                                <br>
-
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="name word-break">
-                                            <span class="field" id="FIELD_FNAM"><ckeditor [editor]="Editor"   data='Your Name'></ckeditor></span>
-                                        </div>
-
-                                        <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Profession'></ckeditor></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-CNTC">
-                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
-                            <div id="SECTION_CNTC7f727e17-7e66-47b8-806a-e31c211c9ec5" class="section SECTION_CNTC notdraggable   " data-section-cd="CNTC">
-                                <div class=" doc-item">
-                                    <div class="heading"  [ngStyle]="{'background': SecondColorInit}">
-                                        <div class="sectiontitle" id="SECTIONNAME_CNTC">Contact<span class="rename-section text-rename">
-                                             </span></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="">
-                                            <div id="PARAGRAPH_CNTC_7c586dc9-6e7a-3ae8-faa5-d0c1f7348705" class="paragraph PARAGRAPH_CNTC firstparagraph placeholder-text ">
-                                                <div class="clearfix doc-item">
-                                                    <ckeditor [editor]="Editor"   data=' 
-                                                    <div class="address">
-                                                        <div class="singlecolumn">
-                                                            <div dependency="STRT|CITY|STAT|ZIPC">
-                                                                <div class="txtBold">Address </div>
-                                                                <div class="field" id="FIELD_STRT">123 Main Street</div>
-                                                                <span class="field" id="FIELD_CITY">Berkeley</span><span dependency="CITY+STAT|ZIPC">,</span>
-                                                                <span class="field" id="FIELD_STAT">CA</span><span dependency="STAT+ZIPC">, </span>
-                                                                <span class="field" id="FIELD_ZIPC">Zip</span>
-                                                            </div>
-                                                            <div class="txtBold mt5" dependency="HPHN|CPHN">E-mail Perso </div>
-                                                            <div dependency="HPHN">
-                                                                <span class="field" id="FIELD_HPHN">{{contacts.MailPerso}}</span>
-                                                            </div>
-
-                                                            <div class="txtBold mt5" dependency="EMAI">E-mail Pro </div>
-                                                            <div dependency="EMAI" class="word-break">
-                                                                <span class="field" id="FIELD_EMAI">{{contacts.MailPro}}</span>
-                                                            </div>
-
-                                                            <div class="txtBold mt5" dependency="EMAI">Tél Perso </div>
-                                                            <div dependency="EMAI" class="word-break">
-                                                                <span class="field" id="FIELD_EMAI">{{contacts.telPerso}}</span>
-                                                            </div>
-
-                                                            <div class="txtBold mt5" dependency="EMAI">Tél Pro </div>
-                                                            <div dependency="EMAI" class="word-break">
-                                                                <span class="field" id="FIELD_EMAI">{{contacts.telPro}}</span>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>'></ckeditor>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
-                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
-                            <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
-                                <div class=" doc-item">
-                                    <div class="heading" [ngStyle]="{'background': SecondColorInit}">
-                                        <div class="sectiontitle" id="SECTIONNAME_HILT">Langues <span class="rename-section text-rename">  </span>
-                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Langue_Model"> (+)   </a>
-                                       </div>
-                                    </div>
-                                    <div class="">
-                                        <div class="">
-                                            <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
-                                                <div class="clearfix doc-item">
-                                                    <div class="singlecolumn maincolumn">
-                                                        <span class="paddedline" id="FIELD_SKC1">
-                            <div *ngFor="let listLangue of InitLangue">
-                                <ckeditor [editor]="Editor"   data='<a>{{listLangue.langue}} - {{ listLangue.note }}</a> '></ckeditor>
-                                <mat-icon style="font-size: 10px; float:right;" (click)="deleteLangue(listLangue.id)" >remove_circle</mat-icon>
-                            </div></span>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
-                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
-                            <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
-                                <div class=" doc-item">
-                                    <div class="heading" [ngStyle]="{'background': SecondColorInit}">
-                                        <div class="sectiontitle" id="SECTIONNAME_HILT">Loisirs <span class="rename-section text-rename"> 
-                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Loisir_Model"> (+)   </a>
-                                        </span></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="">
-                                            <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
-                                                <div class="clearfix doc-item">
-                                                    <div class="singlecolumn maincolumn">
-                                                        <span class="paddedline" id="FIELD_SKC1">
- 
-                                                            <div *ngFor="let listLoisirs of InitLoisirs">
-
-                 
-                               <ckeditor [editor]="Editor" [(ngModel)]="listLoisirs.desc" ></ckeditor>
-                               <mat-icon style="font-size: 10px; float:right;" (click)="deleteLoisirs(listLoisirs.id)" >remove_circle</mat-icon>
-
-                       </div>
-                            </span>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
-                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
-                            <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
-                                <div class=" doc-item">
-                                    <div class="heading" [ngStyle]="{'background': SecondColorInit}">
-                                        <div class="sectiontitle" id="SECTIONNAME_HILT">Divers<span class="rename-section text-rename"> </span></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="">
-                                            <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
-                                                <div class="clearfix doc-item">
-                                                    <div class="singlecolumn maincolumn">
-                                                        <span class="paddedline" id="FIELD_SKC1">
-                            <div *ngFor="let listDivers of InitDivers">
-                                <ckeditor [editor]="Editor" [(ngModel)]="listDivers.desc" ></ckeditor>
-                                <mat-icon style="font-size: 10px; float:right;" (click)="deleteDivers(listDivers.id)" >remove_circle</mat-icon>
-
-                            </div>
-                        </span>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="CONTAINER_1" class="right-box">
-                        <div data-react-beautiful-dnd-draggable="2Hig" class="sortable-item section-container SortableItem-sibling  data-SUMM">
-                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;">
-                            </div>
-                            <div id="SECTION_SUMMfa2859a6-4cc7-43e6-985b-04a3c95ffae2" class="section summary notdraggable SECTION_SUMM  noparagraph " data-section-cd="SUMM">
-                                <div class=" doc-item">
-                                    <div class="">
-                                        <div class="">
-                                            <div id="PARAGRAPH_SUMM_0" class="paragraph PARAGRAPH_SUMM firstparagraph placeholder-text ">
-                                                <div class="clearfix doc-item">
-
-                                                    <div class="field singlecolumn" id="FIELD_FRFM">
-                                                        
-                                                        <ckeditor id="aboutId"  [editor]="Editor" [(ngModel)]="InitAbout" (change)="onChange($event)" >
-                                                            
-                                                        </ckeditor>
-                                                        <br>
-                                                        <br>
-                                                        <!--<ckeditor [editor]="Editor" [config]="ckeConfig">
-                                                            <a>aatest</a>
-                                                        </ckeditor>-->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR">
-                            <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
-                            <div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR">
-                                <div class=" doc-item">
-                                    <div class="heading">
-                                        <div class="sectiontitle" id="SECTIONNAME_EXPR" [ngStyle]="{'color': SecondColorInit}">
-
-                                          <span class="rename-section text-rename">  Work History  </span>
-                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Experience_Model"> (+)   </a> 
-                                            <div class="btn-group btn-group-sm mb-2" role="group" style="float: right;height: 1.95rem;" >
-                                                <button type="button" class="btn btn-secondary"(click)="LongDesc()">Long</button>
-                                                <button type="button" class="btn btn-secondary"(click)="ShortDesc()">Short</button>
-                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="">
-                                        <div class="sortableInner">
-                                            <div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text ">
-                                                <div class="clearfix doc-item">
-                                                    		
-		
-		<div  *ngFor="let listExperience of arrayListExp">
-        
-<mat-icon style="font-size: 10px; float:right;" mat-mini-fab color="warn"(click)="deleteExperience(listExperience.id)" >remove_circle</mat-icon>
-            <div id="ExperienceText" class=" singlecolumn">
-
-				<div class="paddedline date-content" dependency="JSTD|EDDT">
-                    <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">
-                        
-                       {{listExperience.dateDebut}}
-
-
-                    </span>
-					
-						<span class="jobdates" id="FIELD_EDDT" format="%Y-%m">
-                            {{listExperience.dateFin}}
-                        </span>
-						<br dependency="JTIT|COMP|JSTA|JCIT">
-						</div>
-            
-						<div class="paddedline" dependency="JTIT">
-							<div class="jobtitle txtBold" id="FIELD_JTIT">
-                             <ckeditor [editor]="Editor" data="{{listExperience.fonction}} - {{listExperience.emp}} <br> {{listExperience.location}}"></ckeditor>
-
-                            </div>
-                        </div>
-                        <div  *ngFor="let projet of listExperience.projet">
-						<div class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-		<ckeditor [editor]="Editor" data="<span> <b>Titre projet :</b>  {{ projet.ProjetName}}</span><br><span ><b>MOA :  </b>{{  projet.MOA}} ,<b>MOE :  </b>{{  projet.MOE}}</span> "></ckeditor>
-            </div>
-						<span *ngIf="Short_Desc" class="jobline" id="FIELD_JDES"  ><ckeditor [editor]="Editor" data="<b>Description :</b> {{projet.ProjetShort}}<br><b> Téchnologies: </b>{{projet.competence}}"></ckeditor></span>
-						<span *ngIf="Long_Desc" class="jobline" id="FIELD_JDES"><ckeditor [editor]="Editor" data="<b>Description :</b> {{projet.ProjetDesc}}<br><b> Téchnologies: </b>{{projet.competence}}"></ckeditor></span>
-					
-                  </div>  
-					</div>
-
-			
-					<br>
-						<br>
-						</div>
-		
-		
-                                                
-                                                    
-                                                   <!--<ckeditor [editor]="Editor" [data]="ExperienceData " ></ckeditor>-->
-
-                                                </div>
-                                                <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
-                                                    <div class="clearfix doc-item">
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
-                            <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
-                                <div class=" doc-item">
-                                    <div class="heading">
-                                        <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}" id="SECTIONNAME_EDUC">Education
-                                            <a class="btn btn-bold  " data-toggle="modal" data-target="#Diplome_Model"> (+)   </a></div>
-                                           
-  
-
-                                    </div>
-
-                                    <div class="">
-                                        <div class="">
-
-                                            <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC ">
-                                                <div class="">
-
-                                                    <div *ngFor="let listFormation of InitFormation">
-                                                     <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn"(click)="deleteFormation(listFormation.id)" >remove_circle</mat-icon>
-                                                        <div class="singlecolumn">
-                                                            <div class="paddedline date-content" dependency="JSTD|EDDT">
-                                                                <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listFormation.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
-                                                                <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listFormation.end_date}}</span>
-                                                                <br dependency="JTIT|COMP|JSTA|JCIT">
-                                                            </div>
-                                                            <span class="paddedline" dependency="JTIT">
-                            <span class="jobtitle txtBold" id="FIELD_JTIT">{{listFormation.certification}}</span>
-                                                            </span>
-                                                            <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-                            <span class="companyname" id="FIELD_COMP">{{listFormation.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                                                            <span class="jobcity" id="FIELD_JCIT">{{listFormation.diplome_date}}</span>
-                                                            </span>
-
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
-                                                    <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
-                                                        <div class=" doc-item">
-                                                            <div class="heading">
-                                                                <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}"id="SECTIONNAME_EDUC">Certificats
-                                                                    <a class="btn btn-bold  " data-toggle="modal" data-target="#Certif_Model"> (+)   </a></div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="">
-                                                                    <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
-                                                                        <div class="clearfix doc-item">
-                                                                            <div *ngFor="let listCertif of arrayListCertif">
-                                                                                <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn" (click)="deleteCertificat(listCertif.id)" >remove_circle</mat-icon>
-
-                                                                                <div class="singlecolumn">
-                                                                                    <div class="paddedline date-content" dependency="JSTD|EDDT">
-                                                                                        <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listCertif.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
-                                                                                        <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listCertif.end_date}}</span>
-                                                                                        <br dependency="JTIT|COMP|JSTA|JCIT">
-                                                                                    </div>
-                                                                                    <span class="paddedline" dependency="JTIT">
-                            <span class="jobtitle txtBold" id="FIELD_JTIT">{{listCertif.certification}}</span>
-                                                                                    </span>
-                                                                                    <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
-                            <span class="companyname" id="FIELD_COMP">{{listCertif.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                                                                                    <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}</span>
-                                                                                    </span>
-
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
-                                                                            <div class="clearfix doc-item">
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
-                                                    <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
-                                                    <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
-                                                        <div class=" doc-item">
-                                                            <div class="heading">
-                                                                <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}"id="SECTIONNAME_EDUC">Compétences
-                                                                    <a class="btn btn-bold  " data-toggle="modal" data-target="#Competence_Model"> (+)   </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="">
-                                                                <div class="">
-                                                                    <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
-                                                                        <div class="clearfix doc-item">
-                                                                            <div *ngFor="let listComp of arrayListComp">
-                                                                                <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn" (click)="deleteCompetence(listComp.id)" >remove_circle</mat-icon>
-
-                                                                                <span class="" dependency="JTIT">
-                                <span class=" txtBold" id="FIELD_JTIT"> &#8226; {{listComp.competence}}</span>
-                                                                                </span>
-                                                                                <span class="paddedline locationGap txtItl paddedline" id="FIELD_SKC1" dependency="COMP|JSTA|JCIT">
-                                <span class="companyname" id="FIELD_COMP"><b>Niveau</b> {{listComp.competence_level}}</span><span dependency="COMP+JCIT|JSTA">,</span>
-                                                                                </span>
-                                                                                <div *ngFor="let tools of listComp.tools">
-
-
-                                                                                - outils: {{tools.tool}} - niveau: {{tools.tools_level}}
-                                                                              </div>
-                                                                                <br>
-
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
-                                                                            <div class="clearfix doc-item">
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="track-horizontal" style="display: none; visibility: hidden;">
-        <div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;"></div>
-    </div>
-    <div class="track-vertical" style="visibility: visible;">
-        <div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 407px; transform: translateY(0px);"></div>
-    </div>
-    
    <!--begin:: Work experience Modal-->
    <div class="modal fade" id="Experience_Model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -1160,7 +46,7 @@
                         <div class="col-6" style="padding-right: 30px;">
                             <div class="form-group">
                                 <mat-label>Dépuis</mat-label>
-                                <input  [formControl]="start_date" #dateDebut  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFrom">
+                                <input  #dateDebut  matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerFrom">
                                 <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerFrom></mat-datepicker>
                             </div>
@@ -1168,7 +54,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <mat-label>Jusqu'à</mat-label>
-                                <input  [formControl]="end_date" #dateFin matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerTo">
+                                <input   #dateFin matInput [matDatepickerFilter]="myFilter" [matDatepicker]="pickerTo">
                                 <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
                                 <mat-datepicker #pickerTo></mat-datepicker>
                             </div>
@@ -1296,7 +182,7 @@
 
                             <div class="form-group">
                                 <mat-label>University</mat-label>
-                                <input  class="form-control" #University  matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #University  matInput placeholder="">
                             </div>
                         </div>
                     </div>
@@ -1305,13 +191,13 @@
 
                             <div class="form-group">
                                 <mat-label>Diplome</mat-label>
-                                <input  class="form-control" #certification matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #certification matInput placeholder="">
                             </div>
                         </div>
                         <div class="example-form col-4">
                             <div class="form-group">
                                 <mat-label>Année</mat-label>
-                                <input  class="form-control" #diplome_date  matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #diplome_date  matInput placeholder="">
                             </div>
                         </div>
                     </div>
@@ -1363,7 +249,7 @@
 
                             <div class="form-group">
                                 <mat-label>Centre</mat-label>
-                                <input  class="form-control" #centre  matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #centre  matInput placeholder="">
                             </div>
                         </div>
                     </div>
@@ -1372,13 +258,14 @@
 
                             <div class="form-group">
                                 <mat-label>Certificat</mat-label>
-                                <input  class="form-control" #certif matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #certif matInput placeholder="">
                             </div>
                         </div>
                         <div class="example-form col-4">
+                            
                             <div class="form-group">
                                 <mat-label>Année</mat-label>
-                                <input  class="form-control" #AnneeCertif  matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #AnneeCertif  matInput placeholder="">
                             </div>
                         </div>
                     </div>
@@ -1407,7 +294,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="saveExperience(fonction.value,dateDebut.value,dateFin.value,desc.value)">Send message</button>
+                <button type="button" class="btn btn-primary" (click)="addCertificat(centre.value,certif.value,AnneeCertif.value,dateDebutCertif.value,dateFinCertif.value)">Send message</button>
             </div>
         </div>
     </div>
@@ -1429,9 +316,9 @@
                         <div class="example-form  col-12">
                             <div class="form-group">
                                 <mat-label>Type de Compétence</mat-label>
-                                <select [formControl]="toppings" #type  >
-                                    <mat-option  class="form-control"  #type   >Compétence Technique</mat-option>
-                                    <mat-option  class="form-control"  #type   >Compétences informatiques</mat-option>
+                                <select class="form-control" #type  >
+                                    <option>Compétence Technique</option>
+                                    <option>Compétences informatiques</option>
 
                                 </select>
                             </div>
@@ -1442,13 +329,13 @@
 
                             <div class="form-group">
                                 <mat-label>Compétence</mat-label>
-                                <input  class="form-control" #competence matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #competence matInput placeholder="">
                             </div>
                         </div>
                         <div class="example-form col-6">
                             <div class="form-group">
                                 <mat-label>Niveau</mat-label>
-                                <input  class="form-control" #competence_level  matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #competence_level  matInput placeholder="">
                             </div>
                         </div>
                     </div>
@@ -1458,13 +345,13 @@
 
                             <div class="form-group">
                                 <mat-label>Tools</mat-label>
-                                <input  class="form-control" #tool matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #tool matInput placeholder="">
                             </div>
                         </div>
                         <div class="example-form col-2">
                             <div class="form-group">
                                 <mat-label>Niveau</mat-label>
-                                <input  class="form-control" #tool_level  matInput placeholder="Ex. It makes me feel...">
+                                <input  class="form-control" #tool_level  matInput placeholder="">
                             </div>
                         </div>
                         <div class="example-form col-2" style="padding-top: 20px;margin-left: 20px;">
@@ -1495,16 +382,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="formLoisir" (ngSubmit)="addLoisirs()">               
+                <form  >               
                     <div class="row">
                         <div class="example-form col-12" style="padding-right: 30px;">
 
                             <div class="form-group">
                                 <label>Loisir</label>
-                                <input  class="form-control" formControlName="desc" placeholder="Ex. It makes me feel..." [ngClass]="{ 'is-invalid': isSubmitted && formLoisirControls.desc.errors }">
-                                <mat-error *ngIf="isSubmitted && formLoisirControls.desc.errors">
-                                    {{ titleAlert }}
-                                  </mat-error>
+                                <input  #desc class="form-control" placeholder="" >
+                                
                             </div>
                         </div>
                        
@@ -1512,8 +397,8 @@
                                
               
             <div class="modal-footer">
-                <button type="reset" class="btn btn-secondary" data-dismiss="modal" (click)="onReset()">Fermer</button>
-                <button type="submit"  class="btn btn-primary" [disabled]="!formLoisir.valid" >Ajouter</button>
+                <button type="reset" class="btn btn-secondary" data-dismiss="modal" >Fermer</button>
+                <button type="submit"  class="btn btn-primary" (click)="addLoisirs(desc.value)" >Ajouter</button>
             </div>
         </form>
     
@@ -1533,33 +418,53 @@
                 </button>
             </div>
             <div class="modal-body">
-                    <form [formGroup]="formLangue" (ngSubmit)="addLangue()">
+                    <form >
 
                     <div class="row">
                         <div class="example-form col-6" style="padding-right: 30px;">
 
                             <div class="form-group">
                                 <mat-label>Langue</mat-label>
-                                <input  #langues  placeholder="Ex. It makes me feel..." formControlName="langue" class="form-control" [ngClass]="{ 'is-invalid': isSubmitted && formLangueControls.langue.errors }">
-                                <mat-error *ngIf="isSubmitted && formLangueControls.langue.errors">
-                                    {{ titleAlert }}
-                                  </mat-error>
+                                <select #langues class="form-control"  >
+                                    <option>Arabe</option>
+                                    <option>Français</option>
+                                    <option>Anglais</option>
+                                    <option>Allemand</option>
+                                    <option>Espagnol</option>
+                                    <option>Russe</option>
+                                    <option>Italien</option>
+                                    <option>Turc</option>
+
+
+                                </select>   
+                               
                                 </div>
                         </div>
                         <div class="example-form col-6">
                             <div class="form-group">
                                 <mat-label>Note</mat-label>
-                                <input   #note   placeholder="Ex. It makes me feel..." formControlName="note" class="form-control" [ngClass]="{ 'is-invalid': isSubmitted && formLangueControls.note.errors }">
-                                <mat-error  *ngIf="isSubmitted && formLangueControls.note.errors">
-                                    {{ titleAlert }}
-                                </mat-error>
+                                <select #note  class="form-control" >
+                                    <option  >1</option>
+                                    <option   >2</option>
+                                    <option   >3</option>
+                                    <option  >4</option>
+                                    <option   >5</option>
+                                    <option  >6</option>
+                                    <option  >7</option>
+                                    <option   >8</option>
+                                    <option   >9</option>
+                                    <option  >10</option>
+
+
+                                </select> 
+                               
                             </div>
                         </div>
                     </div>
                
             
             <div class="modal-footer ">
-                    <button type="submit" class="btn btn-primary" [disabled]="!formLangue.valid">Ajouter</button>
+                    <button type="submit" class="btn btn-primary" (click)="addLangue(langues.value,note.value)">Ajouter</button>
                     <button  class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="onReset()">Fermer</button>
            
             </div>
@@ -1574,43 +479,53 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enregistrer le travail</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Save Work</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
-                    <form >
+                <form >
 
-                    <div class="">
-                        <div class="example-form col-12" style="padding-right: 30px;min-width: 100%">
+                <div class="">
+                    <div class="example-form col-12" style="padding-right: 30px;min-width: 100%">
 
-                            <div class="form-group">
-                                <mat-label>Raison</mat-label>
-                                <textarea  #raison  placeholder="Ecrire la raison pour laquelle vous faites ce CV..." formControlName="langue" class="form-control"></textarea>
-                                <mat-error *ngIf="isSubmitted && formLangueControls.langue.errors">
-                                    {{ titleAlert }}
-                                  </mat-error>
-                                </div>
-                        </div>
-                        <div class="example-form col-12" style="min-width: 100%;">
-                            <div class="form-group">
-                                <mat-label>Statut</mat-label>
-                                <select #statut class="form-control" id="exampleSelectd">
-                                    <option>En cours</option>
-                                    <option>Suspendu</option>
-                                    <option>Terminé</option>
-                                    <option>Annulé</option>
-                                </select>
-                                <mat-error  *ngIf="isSubmitted && formLangueControls.note.errors">
-                                    {{ titleAlert }}
-                                </mat-error>
+                        <div class="form-group">
+                            <mat-label>Raison</mat-label>
+                            <textarea  #raison  placeholder="Ecrire la raison pour laquelle vous faites ce CV..." formControlName="langue" class="form-control"></textarea>
+                            
                             </div>
+                    </div>
+                    <div class="example-form col-12" style="min-width: 100%;">
+                        <div class="form-group">
+                            <mat-label>Statut</mat-label>
+                            <select #statut class="form-control" id="exampleSelectd">
+                                <option>En cours</option>
+                                <option>Suspendu</option>
+                                <option>Terminé</option>
+                                <option>Annulé</option>
+                            </select>
+                            <mat-error  *ngIf="isSubmitted && formLangueControls.note.errors">
+                                {{ titleAlert }}
+                            </mat-error>
                         </div>
                     </div>
+                    <div class="example-form col-12" style="min-width: 100%;">
+                        <div class="form-group">
+                            <mat-label>Folder</mat-label> 
+                          <!--  <div *ngFor="let listFolder of arrayListFolder">
+                                {{listFolder.name}}
+                           </div>      -->    
+
+                          <select class="form-control" #folder>
+                                    <option  class="form-control" *ngFor="let listFolder of arrayListFolder" [value]="listFolder.FID"> {{listFolder.name}}</option>
+                          </select>
+                          
+                        </div>
+                    </div>
+                </div>
                
-            
-            <div class="modal-footer ">
-                    <button type="submit" class="btn btn-primary"  (click)="saveVersion(raison.value,statut.value)"[routerLink]="['/home/version-list']" data-dismiss="modal">Sauvegarder</button>
+                <div class="modal-footer ">
+                    <button type="submit" class="btn btn-primary"  (click)="saveVersion(raison.value,statut.value,folder.value)"[routerLink]="['/home/version-list']" data-dismiss="modal">Sauvegarder</button>
                     <button  class="btn btn-secondary" data-dismiss="modal" type="reset" (click)="onReset()">Fermer</button>
            
             </div>
@@ -1635,5 +550,1204 @@
     </div>
 </div>
 <!--end::  Version  Modal--> 
-</div>
+  <!--begin::  Version Modal-->
+ 
+<!--end::  Version  Modal--> 
 
+<div class=" board row">
+    <div class=" col-3 kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+
+
+        
+        <!-- begin:: Aside Menu -->
+        <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+            <div id="kt_aside_menu" class="kt-aside-menu kt-scroll ps ps--active-y" data-ktmenu-vertical="1" data-ktmenu-scroll="1" style="height: auto; overflow: hidden;">
+                 
+                          <!-- begin:: collapsed card -->
+                          <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample0">
+                            <div class="card">
+                                <div class="card-header" id="headingOne0">
+                                    <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne0" aria-expanded="false" aria-controls="collapseOne0">
+                                         Personal Informations 
+        
+                                    </div>
+                                </div>
+                                <div id="collapseOne0" class="collapse" aria-labelledby="headingOne0" data-parent="#accordionExample0" style="">
+                                    <div class="card-body">
+                                        <div class="row" style="float: right; margin-right: auto;">
+                                        <span style="width: 10px;"> </span><a (click)="showSection('infoSection')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('infoSection')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                        </div>
+                                        <br>
+                                        <div class=" row">
+                                            <form class="kt-form"  >
+                                
+                                                <div class="form-group">
+                                                    <div class="kt-checkbox-list">
+                                                            <label class="kt-checkbox">
+                                                                <input type="checkbox"   (change)="changePersonalInfo($event,'gender')">  Gender 
+                                                               <span></span>
+                                                            </label>
+                                                            <label class="kt-checkbox">
+                                                                <input type="checkbox"  (change)="changePersonalInfo($event,'arabicName')" >  Arabe Name 
+                                                             <span></span>
+                                                               
+                                                            </label>
+                                                            <label class="kt-checkbox">
+                                                               <input type="checkbox"   (change)="changePersonalInfo($event,'picture')" >  Photo 
+                                                            <span></span>
+                                                               
+                                                            </label>
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+                                            </form>       
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- end::collapsed card -->  
+                <!-- begin:: collapsed card -->
+                   <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample7">
+                    <div class="card">
+                        <div class="card-header" id="headingOne7">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne7" aria-expanded="false" aria-controls="collapseOne7">
+                                 Contacts 
+
+                            </div>
+                        </div>
+                        <div id="collapseOne7" class="collapse" aria-labelledby="headingOne7" data-parent="#accordionExample7" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                <span style="width: 10px;"> </span><a (click)="showSection('contact')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('contact')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                </div>
+                                <div class=" row">
+                                   <form class="kt-form"  >
+
+                                    <div class="form-group">
+                                        <div class="kt-radio-list">
+                                            <div *ngFor="let ct of arrayListCantact">
+                                                <style>
+                                                      li{transition: all 0.4s ease-out;}
+
+                                                </style>
+                                            <label class="kt-radio">
+                                                
+                                                <input type="radio" name="radio1" (change)="onCantactChange($event,ct.id,ct)">{{ct.titre}}<br>
+                                               
+                                                   <label class="kt-checkbox">
+                                                    <input type="checkbox" checked="checked" (change)="show($event)">  {{ct.adresse}}
+                                                    <span></span>
+                                                  </label>
+                                               
+                                            </label>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                     <!--  <div class="form-group">
+                                            <div class="kt-checkbox-list">
+                                                <div *ngFor="let ct of arrayListCantact">
+                                                    <label class="kt-checkbox">
+                                                        
+                                                        <input type="checkbox" checked="checked" (change)="onCantactChange($event,ct.id,ct)">{{ct.titre}}  
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div> -->
+                                    </form> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->     
+                <!-- begin:: collapsed card -->
+                <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample1">
+                    <div class="card">
+                        <div class="card-header" id="headingOne1">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="false" aria-controls="collapseOne1">
+                                 About
+                            </div>
+                        </div>
+                        <div id="collapseOne1" class="collapse" aria-labelledby="headingOne1" data-parent="#accordionExample1" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('about')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('about')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div>
+                                    <br>
+                           
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+
+                 <!-- begin:: collapsed card -->
+                 <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample2">
+                    <div class="card">
+                        <div class="card-header" id="headingOne2">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">
+                                 Divers
+                            </div>
+                        </div>
+                        <div id="collapseOne2" class="collapse" aria-labelledby="headingOne2" data-parent="#accordionExample2" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('divers')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('divers')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div>
+                                    <br>
+                                <div class=" row">
+                                    
+                                   <div *ngFor="let listDivers of InitDivers">
+                                <ckeditor [editor]="Editor" [(ngModel)]="listDivers.desc" ></ckeditor>
+                                  </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+
+                 <!-- begin:: collapsed card -->
+                 <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample3">
+                    <div class="card">
+                        <div class="card-header" id="headingOne3">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="false" aria-controls="collapseOne3">
+                                Language
+                            </div>
+                        </div>
+                        <div id="collapseOne3" class="collapse" aria-labelledby="headingOne3" data-parent="#accordionExample3" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('langue')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('langue')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div>
+                                <a data-toggle="modal" data-target="#Langue_Model">(+) new</a>
+                                <div class=" row">
+                                  <form class="kt-form"  >
+                                
+                                    <div class="form-group">
+                                        <div class="kt-checkbox-list">
+                                            <div *ngFor="let c of arrayListLang">
+                                                <label class="kt-checkbox">
+                                                    <input type="checkbox" checked="checked" (change)="onLangueChange($event,c.id,c)">  {{c.langue}} - {{ c.note }}
+                                                    <span></span>
+                                                    <button type="button" class="btn btn-outline-brand btn-icon " (click)="increase(c.note,c)"><i class="fa fa-caret-up"></i></button>
+                                                    <button type="button" class="btn btn-outline-brand btn-icon"(click)="decrease(c.note,c)"><i class="fa fa-caret-down"></i></button>
+
+                                                </label>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+
+                 <!-- begin:: collapsed card -->
+                 <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample4">
+                    <div class="card">
+                        <div class="card-header" id="headingOne4">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="false" aria-controls="collapseOne4">
+                                 Hobbies
+                            </div>
+                        </div>
+                        <div id="collapseOne4" class="collapse" aria-labelledby="headingOne4" data-parent="#accordionExample4" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('loisir')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('loisir')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div>
+                                    <a data-toggle="modal" data-target="#Loisir_Model">(+) new</a>
+
+                                <div class=" row">
+                                    
+                                    <form class="kt-form"  >
+                                
+                                        <div class="form-group">
+                                            <div class="kt-checkbox-list">
+                                                <div *ngFor="let c of arrayListLoisirs">
+                                                    <label class="kt-checkbox">
+                                                        <input type="checkbox" checked="checked" (change)="onLoisirsChange($event,c.id,c)">  {{c.desc}} 
+                                                        <span></span>
+                                                       
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+
+                 <!-- begin:: collapsed card -->
+                 <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample5">
+                    <div class="card">
+                        <div class="card-header" id="headingOne5">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne5" aria-expanded="false" aria-controls="collapseOne5">
+                                 Education
+                            </div>
+                        </div>
+                        <div id="collapseOne5" class="collapse" aria-labelledby="headingOne5" data-parent="#accordionExample5" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('formation')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('formation')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div>
+                                    <a data-toggle="modal" data-target="#Diplome_Model">(+) new</a>
+
+                                <div class=" row">
+                                    
+                                    <form class="kt-form"  >
+                                
+                                        <div class="form-group">
+                                            <div class="kt-checkbox-list">
+                                                <div *ngFor="let c of arrayListFormation">
+                                                    <label class="kt-checkbox">
+                                                        <input type="checkbox" checked="checked" (change)="onFormationChange($event,c.id,c)">  {{c.start_date}} - {{c.start_date}} 
+                                                        <span></span>
+                                                       
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </form>                            
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+  <!-- begin:: collapsed card -->
+  <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample10">
+    <div class="card">
+        <div class="card-header" id="headingOne10">
+            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne10" aria-expanded="false" aria-controls="collapseOne10">
+               Certificats
+            </div>
+        </div>
+        <div id="collapseOne10" class="collapse" aria-labelledby="headingOne10" data-parent="#accordionExample10" style="">
+            <div class="card-body">
+                <div class="row" style="float: right; margin-right: auto;">
+                    <span style="width: 10px;"> </span><a (click)="showSection('certificat')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('certificat')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                    </div>
+                    <a data-toggle="modal" data-target="#Certif_Model">(+) new</a>
+
+                <div class=" row">
+                    
+                    <form class="kt-form"  >
+                
+                        <div class="form-group">
+                            <div class="kt-checkbox-list">
+                                <div *ngFor="let c of arrayListCertif">
+                                    <label class="kt-checkbox">
+                                        <input type="checkbox" checked="checked" (change)="onCertificatChange($event,c.id,c)">  {{c.certification}} 
+                                        <span></span>
+                                       
+                                    </label>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </form>                            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- end::collapsed card -->
+
+                 <!-- begin:: collapsed card -->
+                 <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample6">
+                    <div class="card">
+                        <div class="card-header" id="headingOne6">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne6" aria-expanded="false" aria-controls="collapseOne6">
+                                 Competence
+                            </div>
+                        </div>
+                        <div id="collapseOne6" class="collapse" aria-labelledby="headingOne6" data-parent="#accordionExample6" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('competence')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('competence')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div> 
+                                    <a data-toggle="modal" data-target="#Competence_Model">(+) new</a>
+                                    <br>
+                                <div class=" row">
+                                    
+                                    <form class="kt-form"  >
+                                
+                                        <div class="form-group">
+                                            <div class="kt-checkbox-list">
+                                                <div *ngFor="let cp of arrayListComp">
+                                                    <label class="kt-checkbox">
+                                                        <input type="checkbox" checked="checked" (change)="onCompetenceChange($event,cp.id,cp)">  {{cp.competence}}  
+                                                        <span></span>
+                                                        <button type="button" class="btn btn-outline-brand btn-icon " (click)="increaseComp(cp.note,cp)"><i class="fa fa-caret-up"></i></button>
+                                                        <button type="button" class="btn btn-outline-brand btn-icon"(click)="decreaseComp(cp.note,cp)"><i class="fa fa-caret-down"></i></button>
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </form>      
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+
+               
+
+                 <!-- begin:: collapsed card -->
+                 <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample8">
+                    <div class="card">
+                        <div class="card-header" id="headingOne8">
+                            <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne8" aria-expanded="false" aria-controls="collapseOne8">
+                                 Work History
+                            </div>
+                        </div>
+                        <div id="collapseOne8" class="collapse" aria-labelledby="headingOne8" data-parent="#accordionExample8" style="">
+                            <div class="card-body">
+                                <div class="row" style="float: right; margin-right: auto;">
+                                    <span style="width: 10px;"> </span><a (click)="showSection('projet')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye"></i></a><span style="width: 10px;"> </span><a (click)="hideSection('projet')"><i style="color:#6c757d;font-size: medium;"class="fa fa-eye-slash"></i></a>
+                                    </div>
+                                    <a data-toggle="modal" data-target="#Experience_Model">(+) new</a>
+
+                                <div class=" row">
+                                    
+                                    <form class="kt-form"  >
+                                
+                                        <div class="form-group">
+                                            <div class="kt-checkbox-list">
+                                                <div *ngFor="let c of arrayListExp">
+                                                    <label class="kt-checkbox">
+                                                        <input type="checkbox" checked="checked" (change)="onExperienceChange($event,c.id,c)">  {{c.dateDebut}} - {{c.dateFin}} 
+                                                        <span></span>
+                                                       
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </form>                            
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- end::collapsed card -->
+
+
+           </div>
+        </div>
+
+        <!-- end:: Aside Menu -->
+
+    </div>
+    
+    <div class="col-9">
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                
+                <h3 class="kt-subheader__title">
+                                        Editer CV                           
+                </h3>
+    
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                
+                <div class="kt-subheader__group" id="kt_subheader_search">
+                    <span class="kt-subheader__desc" id="kt_subheader_total">
+                                                                                    </span>
+                    
+                                </div>
+    
+                        </div>        
+                        <div class="kt-subheader__toolbar"style="width: 80%;">
+                            <div  id="google_translate_element"></div>  
+
+                            <button type="button" class="btn btn-secondary btn-icon" (click)="undo()" [disabled]="!showUndo"><i style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"class="fa fa-redo"></i></button>
+                                <button type="button" class="btn btn-secondary btn-icon" (click)="redo()" [disabled]="!showRedo"><i class="fa fa-redo"></i></button>
+                                <button (click)="inlineStyle()"type="button" class="btn btn-secondary btn-icon" ><i class="fa fa-eye"></i></button>
+                                <loading *ngIf="isLoading">{{ isLoading }}</loading>
+
+                                 <button (click)="pdf()"  class="btn btn-secondary btn-icon" ><i class="fa fa-download"></i></button>
+
+                                
+                                <a [routerLink]="['/home/collab-list']" class="btn btn-default btn-bold"style="width: 10%; justify-content: center;">
+                                Back </a>
+                                
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-brand btn-bold">
+                                    Submit </button>
+                                <button type="button" class="btn btn-brand btn-bold dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="kt-nav">
+                                      
+                                        <li class="kt-nav__item">
+                                            <a  class="kt-nav__link">
+                                                <i class="kt-nav__link-icon flaticon2-hourglass-1"></i>
+                                                
+                                                <span class="kt-nav__link-text" data-toggle="modal" data-target="#saveVersion">Save &amp; exit</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+    </div>
+     
+    <div id="cv1" style="display: none;">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/temp2.css?alt=media&token=dae2afc6-7b02-49ac-94a4-7de1885c179b" rel="stylesheet" type="text/css" />
+
+    <div class="cvClass" >
+       
+    <div  class="container " style="box-shadow:none;">
+      
+           <div class="cv" id="html" style="padding-bottom:10px;">
+           
+               <div class="row">
+                   
+        <div class="header_logo col-6  "   (cdkDragEnded)="dragName($event)" id="name"cdkDrag> 
+
+            <div class="name "><a >{{listPerson.firstName}}</a> {{listPerson.lastName}}
+            </div>    
+            <div class="post"contenteditable="true">{{listPerson.jobTitle}}</div> 
+           
+            
+        </div>
+        <div class="col-5" id="infoSection"  >
+            <div class="dragDrop-box arabicName"  (cdkDragEnded)="dragArabicName($event)"  translate="no"  id="arabicName" cdkDrag>
+                <b>أسامة لحمادي
+                </b>
+
+            </div><br>
+            <div class="dragDrop-box gender" (cdkDragEnded)="dragGender($event)"   style ="display:none;" id="gender" cdkDrag>
+                <a >{{listPerson.gender}}
+                </a>
+            </div><br>
+            <div class="dragDrop-box  image" id="picture"  >
+                <img  (cdkDragEnded)="dragImage($event)" [src]="listPerson.image" cdkDrag/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="contact row col-12" id="contact" >
+            <br>             
+            <a (cdkDragEnded)="dragAdresse($event)" id="adresse" class="contact-a row col-3"cdkDrag><a></a>{{InitContact[index].adresse}}<br> {{InitContact[index].ville}} {{InitContact[index].code}} - {{InitContact[index].pays}}<span class="icon-s " cdkDrag><i class="fa fa-location-arrow"></i></span></a>
+            <a (cdkDragEnded)="dragTel($event)"  id="tel"class="contact-a row col-3"cdkDrag>{{InitContact[index].telPerso}} <br> {{InitContact[index].telPro}}<span class="icon-s" cdkDrag><i class="fa fa-mobile-alt"></i></span></a>
+            <a (cdkDragEnded)="dragEmail($event)" id="mail" class="contact-a row col-4"cdkDrag> {{InitContact[index].MailPro}} <br> {{InitContact[index].MailPerso}}<span class="icon-s" cdkDrag><i class="fa fa-envelope"></i></span></a>
+            <a (cdkDragEnded)="dragLinkedin($event)" id="linkedin"class="contact-a row col-3"cdkDrag>{{InitContact[index].linkedin}}<span class="icon-s" cdkDrag><i class="fa fa-globe"></i></span></a>
+
+           </div>
+    </div>
+        <div class="content"(cdkDragEnded)="dragAbout($event)" cdkDrag id="about">
+           <div class="separator"></div> 
+            <div class="title">A PROPOS</div>
+            <div class="Apropos">
+                   
+                    <ckeditor id="aboutId" [editor]="Editor" [innerHtml]="InitAbout" (change)="onChange($event)"></ckeditor>
+            
+        </div>
+        <div class="content"cdkDrag (cdkDragEnded)="dragFormation($event)" id="formation">
+            <div class="separator"></div> 
+             <div class="title">FORMATIONS</div>
+
+             <div *ngFor="let f of InitFormation">
+             <div class="Apropos row" id="id2">
+             <div class="date col-2">{{f.start_date}}-{{f.end_date}}</div>
+             <div class="diplome col-10">{{f.certification}}</div>
+             </div>
+             <br>
+            </div>
+         </div>
+         <div class="content"cdkDrag (cdkDragEnded)="dragCertificat($event)" id="certificat">
+            <div class="separator"></div> 
+             <div class="title">CERTIFICATS</div>
+
+             <div *ngFor="let f of InitCertificat">
+             <div class="Apropos row" id="id2">
+             <div class="date col-2" >{{f.start_date}}-{{f.end_date}}</div>
+             <div class="diplome col-10">{{f.certification}} - {{f.centre}} - {{f.diplome_date}}</div>
+             </div>
+             <br>
+            </div>
+         </div>
+         <div class="content" cdkDrag (cdkDragEnded)="dragCompetence($event)" id="competence">
+            <div class="separator"></div> 
+             <div class="title">COMPÉTENCES CLÉS</div>
+             <div *ngFor="let cp of InitCompetence">
+
+             <div class="Apropos row ">
+                <div class="dateProject  col-6">{{cp.competence}}</div>
+                <div class="col-3 competence" > 
+                    <div class="full"></div>
+                    <div class="full"></div>
+                    <div class="full"></div>
+                    <div class="full"></div>
+                    <div class="full"></div>
+                    <div class="level"></div>
+                    <div class="level"></div>
+                    <div class="level"></div>
+                    <div class="level"></div>
+                    <div class="level"></div>
+                </div>
+                <div class="tools col-4"></div>
+             </div>
+             <br>
+            </div>
+          
+         </div>
+         <br><br>
+         <div class="content " cdkDrag>
+             <div class="row col-12">
+             <div class="col-6 "cdkDrag (cdkDragEnded)="dragLangue($event)" id="langue">
+                <div class="separator col-8"></div> 
+                <div class="title col-2 LabelLangue" >LANGUES</div>
+                <div class="row emptyRow"></div>
+                <div *ngFor="let c of InitLangue">
+                    
+
+                <div class="Apropos row " >
+                    <div class="competence ">{{c.langue}}</div>
+                    <div class="levelLangue" >
+                        <div *ngFor="let i of c.note | demoNumber">
+                         
+                        <div class="full"></div>
+
+                        </div>
+                        <div *ngFor="let j of [10-c.note] | demoNumber">
+                        <div class="level"></div>
+                       </div>
+                    </div>
+                </div>
+                </div>
+             </div>
+             <div class="col-6"cdkDrag (cdkDragEnded)="dragLoisir($event)" id="loisir">
+                <div class="separator col-8"></div> 
+                <div class="title LabelLangue col-2" >LOISIR</div>
+                <div class="emptyRow"></div>
+                <div class="Apropos row dipoloisir" >
+                    <div class="descLoisir"> 
+                        <div *ngFor="let l of InitLoisirs">
+
+                        <div class="icon">{{l.desc}}</div>
+                          
+                        </div>                   
+                    </div>
+                </div>   
+            
+            </div>
+            
+         </div>
+         <div class="content"cdkDrag id="divers" (cdkDragEnded)="dragDivers($event)">
+            <div class="separator"></div> 
+             <div class="title">DIVERS</div>
+    
+             <div *ngFor="let f of InitDivers">
+             <div class="Apropos row" id="id2">
+             <ckeditor [editor]="Editor" [(ngModel)]="f.desc"></ckeditor>
+             
+             </div>
+             <br>
+            </div>
+         </div> 
+         <div class="content"cdkDrag (cdkDragEnded)="dragProjet($event)" id="projet"> 
+            <div class="separator"></div> 
+             <div class="title">PARCOURS PROFESSIONNEL</div>
+           <div class="Apropos ">
+            <div  *ngFor="let l of InitExperience">
+
+             <div class="row">
+                <div class="dateProject col-sm-9">{{l.dateDebut}}  -  {{l.dateFin}}
+                    <div class="row">
+                        <div class="project col-8 col-sm-6">
+                            {{l.emp}} - {{l.location}}
+                        </div>
+                        
+                      </div>
+                </div>
+             </div><br>
+            
+
+             <div class="row">
+                <div class="titleProject col-sm-9">{{l.fonction}}- Proxym IT
+                </div>
+                    
+             </div><br>
+             
+             <div  *ngFor="let p of l.projet">
+             <div class="row">
+                <div class="dataProject col-12 col-sm-12">
+                  <b> {{p.ProjetName}} </b> <br> MOE:{{p.MOE}} - MOA: {{p.MOA}}
+                </div>
+                
+              </div>
+            <div class="row  col-12">
+                <div class="diplome ">
+            <a>{{p.ProjetShort}}</a>
+            </div> 
+            </div><br>
+
+            <div class="row">
+                <div class="mission col-sm-12 col-12">Mission</div>
+                    <div class="diplome ">
+                        <div class=" col-12 col-sm-12">
+                            <span class="span" >&#8226; </span> <a> {{p.ProjetDesc}}</a><br>
+
+                        </div>
+                        
+                    </div>
+                
+             </div><br>
+            
+             <div class="row">
+                <div class="mission col-sm-12 col-12">Environnement Technique</div>
+                    <div class="diplome">
+                        <div class=" col-12 col-sm-12">
+                            <a>{{p.competence}}</a>
+                        </div>
+                     </div>
+             </div> <br><br>
+            </div>
+            
+        
+        
+            <div class="separator init" ></div>
+         </div>
+         
+
+            </div>
+                <br>
+               
+         </div>
+         
+       </div>
+      
+
+
+           </div>
+         
+    </div>
+  
+    </div>
+    </div>
+
+    <div id="cv2" style="display: none;">
+        <link href="https://firebasestorage.googleapis.com/v0/b/cvthequepfe.appspot.com/o/styleCv1.css?alt=media&token=120c3990-ec8c-4583-9efa-20a6444acda1" rel="stylesheet" type="text/css" />
+
+        <ul     class="kt-sticky-toolbar " style="margin-top: 30px; background-color: #666666; opacity: 0.8;width: 3%;">
+
+            <li *ngFor="let paint of chartColor"  class="kt-sticky-toolbar__item kt-sticky-toolbar__item--success" id="kt_demo_panel_toggle" data-toggle="kt-tooltip" title="Check out more demos" data-placement="right">
+               
+        
+                <div  class="circleColor"  [ngStyle]="{'background': paint.FirstColor}" (click)="changeColor(paint)" > </div>
+          
+           </li>
+        
+        </ul>
+        <div id="html1" class="cvClass" >
+    <div class="container" >
+        <div class="cv" >
+            <div  class="scroll-wrapper" style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 100%; max-height: 100%;">
+                <div style="position: relative; overflow: scroll; margin-right: -17px; margin-bottom: -17px; min-height: inherit; max-height: inherit;">
+                    <div class="">
+                     
+                        <div id="document" class="document fontsize fontface vmargins hmargins pagesize skn-srz1 SRZ1 ZTY" style="width:auto;">
+                            <div id="CONTAINER_PARENT_0" class="parentContainer">
+                                <div id="CONTAINER_0" class="left-box" [ngStyle]="{'background-color': FirstColorInit}">
+            
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-NAME">
+                                        <div id="SECTION_NAME671b9a7b-6571-4313-8bd1-2acd7b773738" class="section notdraggable SECTION_NAME firstsection  " data-section-cd="NAME">
+                                            <div class=" doc-item">
+                                                <div id="PARAGRAPH_NAME_4e453106-e2a5-936b-5885-dde66547fb37" class="paragraph PARAGRAPH_NAME firstparagraph placeholder-text ">
+                                                     <!--
+                                                    <input #file type="file" accept='image/*' style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" name="image" (change)="showPreviewImage($event)">
+                                                    <br>
+                                                    -->
+                                                    <div class="sectiontitle" id="imgeID">
+                                                        <div class="example">
+            
+                                                            <img [src]="localUrl" *ngIf="localUrl" title="" style="width: inherit;height: 170px;border-style: none;">
+            
+            
+                                                            <div class="fadedbox">
+                                                                <button style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text" onClick="$('#imgeID').hide();$('#buttonImg').show();"> Masquer photo </button><br><br>
+                                                                <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" type="file" accept="image/*"  #fileUploader
+                                                                (change)="showPreview($event)">
+                                                                <br>
+                                                                <div class="wrapper">
+            
+                                                                    <div class="file-upload">
+                                                                        <!-- <input style="background-color:black; width: 100%; color:white; font-size: 8pt; border-style: none;" class="title text"  id="inputImage"type="file" name="image" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/gif,image/jpeg"/><br>-->
+            
+                                                                    </div>
+            
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
+                                                    <div class="" id="showImage">
+                                                        <div class="example fadedbox">
+            
+                                                            <button id="buttonImg" style="background-color:black;width: 100%; color:white; font-size: 8pt; border-style: none;display: none; " class="title text" onClick="$('#imgeID').show();$('#buttonImg').hide();"> show Picture </button>
+                                                            <br>
+            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="name word-break"style="color:white;">
+                                                        <span class="field" id="FIELD_FNAM"><ckeditor [editor]="Editor"   data='Oussama Lahmadi '></ckeditor></span>
+                                                    </div>
+            
+                                                    <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Développeur web'></ckeditor></div>
+                                                    <div class="resumeTitle" id="FIELD_DCTL"><ckeditor [editor]="Editor"   data='Male'></ckeditor></div>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-CNTC">
+                                        <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                        <div id="SECTION_CNTC7f727e17-7e66-47b8-806a-e31c211c9ec5" class="section SECTION_CNTC notdraggable   " data-section-cd="CNTC">
+                                            <div class=" doc-item">
+                                                <div class="heading"  [ngStyle]="{'background': SecondColorInit}">
+                                                    <div class="sectiontitle" id="SECTIONNAME_CNTC">Contact<span class="rename-section text-rename">
+                                                         </span></div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="">
+                                                        <div id="PARAGRAPH_CNTC_7c586dc9-6e7a-3ae8-faa5-d0c1f7348705" class="paragraph PARAGRAPH_CNTC firstparagraph placeholder-text ">
+                                                            <div class="clearfix doc-item">
+                                                                <ckeditor [editor]="Editor"   data=' 
+                                                                <div class="address">
+                                                                    
+                                                                    <div class="singlecolumn">
+                                                                        <div dependency="STRT|CITY|STAT|ZIPC">
+                                                                            <div class="txtBold">Address </div>
+                                                                            <div class="field" id="FIELD_STRT">123 Main Street</div>
+                                                                            <span class="field" id="FIELD_CITY">Berkeley</span><span dependency="CITY+STAT|ZIPC">,</span>
+                                                                            <span class="field" id="FIELD_STAT">CA</span><span dependency="STAT+ZIPC">, </span>
+                                                                            <span class="field" id="FIELD_ZIPC">Zip</span>
+                                                                        </div>
+                                                                        <div class="txtBold mt5" dependency="HPHN|CPHN">E-mail Perso </div>
+                                                                        <div dependency="HPHN">
+                                                                        </div>
+            
+                                                                        <div class="txtBold mt5" dependency="EMAI">E-mail Pro </div>
+                                                                        <div dependency="EMAI" class="word-break">
+                                                                        </div>
+            
+                                                                        <div class="txtBold mt5" dependency="EMAI">Tél Perso </div>
+                                                                        <div dependency="EMAI" class="word-break">
+                                                                        </div>
+            
+                                                                        <div class="txtBold mt5" dependency="EMAI">Tél Pro </div>
+                                                                        <div dependency="EMAI" class="word-break">
+                                                                        </div>
+            
+                                                                    </div>
+                                                                </div>'></ckeditor>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
+                                        <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                        <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
+                                            <div class=" doc-item">
+                                                <div class="heading" [ngStyle]="{'background': SecondColorInit}">
+                                                    <div class="sectiontitle" id="SECTIONNAME_HILT">Langues <span class="rename-section text-rename">  </span>
+                                                        <a class="btn btn-bold  " data-toggle="modal" data-target="#Langue_Model"> (+)   </a>
+                                                   </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="">
+                                                        <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
+                                                            <div class="clearfix doc-item">
+                                                                <div class="singlecolumn maincolumn">
+                                                                    <span class="paddedline" id="FIELD_SKC1">
+                                        <div *ngFor="let listLangue of InitLangue">
+                                            <ckeditor [editor]="Editor"   data='<a>{{listLangue.langue}} - {{ listLangue.note }}</a> '></ckeditor>
+                                            <mat-icon style="font-size: 10px; float:right;" (click)="deleteLangue(listLangue.id,listLangue)" >remove_circle</mat-icon>
+                                        </div></span>
+            
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
+                                        <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                        <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
+                                            <div class=" doc-item">
+                                                <div class="heading" [ngStyle]="{'background': SecondColorInit}">
+                                                    <div class="sectiontitle" id="SECTIONNAME_HILT">Loisirs <span class="rename-section text-rename"> 
+                                                    </span></div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="">
+                                                        <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
+                                                            <div class="clearfix doc-item">
+                                                                <div class="singlecolumn maincolumn">
+                                                                    <span class="paddedline" id="FIELD_SKC1">
+             
+                                                                        <div *ngFor="let listLoisirs of InitLoisirs">
+            
+                             
+                                           <ckeditor [editor]="Editor" [(ngModel)]="listLoisirs.desc" ></ckeditor>
+                                           <mat-icon style="font-size: 10px; float:right;" (click)="deleteLoisirs(listLoisirs.id)" >remove_circle</mat-icon>
+            
+                                   </div>
+                                        </span>
+            
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-HILT">
+                                        <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                        <div id="SECTION_HILTfc80a9bb-b119-4792-8c0b-822c3d6eca6f" class="section SECTION_HILT  noparagraph " data-section-cd="HILT">
+                                            <div class=" doc-item">
+                                                <div class="heading" [ngStyle]="{'background': SecondColorInit}">
+                                                    <div class="sectiontitle" id="SECTIONNAME_HILT">Divers<span class="rename-section text-rename"> </span></div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="">
+                                                        <div id="PARAGRAPH_HILT_0" class="paragraph PARAGRAPH_HILT firstparagraph placeholder-text ">
+                                                            <div class="clearfix doc-item">
+                                                                <div class="singlecolumn maincolumn">
+                                                                    <span class="paddedline" id="FIELD_SKC1">
+                                        <div *ngFor="let listDivers of InitDivers">
+                                            <ckeditor [editor]="Editor" [(ngModel)]="listDivers.desc" ></ckeditor>
+                                            <mat-icon style="font-size: 10px; float:right;" (click)="deleteDivers(listDivers.id)" >remove_circle</mat-icon>
+            
+                                        </div>
+                                    </span>
+            
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div id="CONTAINER_1" class="right-box">
+                                    <div data-react-beautiful-dnd-draggable="2Hig" class="sortable-item section-container SortableItem-sibling  data-SUMM">
+                                        <div class="document-tool sec-tool" id="editIcons" style="right: -2px;">
+                                        </div>
+                                        <div id="SECTION_SUMMfa2859a6-4cc7-43e6-985b-04a3c95ffae2" class="section summary notdraggable SECTION_SUMM  noparagraph " data-section-cd="SUMM">
+                                            <div class=" doc-item">
+                                                <div class="">
+                                                    <div class="">
+                                                        <div id="PARAGRAPH_SUMM_0" class="paragraph PARAGRAPH_SUMM firstparagraph placeholder-text ">
+                                                            <div class="clearfix doc-item">
+            
+                                                                <div class="field singlecolumn" id="FIELD_FRFM">
+                                                                    
+                                                                    <ckeditor id="aboutId"  [editor]="Editor" [(ngModel)]="InitAbout" (change)="onChange($event)" >
+                                                                        
+                                                                    </ckeditor>
+                                                                    <br>
+                                                                    <br>
+                                                                    <!--<ckeditor [editor]="Editor" [config]="ckeConfig">
+                                                                        <a>aatest</a>
+                                                                    </ckeditor>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EXPR">
+                                        <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                        <div id="SECTION_EXPRb0dfe082-4896-416d-b4af-36e8f0e58745" class="section experience SECTION_EXPR  noparagraph multi-para" data-section-cd="EXPR">
+                                            <div class=" doc-item">
+                                                <div class="heading">
+                                                    <div class="sectiontitle" id="SECTIONNAME_EXPR" [ngStyle]="{'color': SecondColorInit}">
+            
+                                                      <span class="rename-section text-rename">  Work History  </span>
+                                                        <div class="btn-group btn-group-sm mb-2" role="group" style="float: right;height: 1.95rem;" >
+                                                            <button type="button" class="btn btn-secondary"(click)="LongDesc()">Long</button>
+                                                            <button type="button" class="btn btn-secondary"(click)="ShortDesc()">Short</button>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <div class="sortableInner">
+                                                        <div id="PARAGRAPH_EXPR_0" class="paragraph datespara PARAGRAPH_EXPR firstparagraph placeholder-text ">
+                                                            <div class="clearfix doc-item">
+                                                                        
+                    
+                    <div  *ngFor="let listExperience of arrayListExp">
+                    
+            <mat-icon style="font-size: 10px; float:right;" mat-mini-fab color="warn"(click)="deleteExperience(listExperience.id)" >remove_circle</mat-icon>
+                        <div id="ExperienceText" class=" singlecolumn">
+            
+                            <div class="paddedline date-content" dependency="JSTD|EDDT">
+                                <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">
+                                    
+                                   {{listExperience.dateDebut}}
+            
+            
+                                </span>
+                                
+                                    <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">
+                                        {{listExperience.dateFin}}
+                                    </span>
+                                    <br dependency="JTIT|COMP|JSTA|JCIT">
+                                    </div>
+                        
+                                    <div class="paddedline" dependency="JTIT">
+                                        <div class="jobtitle txtBold" id="FIELD_JTIT">
+                                         <ckeditor [editor]="Editor" data="{{listExperience.fonction}} - {{listExperience.emp}} <br> {{listExperience.location}}"></ckeditor>
+            
+                                        </div>
+                                    </div>
+                                    <div  *ngFor="let projet of listExperience.projet">
+                                    <div class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                    <ckeditor [editor]="Editor" data="<span> <b>Titre projet :</b>  {{ projet.ProjetName}}</span><br><span ><b>MOA :  </b>{{  projet.MOA}} ,<b>MOE :  </b>{{  projet.MOE}}</span> "></ckeditor>
+                        </div>
+                                    <span *ngIf="Short_Desc" class="jobline" id="FIELD_JDES"  ><ckeditor [editor]="Editor" data="<b>Description :</b> {{projet.ProjetShort}}<br><b> Téchnologies: </b>{{projet.competence}}"></ckeditor></span>
+                                    <span *ngIf="Long_Desc" class="jobline" id="FIELD_JDES"><ckeditor [editor]="Editor" data="<b>Description :</b> {{projet.ProjetDesc}}<br><b> Téchnologies: </b>{{projet.competence}}"></ckeditor></span>
+                                
+                              </div>  
+                                </div>
+            
+                        
+                                <br>
+                                    <br>
+                                    </div>
+                    
+                    
+                                                            
+                                                                
+                                                               <!--<ckeditor [editor]="Editor" [data]="ExperienceData " ></ckeditor>-->
+            
+                                                            </div>
+                                                            <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
+                                                                <div class="clearfix doc-item">
+                                                                </div>
+            
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
+                                        <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
+                                            <div class=" doc-item">
+                                                <div class="heading">
+                                                    <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}" id="SECTIONNAME_EDUC">Education
+                                                        </div>
+                                                       
+              
+            
+                                                </div>
+            
+                                                <div class="">
+                                                    <div class="">
+            
+                                                        <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC ">
+                                                            <div class="">
+            
+                                                                <div *ngFor="let listFormation of InitFormation">
+                                                                 <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn"(click)="deleteFormation(listFormation.id)" >remove_circle</mat-icon>
+                                                                    <div class="singlecolumn">
+                                                                        <div class="paddedline date-content" dependency="JSTD|EDDT">
+                                                                            <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listFormation.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
+                                                                            <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listFormation.end_date}}</span>
+                                                                            <br dependency="JTIT|COMP|JSTA|JCIT">
+                                                                        </div>
+                                                                        
+                                                                        <span class="paddedline" dependency="JTIT">
+                                        <span class="jobtitle txtBold" id="FIELD_JTIT">{{listFormation.certification}}</span>
+                                                                        </span>
+                                                                        <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                                        <span class="companyname" id="FIELD_COMP">{{listFormation.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
+                                                                        <span class="jobcity" id="FIELD_JCIT">{{listFormation.diplome_date}}</span>
+                                                                        </span>
+            
+                                                                    </div>
+            
+                                                                </div>
+            
+                                                            </div>
+                                                            <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
+                                                                <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
+                                                                    <div class=" doc-item">
+                                                                        <div class="heading">
+                                                                            <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}"id="SECTIONNAME_EDUC">Certificats
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <div class="">
+                                                                                <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
+                                                                                    <div class="clearfix doc-item">
+                                                                                        <div *ngFor="let listCertif of arrayListCertif">
+                                                                                            <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn" (click)="deleteCertificat(listCertif.id)" >remove_circle</mat-icon>
+            
+                                                                                            <div class="singlecolumn">
+                                                                                                <div class="paddedline date-content" dependency="JSTD|EDDT">
+                                                                                                    <span class="jobdates" id="FIELD_JSTD" format="%Y-%m">{{listCertif.start_date}}</span><span dependency="JSTD+EDDT"><br></span>
+                                                                                                    <span class="jobdates" id="FIELD_EDDT" format="%Y-%m">{{listCertif.end_date}}</span>
+                                                                                                    <br dependency="JTIT|COMP|JSTA|JCIT">
+                                                                                                </div>
+                                                                                                <span class="paddedline" dependency="JTIT">
+                                        <span class="jobtitle txtBold" id="FIELD_JTIT">{{listCertif.certification}}</span>
+                                                                                                </span>
+                                                                                                <span class="paddedline locationGap txtItl" dependency="COMP|JSTA|JCIT">
+                                        <span class="companyname" id="FIELD_COMP">{{listCertif.University}}</span><span dependency="COMP+JCIT|JSTA">,</span>
+                                                                                                <span class="jobcity" id="FIELD_JCIT">{{listCertif.diplome_date}}-{{listCertif.centre}}</span>
+                                                                                                </span>
+            
+                                                                                            </div>
+                                                                                        </div>
+            
+                                                                                    </div>
+                                                                                    <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
+                                                                                        <div class="clearfix doc-item">
+                                                                                        </div>
+            
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+            
+                                                            <div data-react-beautiful-dnd-draggable="2" class="sortable-item section-container SortableItem-sibling  data-EDUC">
+                                                                <div class="document-tool sec-tool" id="editIcons" style="right: -2px;"></div>
+                                                                <div id="SECTION_EDUCbd7d05cc-9128-43d2-8c52-0fb0fcf63870" class="section education SECTION_EDUC  noparagraph multi-para" data-section-cd="EDUC">
+                                                                    <div class=" doc-item">
+                                                                        <div class="heading">
+                                                                            <div class="sectiontitle" [ngStyle]="{'color': SecondColorInit}"id="SECTIONNAME_EDUC">Compétences
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="">
+                                                                            <div class="">
+                                                                                <div id="PARAGRAPH_EDUC_0" class="paragraph datespara PARAGRAPH_EDUC firstparagraph placeholder-text ">
+                                                                                    <div class="clearfix doc-item">
+                                                                                        <div *ngFor="let listComp of arrayListComp">
+                                                                                            <mat-icon style="font-size: 10px;position: relative;z-index: 99;float: right;"mat-mini-fab color="warn" (click)="deleteCompetence(listComp.id)" >remove_circle</mat-icon>
+                                                                                           
+                                                                                            
+                                                                                            <span class="" dependency="JTIT">
+                                            <span class=" txtBold" id="FIELD_JTIT"> &#8226; {{listComp.competence}}</span>
+                                                                                            </span>
+                                                                                            <span class="paddedline locationGap txtItl paddedline" id="FIELD_SKC1" dependency="COMP|JSTA|JCIT">
+                                            <ckeditor [editor]="Editor" data='<b>Niveau</b> {{listComp.competence_level}}'></ckeditor>
+                                                                                            </span>
+                                                                                            <div *ngFor="let tools of listComp.tools">
+            
+            
+                                                                                                <ckeditor [editor]="Editor" data=' - outils: {{tools.tool}} - niveau: {{tools.tools_level}}'></ckeditor>
+                                                                                          </div>
+                                                                                            <br>
+                                                                                          
+                                                                                        </div>
+            
+                                                                                    </div>
+                                                                                    <div id="PARAGRAPH_EXPR_-1" class="paragraph datespara PARAGRAPH_EXPR placeholder-text ">
+                                                                                        <div class="clearfix doc-item">
+                                                                                        </div>
+            
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+                
+    
+            </div>
+          </div>
+    </div>
+    </div>
+       </div>
+    </div>
+
+<script>
+    window.addEvent('resize', function(){
+        Browser.prefix = (Browser.firefox) ? 'moz' : (Browser.safari || Browser.chrome) ? 'webkit' : (Browser.opera) ? 'o' : 'ms';
+
+
+$$('*[style*=-'+Browser.prefix+'-transform:translate3d(0, 0, 0)').setStyle('-'+Browser.prefix+'-transform', '');
+});
+</script>

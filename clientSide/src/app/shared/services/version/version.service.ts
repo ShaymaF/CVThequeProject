@@ -25,9 +25,9 @@ export class VersionService {
   getFolders(){
     return this.http.get(environment.apiBaseUrl + '/version/list/folder');
   }
-  getOneVersion(id) {
+  getOneVersion(id,IDF) {
 
-    return this.http.get(environment.apiBaseUrl +  `/version/version/${id}`);
+    return this.http.get(environment.apiBaseUrl +  `/version/version/${id}/${IDF}`);
   }
   openFolder(id) {
 

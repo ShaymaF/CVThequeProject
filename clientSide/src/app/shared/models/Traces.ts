@@ -5,11 +5,12 @@ import { Experience } from './experience';
 import { Formation } from './formation';
 import { Certificat } from './certificat';
 import { Competence } from './competence';
+import { About } from './about';
 
 export interface Traces {
   FirstColor: string;
   SecondColor: string;
-  abouts:string;
+  abouts:About[];
   langues:Langue[];
   loisirs:Loisirs[];
   divers:Divers[];

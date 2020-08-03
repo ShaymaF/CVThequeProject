@@ -24,6 +24,8 @@ export class ShowVersionComponent implements OnInit {
        this.id = params.get('id');});  
         console.log('id',this.id )
         this.getAllVersions();
+        localStorage.setItem("IDF",this.id);
+        
   }
   sendImage(imageVersion){
 this.image=imageVersion;
